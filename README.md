@@ -7,6 +7,7 @@ week1 - brainstorming ideas for real time embedded projects
 <p> Hologram 3D Design from AutoCAD/Solidworks controlled by Flick Gesture Board <p>
 <p> References: <p>
 <p> https://www.hackster.io/hackershack/holographic-audio-visualizer-with-motion-control-e72fee#toc-assembly-3 <p>
+<p> https://www.instructables.com/Hologram-Projector-With-Pi/ <p>
 <p> https://uk.pi-supply.com/products/flick-large-standalone-3d-tracking-gesture-breakout <p>
 <p> https://www.youtube.com/watch?v=MrgGXQvAuR4 <p>
 <p> https://www.youtube.com/watch?v=Due7rutvqGk <p>
