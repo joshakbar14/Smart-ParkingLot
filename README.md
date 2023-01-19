@@ -1,4 +1,4 @@
-# our-embedded-projects
+# guided parking lot
 
 to do:
 week1 - brainstorming ideas for real time embedded projects
