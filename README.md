@@ -1,4 +1,4 @@
-# guided parking lot
+# Smart Parking Lot
 
 . to do:
 . week1 - brainstorming ideas for real time embedded projects
