@@ -15,3 +15,5 @@ About
 
 ## Backend Work
 
++ Hardware connection with I2C bus extension
+
