@@ -1,7 +1,6 @@
 # Smart Parking Lot
-
-. to do:
-. week1 - brainstorming ideas for real time embedded projects
+* Specification
+* Program Flowchart
 ## ideas 1: 
 ## ideas 2:
 ## ideas 3:
