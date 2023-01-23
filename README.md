@@ -15,5 +15,11 @@ A smart parking system that automatically check empty parking space and return a
 
 ## Backend Work
 
+### Hardware
 + Hardware connection with I2C bus extension
++ RFID reader class
++ LCD display class
++ QR code display class
++ Ultrasonic sensor connection class
 
+### Software
