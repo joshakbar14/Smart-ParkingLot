@@ -1,6 +1,6 @@
 # Smart Parking Lot
 
-About
+A smart parking system that automatically check empty parking space and return a guidance path and booking code to the user for that space.
 
 ## Specification
 
