@@ -16,3 +16,6 @@ https://github.com/berndporr/cppTimer
 ## GPIO Cpp
 https://github.com/berndporr/gpio-sysfs
 
+## I2C/SPI/UART setting
+https://medium.com/geekculture/raspberry-pi-c-libraries-for-working-with-i2c-spi-and-uart-4677f401b584
+

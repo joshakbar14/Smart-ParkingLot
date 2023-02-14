@@ -22,7 +22,9 @@ int main(){
     GPIOClass gpio18("18"); //write
     GPIOClass gpio24("24"); //read
     gpio18.export_gpio(); // initialize
+    gpio18.setdir_gpio("in");
     gpio24.export_gpio(); // initialize
+    gpio24.setdir_gpio("out");
 
     //trigger high
     gpio18.setval_gpio(high);
