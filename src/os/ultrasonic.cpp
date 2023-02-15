@@ -6,7 +6,7 @@
 
 #include <iostream>
 #include <ctime>
-#include "GPIOClass.h"
+#include "GPIO/GPIOClass.h""
 #include "unistd.h"
 
 using namespace std;
