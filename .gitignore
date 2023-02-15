@@ -66,4 +66,7 @@ _deps
 .history
 .ionide
 
+# zipfiles
+.zip
+
 # End of https://www.toptal.com/developers/gitignore/api/c++,cmake,visualstudiocode
