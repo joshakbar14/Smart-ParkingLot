@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE HelloworldTests
 #include <boost/test/unit_test.hpp>
 
-#include </Users/Andrea/vscode/test2/src/helloworld.h>
+#include "../src/helloworld.h"
 
 // BOOST_AUTO_TEST_CASE(FailTest)
 // {
