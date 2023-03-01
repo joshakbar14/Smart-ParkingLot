@@ -17,9 +17,25 @@ ultrasonicSensorClass::ultrasonicSensorClass(string in, string out)
 {
     this->gpioIn = in;
     this->gpioOut = out;
+    // set unique sensor_no for each instance of class
+    if (this->sensor_no == NULL) {
+        this->sensor_no = 0;
+    } else {
+        this->sensor_no++;
+    }
+
+    // create object of GPIO connection in pin gpioIn and gpioOut
+    GPIOClass gpioWrite(in); //write
+    GPIOClass gpioRead(out); //read
+    this->gpioRead = gpioWrite;
+    this->gpioRead = gpioRead;
+    this->gpioWrite.export_gpio(); // initialize
+    this->gpioWrite.setdir_gpio("in");
+    this->gpioRead.export_gpio(); // initialize
+    this->gpioRead.setdir_gpio("out");
 }
 
-int ultrasonicSensorClass::sensorCheck()
+int ultrasonicSensorClass::sense_location()
 {
     bool checkStatus = true;
     string result;
@@ -27,25 +43,19 @@ int ultrasonicSensorClass::sensorCheck()
     // char io2 = "24";
     string high = "1";
     string low = "0";
-    // create object of GPIO connection in pin gpioIn and gpioOut
-    GPIOClass gpioWrite(this->gpioIn); //write
-    GPIOClass gpioRead(this->gpioOut); //read
-    gpioWrite.export_gpio(); // initialize
-    gpioWrite.setdir_gpio("in");
-    gpioRead.export_gpio(); // initialize
-    gpioRead.setdir_gpio("out");
+    
 
     //trigger high
-    gpioWrite.setval_gpio(high);
+    this->gpioWrite.setval_gpio(high);
     sleep(0.00001);
     //trigger low
-    gpioWrite.setval_gpio(low);
+    this->gpioWrite.setval_gpio(low);
 
     time_t startTime = time(&startTime);
     time_t stopTime = time(&stopTime);
 
     //get GPIO read result
-    gpioRead.getval_gpio(result);
+    this->gpioRead.getval_gpio(result);
 
     //save start time
     while (result == "0")

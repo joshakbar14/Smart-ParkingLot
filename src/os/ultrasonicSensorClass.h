@@ -13,10 +13,13 @@ class ultrasonicSensorClass
 {
     public:
         ultrasonicSensorClass(std::string in, std::string out);
-        int sensorCheck();
+        int sense_location();
     private:
+        static int sensor_no;
         std::string gpioIn;
         std::string gpioOut;
+        GPIOClass gpioWrite;
+        GPIOClass gpioRead;
 };
 
 #endif //ULTRASONIC_H
