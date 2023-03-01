@@ -7,9 +7,9 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include "GPIO/GPIOClass.h"
 #include "unistd.h"
 #include "ultrasonicSensorClass.h"
+#include "GPIO/GPIOClass.h"
 
 using namespace std;
 
@@ -19,7 +19,7 @@ ultrasonicSensorClass::ultrasonicSensorClass(string in, string out, int sensor_n
     this->sensor_no = sensor_no;
     GPIOClass gpioWrite(in); //write
     GPIOClass gpioRead(out); //read
-    this->gpioRead = gpioWrite;
+    this->gpioWrite = gpioWrite;
     this->gpioRead = gpioRead;
     this->gpioWrite.export_gpio(); // initialize
     this->gpioWrite.setdir_gpio("out");

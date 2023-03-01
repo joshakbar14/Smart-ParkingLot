@@ -12,6 +12,9 @@
 #include "GPIOClass.h"
 
 using namespace std;
+GPIOClass::GPIOClass()
+{
+}
 GPIOClass::GPIOClass(string gnum)
 {
     this->gpionum = gnum;  //Instatiate GPIOClass object for GPIO pin number "gnum"
