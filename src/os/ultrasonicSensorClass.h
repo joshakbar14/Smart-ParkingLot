@@ -12,11 +12,12 @@ using namespace std;
 class ultrasonicSensorClass
 {
     public:
-        ultrasonicSensorClass(std::string in, std::string out);
-        int sensorCheck();
+        ultrasonicSensorClass(std::string in, std::string out, int sensor_no);
+        int sense_location();
     private:
-        std::string gpioIn;
-        std::string gpioOut;
+        int sensor_no;
+        GPIOClass gpioWrite;
+        GPIOClass gpioRead;
 };
 
 #endif //ULTRASONIC_H

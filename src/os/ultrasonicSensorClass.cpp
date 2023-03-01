@@ -13,75 +13,67 @@
 
 using namespace std;
 
-ultrasonicSensorClass::ultrasonicSensorClass(string in, string out)
+ultrasonicSensorClass::ultrasonicSensorClass(string in, string out, int sensor_no)
 {
-    this->gpioIn = in;
-    this->gpioOut = out;
+    // create object of GPIO connection in pin gpioIn and gpioOut
+    this->sensor_no = sensor_no;
+    GPIOClass gpioWrite(in); //write
+    GPIOClass gpioRead(out); //read
+    this->gpioRead = gpioWrite;
+    this->gpioRead = gpioRead;
+    this->gpioWrite.export_gpio(); // initialize
+    this->gpioWrite.setdir_gpio("out");
+    this->gpioRead.export_gpio(); // initialize
+    this->gpioRead.setdir_gpio("in");
 }
 
-int ultrasonicSensorClass::sensorCheck()
+int ultrasonicSensorClass::sense_location()
 {
     bool checkStatus = true;
-    string result;
-    // char io1 = "18";
-    // char io2 = "24";
+    string result ="0";
     string high = "1";
     string low = "0";
-    // create object of GPIO connection in pin gpioIn and gpioOut
-    GPIOClass gpioWrite(this->gpioIn); //write
-    GPIOClass gpioRead(this->gpioOut); //read
-    gpioWrite.export_gpio(); // initialize
-    gpioWrite.setdir_gpio("in");
-    gpioRead.export_gpio(); // initialize
-    gpioRead.setdir_gpio("out");
-
-    //trigger high
-    gpioWrite.setval_gpio(high);
+    
+    this->gpioWrite.setval_gpio(high); //trigger high
     sleep(0.00001);
-    //trigger low
-    gpioWrite.setval_gpio(low);
+    this->gpioWrite.setval_gpio(low); //trigger low
 
     time_t startTime = time(&startTime);
     time_t stopTime = time(&stopTime);
-
-    //get GPIO read result
-    gpioRead.getval_gpio(result);
-
-    //save start time
-    while (result == "0")
-    {
-        /* code */
-        startTime = time(&startTime);
-    }
-
-    while (result == "1")
-    {
-        /* code */
-        stopTime = time(&stopTime);
-    }
-
-    //main calculations, speed of sound
-    int timeElapsed = startTime - stopTime;
-    int distance = (timeElapsed * 34300) / 2;
 
     /*
     * trial on distance value
     * when car parked
     * compare to no car parked
     */
-
-   try
-   {
-    while (true)
+    try
     {
-        /* code */
-        cout << distance << endl;
-        sleep(1);
+        while (true)
+        {
+            //save start time
+            while (result == "0")
+            {
+                //get GPIO read result
+                this->gpioRead.getval_gpio(result);
+            }
+            startTime = time(&startTime);
+            
+            //save stop time
+            while (result == "1")
+            {
+                this->gpioRead.getval_gpio(result);
+            }
+            stopTime = time(&stopTime);
+            //main calculations, speed of sound
+            int timeElapsed = startTime - stopTime;
+            int distance = (timeElapsed * 34300) / 2;
+            cout << distance << endl;
+            sleep(1);
+        }
     }
-   }
-   catch(const std::exception& e)
-   {
-    std::cerr << e.what() << '\n';
-   }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
    return 0;
 }
