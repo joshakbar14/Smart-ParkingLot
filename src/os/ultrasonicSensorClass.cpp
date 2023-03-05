@@ -47,17 +47,17 @@ int ultrasonicSensorClass::sense_location()
             sleep(0.00005);
             this->gpioWrite.setval_gpio(low); // trigger low
             // save start time
+            this->gpioRead.getval_gpio(result);
             while (result == "0")
             {
                 // get GPIO read result
-                this->gpioRead.getval_gpio(result);
                 startTime = time(&startTime);
             }
 
             // save stop time
+            this->gpioRead.getval_gpio(result);
             while (result == "1")
             {
-                this->gpioRead.getval_gpio(result);
                 stopTime = time(&stopTime);
             }
 
