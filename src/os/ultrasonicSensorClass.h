@@ -16,6 +16,8 @@ class ultrasonicSensorClass
         int sense_location();
     private:
         int sensor_no;
+        int input_pin;
+        int output_pin;
 };
 
 #endif //ULTRASONIC_H

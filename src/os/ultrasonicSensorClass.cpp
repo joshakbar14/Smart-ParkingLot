@@ -51,11 +51,11 @@ int ultrasonicSensorClass::sense_location()
     {
         while (true)
         {
-            this->gpioWrite(output_pin, 0);
+            gpioWrite(output_pin, 0);
             sleep(0.00002);
-            this->gpioWrite(output_pin, 1); // trigger high
+            gpioWrite(output_pin, 1); // trigger high
             sleep(0.00010);
-            this->gpioWrite(output_pin, 0); // trigger low
+            gpioWrite(output_pin, 0); // trigger low
             // save start time
             
             while (gpioRead(input_pin) == 0)
