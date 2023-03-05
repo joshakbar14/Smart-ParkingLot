@@ -9,30 +9,40 @@
 #include <ctime>
 #include "unistd.h"
 #include "ultrasonicSensorClass.h"
-#include "GPIO/GPIOClass.h"
+#include <pigpio.h>
 
 using namespace std;
 
-ultrasonicSensorClass::ultrasonicSensorClass(string in, string out, int sensor_no)
+ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
 {
     // create object of GPIO connection in pin gpioIn and gpioOut
     this->sensor_no = sensor_no;
-    GPIOClass gpioWrite(in); // write
-    GPIOClass gpioRead(out); // read
-    this->gpioWrite = gpioWrite;
-    this->gpioRead = gpioRead;
-    this->gpioWrite.export_gpio(); // initialize
-    this->gpioWrite.setdir_gpio("out");
-    this->gpioRead.export_gpio(); // initialize
-    this->gpioRead.setdir_gpio("in");
+
+    // GPIOClass gpioWrite(in); // write
+    // GPIOClass gpioRead(out); // read
+    // this->gpioWrite = gpioWrite;
+    // this->gpioRead = gpioRead;
+    // this->gpioWrite.export_gpio(); // initialize
+    // this->gpioWrite.setdir_gpio("out");
+    // this->gpioRead.export_gpio(); // initialize
+    // this->gpioRead.setdir_gpio("in");
+
+    /* 
+     * Re-create the whole GPIOClass using PIGPIO library
+     * For common language and easy-to-use library 
+     */
+
+    this->input_pin = in;
+    this->output_pin = out;
+    gpioSetMode(input_pin, PI_INPUT);
+    gpioSetMode(output_pin, PI_OUTPUT);
+
 }
 
 int ultrasonicSensorClass::sense_location()
 {
     // bool checkStatus = true;
     string result = "0";
-    string high = "1";
-    string low = "0";
 
     time_t startTime = time(&startTime);
     time_t stopTime = time(&stopTime);
@@ -41,22 +51,22 @@ int ultrasonicSensorClass::sense_location()
     {
         while (true)
         {
-            this->gpioWrite.setval_gpio(low);
+            this->gpioWrite(output_pin, 0);
             sleep(0.00002);
-            this->gpioWrite.setval_gpio(high); // trigger high
-            sleep(0.00005);
-            this->gpioWrite.setval_gpio(low); // trigger low
+            this->gpioWrite(output_pin, 1); // trigger high
+            sleep(0.00010);
+            this->gpioWrite(output_pin, 0); // trigger low
             // save start time
-            this->gpioRead.getval_gpio(result);
-            while (result == "0")
+            
+            while (gpioRead(input_pin) == 0)
             {
                 // get GPIO read result
                 startTime = time(&startTime);
             }
 
             // save stop time
-            this->gpioRead.getval_gpio(result);
-            while (result == "1")
+            
+            while (gpioRead(input_pin) == 0)
             {
                 stopTime = time(&stopTime);
             }
