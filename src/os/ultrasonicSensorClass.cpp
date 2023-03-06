@@ -69,9 +69,9 @@ int ultrasonicSensorClass::sense_location()
                 stopTime = std::chrono::high_resolution_clock::now();
             }
 
-            main calculations, speed of sound
+            // main calculations, speed of sound
             auto timeElapsed = std::chrono::duration_cast<std::chrono::microseconds>(stopTime - startTime).count();
-            int distance = timeElapsed.count() / 58.2;
+            int distance = timeElapsed / 58.2;
             cout << distance << endl;
             // cout << startTime << endl;
             // cout << stopTime << endl;
