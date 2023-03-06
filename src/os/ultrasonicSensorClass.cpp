@@ -75,6 +75,11 @@ int ultrasonicSensorClass::sense_location()
             cout << distance << endl;
             // cout << startTime << endl;
             // cout << stopTime << endl;
+
+            // reset chrono time
+            startTime = std::chrono::high_resolution_clock::now();
+            stopTime = std::chrono::high_resolution_clock::now();
+            
             sleep(1);
         }
     }
