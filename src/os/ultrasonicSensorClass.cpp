@@ -7,7 +7,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
-#include <ctime>
+#include <chrono>
 #include "unistd.h"
 #include "ultrasonicSensorClass.h"
 #include <pigpio.h>
@@ -36,25 +36,14 @@ ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
     output_pin = out;
 }
 
-void aFunction(int gpio, int level, uint32_t tick)
-    {
-        printf("GPIO %d became %d at %d", gpio, level, tick);
-        if (level == 1)
-        {
-            int distance = tick;
-            cout << distance << endl;
-        }
-        
-    }
-
 int ultrasonicSensorClass::sense_location()
 {
     // bool checkStatus = true;
     gpioInitialise();
     gpioSetMode(input_pin, PI_INPUT);
     gpioSetMode(output_pin, PI_OUTPUT);
-    time_t startTime = time(&startTime);
-    time_t stopTime = time(&stopTime);
+    auto startTime = std::chrono::high_resolution_clock::now();
+    auto stopTime = std::chrono::high_resolution_clock::now();
 
     // call aFunction whenever GPIO 4 changes state
 
@@ -67,25 +56,23 @@ int ultrasonicSensorClass::sense_location()
             gpioWrite(output_pin, 0); // trigger low
             // save start time
 
-            // while (gpioRead(input_pin) == 1)
-            // {
-            //     // get GPIO read result
-            //     startTime = time(&startTime);
-            // }
+            while (gpioRead(input_pin) == 1)
+            {
+                // get GPIO read result
+                startTime = std::chrono::high_resolution_clock::now();
+            }
 
-            // // save stop time
+            // save stop time
 
-            // while (gpioRead(input_pin) == 0)
-            // {
-            //     stopTime = time(&stopTime);
-            // }
+            while (gpioRead(input_pin) == 0)
+            {
+                stopTime = std::chrono::high_resolution_clock::now();
+            }
 
-            gpioSetAlertFunc(input_pin, aFunction);
-
-            // main calculations, speed of sound
-            // int timeElapsed = startTime - stopTime;
-            // int distance = (timeElapsed / 58.2);
-            // cout << distance << endl;
+            main calculations, speed of sound
+            auto timeElapsed = std::chrono::duration_cast<std::chrono::microseconds>(stopTime - startTime).count();
+            int distance = timeElapsed.count() / 58.2;
+            cout << distance << endl;
             // cout << startTime << endl;
             // cout << stopTime << endl;
             sleep(1);
