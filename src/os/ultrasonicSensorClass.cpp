@@ -52,7 +52,7 @@ int ultrasonicSensorClass::sense_location()
         while (true)
         {
             gpioWrite(output_pin, 1); // trigger high
-            usleep(100);
+            usleep(10);
             gpioWrite(output_pin, 0); // trigger low
             // save start time
 
@@ -79,7 +79,7 @@ int ultrasonicSensorClass::sense_location()
             // reset chrono time
             startTime = std::chrono::high_resolution_clock::now();
             stopTime = std::chrono::high_resolution_clock::now();
-            
+
             sleep(1);
         }
     }
