@@ -39,6 +39,12 @@ ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
 void aFunction(int gpio, int level, uint32_t tick)
     {
         printf("GPIO %d became %d at %d", gpio, level, tick);
+        if (level == 1)
+        {
+            distance = tick;
+            cout << distance << endl;
+        }
+        
     }
 
 int ultrasonicSensorClass::sense_location()
