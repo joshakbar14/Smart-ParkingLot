@@ -31,34 +31,28 @@ ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
      * Re-create the whole GPIOClass using PIGPIO library
      * For common language and easy-to-use library 
      */
-
-    this->input_pin = in;
-    this->output_pin = out;
-    gpioSetMode(input_pin, PI_INPUT);
-    gpioSetMode(output_pin, PI_OUTPUT);
-
+    input_pin = in;
+    output_pin = out;
 }
 
 int ultrasonicSensorClass::sense_location()
 {
     // bool checkStatus = true;
-    string result = "0";
-
+    gpioInitialise();
+    gpioSetMode(input_pin, PI_INPUT);
+    gpioSetMode(output_pin, PI_OUTPUT);
     time_t startTime = time(&startTime);
     time_t stopTime = time(&stopTime);
-
     try
     {
         while (true)
-        {
-            gpioWrite(output_pin, 0);
-            sleep(0.00002);
+        {	    
             gpioWrite(output_pin, 1); // trigger high
-            sleep(0.00010);
+            usleep(100);
             gpioWrite(output_pin, 0); // trigger low
             // save start time
             
-            while (gpioRead(input_pin) == 0)
+            while (gpioRead(input_pin) == 1)
             {
                 // get GPIO read result
                 startTime = time(&startTime);
@@ -73,9 +67,11 @@ int ultrasonicSensorClass::sense_location()
 
             // main calculations, speed of sound
             int timeElapsed = startTime - stopTime;
-            int distance = (timeElapsed * 34300) / 2;
+            int distance = (timeElapsed / 58.2);
             cout << distance << endl;
-            sleep(5);
+            cout << startTime << endl;
+	    cout << stopTime << endl;
+            sleep(1);
         }
     }
     catch (const std::exception &e)

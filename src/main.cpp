@@ -1,9 +1,12 @@
 #include "os/ultrasonicSensorClass.h"
 #include <iostream>
+#include <pigpio.h>
 
 using namespace std;
 
 int main() {
-    ultrasonicSensorClass ultrasonic("18","24", 1);
+    gpioInitialise();
+    ultrasonicSensorClass ultrasonic(23, 24, 1);
     ultrasonic.sense_location();
+    gpioTerminate();
 }
