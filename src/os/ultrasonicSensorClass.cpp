@@ -38,12 +38,14 @@ ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
 
 int ultrasonicSensorClass::sense_location()
 {
+    using namespace std::chrono
+    
     // bool checkStatus = true;
     gpioInitialise();
     gpioSetMode(input_pin, PI_INPUT);
     gpioSetMode(output_pin, PI_OUTPUT);
-    auto startTime = std::chrono::high_resolution_clock::now();
-    auto stopTime = std::chrono::high_resolution_clock::now();
+    high_resolution_clock::time_point startTime;
+    high_resolution_clock::time_point stopTime;
 
     // call aFunction whenever GPIO 4 changes state
 
@@ -59,26 +61,26 @@ int ultrasonicSensorClass::sense_location()
             while (gpioRead(input_pin) == 1)
             {
                 // get GPIO read result
-                startTime = std::chrono::high_resolution_clock::now();
+                startTime = high_resolution_clock::now();
             }
 
             // save stop time
 
             while (gpioRead(input_pin) == 0)
             {
-                stopTime = std::chrono::high_resolution_clock::now();
+                stopTime = high_resolution_clock::now();
             }
 
             // main calculations, speed of sound
-            auto timeElapsed = std::chrono::duration_cast<std::chrono::microseconds>(stopTime - startTime);
-            int distance = timeElapsed.count() / 58.2;
+            auto timeElapsed = duration_cast<microseconds>(stopTime - startTime);
+            int distance = timeElapsed.count() * 0.0343 / 2;
             cout << distance << endl;
             // cout << startTime << endl;
             // cout << stopTime << endl;
 
             // reset chrono time
-            startTime = std::chrono::high_resolution_clock::now();
-            stopTime = std::chrono::high_resolution_clock::now();
+            startTime = high_resolution_clock::now();
+            stopTime = high_resolution_clock::now();
 
             sleep(1);
         }
