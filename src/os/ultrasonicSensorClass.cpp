@@ -47,18 +47,15 @@ int ultrasonicSensorClass::sense_location()
     {
         while (true)
         {	    
-            gpioWrite(output_pin, 0);
-            sleep(0.00002);
             gpioWrite(output_pin, 1); // trigger high
-            sleep(0.00010);
+            usleep(100);
             gpioWrite(output_pin, 0); // trigger low
             // save start time
             
-            while (gpioRead(input_pin) == 0)
+            while (gpioRead(input_pin) == 1)
             {
                 // get GPIO read result
                 startTime = time(&startTime);
-                cout << "Start Time" << endl;
             }
 
             // save stop time
@@ -66,15 +63,15 @@ int ultrasonicSensorClass::sense_location()
             while (gpioRead(input_pin) == 0)
             {
                 stopTime = time(&stopTime);
-                cout << "Stop Time" << endl;
             }
 
             // main calculations, speed of sound
             int timeElapsed = startTime - stopTime;
-            int distance = (timeElapsed * 34300) / 2;
+            int distance = (timeElapsed / 58.2);
             cout << distance << endl;
-            gpioTerminate();
-            sleep(3);
+            cout << startTime << endl;
+	    cout << stopTime << endl;
+            sleep(1);
         }
     }
     catch (const std::exception &e)
