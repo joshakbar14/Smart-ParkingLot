@@ -41,7 +41,7 @@ void aFunction(int gpio, int level, uint32_t tick)
         printf("GPIO %d became %d at %d", gpio, level, tick);
         if (level == 1)
         {
-            distance = tick;
+            int distance = tick;
             cout << distance << endl;
         }
         
