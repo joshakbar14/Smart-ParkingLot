@@ -36,6 +36,11 @@ ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
     output_pin = out;
 }
 
+void aFunction(int gpio, int level, uint32_t tick)
+    {
+        printf("GPIO %d became %d at %d", gpio, level, tick);
+    }
+
 int ultrasonicSensorClass::sense_location()
 {
     // bool checkStatus = true;
@@ -46,10 +51,6 @@ int ultrasonicSensorClass::sense_location()
     time_t stopTime = time(&stopTime);
 
     // call aFunction whenever GPIO 4 changes state
-    void aFunction(int gpio, int level, uint32_t tick)
-    {
-        printf("GPIO %d became %d at %d", gpio, level, tick);
-    }
 
     try
     {
@@ -73,7 +74,7 @@ int ultrasonicSensorClass::sense_location()
             //     stopTime = time(&stopTime);
             // }
 
-            gpioSetAlertFunc(4, aFunction);
+            gpioSetAlertFunc(input_pin, aFunction);
 
             // main calculations, speed of sound
             // int timeElapsed = startTime - stopTime;
