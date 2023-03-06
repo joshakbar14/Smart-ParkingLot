@@ -12,7 +12,7 @@ using namespace std;
 class ultrasonicSensorClass
 {
     public:
-        ultrasonicSensorClass(std::int in, std::in out, int sensor_no);
+        ultrasonicSensorClass(int in, int out, int sensor_no);
         int sense_location();
     private:
         int sensor_no;
