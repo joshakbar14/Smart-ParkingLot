@@ -55,22 +55,22 @@ int main() {
         my_uid.uidByte[3] = 114;
         my_uid.uidByte[4] = 31;
         
-        // Configure LED Output Pin
-        const int LED = 1;
-        wiringPiSetup();
-        pinMode(LED, OUTPUT);
-        digitalWrite(LED, LOW);
+        // // Configure LED Output Pin
+        // const int LED = 1;
+        // gpioInitialise();
+        // gpioSetMode(LED, PI_OUTPUT);
+        // digitalWrite(LED, LOW);
         
-        // Check to see if card UID read matches your card UID
-        if (uid == my_uid) {  // Open the Doggy Door if matching UIDs
-            std::cout << "Access Granted" << std::endl;
-            digitalWrite(LED, HIGH);  // Turn on LED
-            delay(5000);              // Wait 5 Seconds
-            digitalWrite(LED, LOW);   // Turn off LED
+        // // Check to see if card UID read matches your card UID
+        // if (uid == my_uid) {  // Open the Doggy Door if matching UIDs
+        //     std::cout << "Access Granted" << std::endl;
+        //     digitalWrite(LED, HIGH);  // Turn on LED
+        //     delay(5000);              // Wait 5 Seconds
+        //     digitalWrite(LED, LOW);   // Turn off LED
             
-        } else {                // Don't open if UIDs don't match
-            std::cout << "Access Denied, YOU SHALL NOT PASS!" << std::endl;
-        }
+        // } else {                // Don't open if UIDs don't match
+        //     std::cout << "Access Denied, YOU SHALL NOT PASS!" << std::endl;
+        // }
     }
     return 0;
 }
