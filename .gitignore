@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/c++,cmake
-# Edit at https://www.toptal.com/developers/gitignore?templates=c++,cmake
+# Created by https://www.toptal.com/developers/gitignore/api/c++,cmake,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=c++,cmake,visualstudiocode
 
 ### C++ ###
 # Prerequisites
@@ -52,4 +52,21 @@ _deps
 # External projects
 *-prefix/
 
-# End of https://www.toptal.com/developers/gitignore/api/c++,cmake
+### VisualStudioCode ###
+**/.vscode/
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# zipfiles
+.zip
+
+# End of https://www.toptal.com/developers/gitignore/api/c++,cmake,visualstudiocode

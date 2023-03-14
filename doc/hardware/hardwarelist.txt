@@ -1,0 +1,9 @@
+Hardware List
+1. mfrc522 RFID module
+https://cpc.farnell.com/w/c/maker-circuit-development/kits-modules/prl/results/2?brand=sparkfun-electronics
+
+2. camera module
+https://cpc.farnell.com/raspberry-pi/sc0872/raspberry-pi-camera-3/dp/SC19765?st=pi%20camera%20module
+
+3. ultrasonic module
+https://cpc.farnell.com/multicomp/hc-sr04/ultrasonic-distance-sensor/dp/SN36696?st=ultrasonic
