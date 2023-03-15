@@ -6,6 +6,7 @@
 #include <ctime>
 #include "unistd.h"
 #include <pigpio.h>
+#include <thread>
 
 using namespace std;
 
@@ -13,11 +14,15 @@ class ultrasonicSensorClass
 {
     public:
         ultrasonicSensorClass(int in, int out, int sensor_no);
-        double sense_location();
+        void start();
+        void stop();
     private:
+        double sense_location();
         int sensor_no;
         int input_pin;
         int output_pin;
+        std::thread t;
+        
 };
 
 #endif //ULTRASONIC_H
