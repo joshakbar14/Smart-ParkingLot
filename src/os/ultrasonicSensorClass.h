@@ -13,7 +13,7 @@ class ultrasonicSensorClass
 {
     public:
         ultrasonicSensorClass(int in, int out, int sensor_no);
-        int sense_location();
+        double sense_location();
     private:
         int sensor_no;
         int input_pin;
