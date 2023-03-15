@@ -87,7 +87,7 @@ int ultrasonicSensorClass::sense_location()
             double distance = 100*((timeElapsed/1000000.0)*340.29)/2;
             
             // cout << timeElapsed.count() << endl;
-            cout << timeElapsed;
+            cout << timeElapsed << endl;
             cout << distance << endl;
             // cout << startTime << endl;
             // cout << stopTime << endl;
@@ -95,8 +95,6 @@ int ultrasonicSensorClass::sense_location()
             // reset chrono time
             // startTime = high_resolution_clock::now();
             // stopTime = high_resolution_clock::now();
-
-            sleep(0.60);
         }
     }
     catch (const std::exception &e)
