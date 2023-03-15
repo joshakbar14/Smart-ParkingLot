@@ -11,6 +11,7 @@
 #include "unistd.h"
 #include "ultrasonicSensorClass.h"
 #include <pigpio.h>
+#include <thread>
 
 using namespace std;
 
@@ -88,6 +89,7 @@ double ultrasonicSensorClass::sense_location()
             
             cout << timeElapsed.count() << endl;
             // cout << timeElapsed << endl;
+            cout << this->sensor_no << endl;
             cout << distance << endl;
             // cout << startTime << endl;
             // cout << stopTime << endl;
@@ -102,4 +104,12 @@ double ultrasonicSensorClass::sense_location()
         std::cerr << e.what() << '\n';
     }
     return 0;
+}
+
+void ultrasonicSensorClass::start(){
+	t = thread(&ultrasonicSensorClass::sense_location,this);
+}
+
+void ultrasonicSensorClass::stop(){
+	t.join();
 }
