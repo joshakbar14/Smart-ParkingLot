@@ -89,8 +89,8 @@ double ultrasonicSensorClass::sense_location()
             cout << timeElapsed.count() << endl;
             // cout << timeElapsed << endl;
             cout << distance << endl;
-            cout << startTime << endl;
-            cout << stopTime << endl;
+            // cout << startTime << endl;
+            // cout << stopTime << endl;
 
             // reset chrono time
             startTime = high_resolution_clock::now();
