@@ -86,7 +86,7 @@ int ultrasonicSensorClass::sense_location()
             startTime = high_resolution_clock::now();
             stopTime = high_resolution_clock::now();
 
-            sleep(1);
+            sleep(0.0060);
         }
     }
     catch (const std::exception &e)
