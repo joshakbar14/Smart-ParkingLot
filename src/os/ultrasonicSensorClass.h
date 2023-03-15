@@ -21,6 +21,7 @@ class ultrasonicSensorClass
         int sensor_no;
         int input_pin;
         int output_pin;
+        bool running;
         std::thread t;
         
 };

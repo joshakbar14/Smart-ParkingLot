@@ -54,7 +54,8 @@ double ultrasonicSensorClass::sense_location()
 
     try
     {
-        while (true)
+        running = true;
+        while (running)
         {
             gpioWrite(output_pin, 0);
             sleep(1);
@@ -111,5 +112,6 @@ void ultrasonicSensorClass::start(){
 }
 
 void ultrasonicSensorClass::stop(){
+    running = false;
 	t.join();
 }
