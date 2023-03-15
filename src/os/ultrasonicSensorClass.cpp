@@ -54,7 +54,7 @@ int ultrasonicSensorClass::sense_location()
         while (true)
         {
             gpioWrite(output_pin, 0);
-            sleep(1)
+            sleep(1);
             gpioWrite(output_pin, 1); // trigger high
             sleep(0.0001);
             gpioWrite(output_pin, 0); // trigger low
