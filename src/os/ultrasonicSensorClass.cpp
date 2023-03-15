@@ -54,9 +54,9 @@ int ultrasonicSensorClass::sense_location()
         while (true)
         {
             gpioWrite(output_pin, 0);
-            sleep(2);
+            sleep(0.5);
             gpioWrite(output_pin, 1); // trigger high
-            sleep(0.00001);
+            usleep(10);
             gpioWrite(output_pin, 0); // trigger low
             // save start time
 
@@ -74,9 +74,9 @@ int ultrasonicSensorClass::sense_location()
             }
 
             // main calculations, speed of sound
-            auto timeElapsed = duration_cast<microseconds>(stopTime - startTime);
-            int distance = timeElapsed.count() * 1000000 * 17150;
-            cout << timeElapsed.count() * 1000000 << endl;
+            auto timeElapsed = duration_cast<seconds>(stopTime - startTime);
+            int distance = timeElapsed.count() * 17150;
+            cout << timeElapsed.count() << endl;
             cout << distance << endl;
             // cout << startTime << endl;
             // cout << stopTime << endl;
