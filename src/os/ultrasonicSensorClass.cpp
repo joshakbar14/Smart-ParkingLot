@@ -78,7 +78,7 @@ int ultrasonicSensorClass::sense_location()
             // double distance = timeElapsed.count() * 17150;
             double distance = 100*((timeElapsed.count()/1000000.0)*340.29)/2;
             cout << timeElapsed.count() << endl;
-            cout << distance << endl;
+            cout << distance - 17020 << endl;
             // cout << startTime << endl;
             // cout << stopTime << endl;
 
