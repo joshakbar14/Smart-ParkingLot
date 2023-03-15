@@ -44,8 +44,8 @@ int ultrasonicSensorClass::sense_location()
     gpioInitialise();
     gpioSetMode(input_pin, PI_INPUT);
     gpioSetMode(output_pin, PI_OUTPUT);
-    high_resolution_clock::time_point startTime;
-    high_resolution_clock::time_point stopTime;
+    // high_resolution_clock::time_point startTime;
+    // high_resolution_clock::time_point stopTime;
     time_t startTime;
     time_t stopTime;
 
