@@ -36,7 +36,7 @@ ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
     output_pin = out;
 }
 
-int ultrasonicSensorClass::sense_location()
+double ultrasonicSensorClass::sense_location()
 {
     using namespace std::chrono;
     
