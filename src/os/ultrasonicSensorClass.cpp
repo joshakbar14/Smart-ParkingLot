@@ -66,7 +66,7 @@ int ultrasonicSensorClass::sense_location()
             {
                 // get GPIO read result
                 // startTime = high_resolution_clock::now();
-                startTime = time.time(&startTime);
+                startTime = time(&startTime);
             }
 
             // save stop time
@@ -74,27 +74,27 @@ int ultrasonicSensorClass::sense_location()
             while (gpioRead(input_pin) == 1)
             {
                 // stopTime = high_resolution_clock::now();
-                stopTime = time.time(&stopTime);
+                stopTime = time(&stopTime);
             }
 
             // main calculations, speed of sound
             // auto timeElapsed = duration_cast<microseconds>(stopTime - startTime);
             
-            timeElapsed = stopTime - startTime;
+            double timeElapsed = stopTime - startTime;
             
             // double distance = timeElapsed.count() * 17150;
             // double distance = 100*((timeElapsed.count()/1000000.0)*340.29)/2;
             double distance = 100*((timeElapsed/1000000.0)*340.29)/2;
             
             // cout << timeElapsed.count() << endl;
-            
+            cout << timeElapsed 
             cout << distance << endl;
             // cout << startTime << endl;
             // cout << stopTime << endl;
 
             // reset chrono time
-            startTime = high_resolution_clock::now();
-            stopTime = high_resolution_clock::now();
+            // startTime = high_resolution_clock::now();
+            // stopTime = high_resolution_clock::now();
 
             sleep(0.60);
         }
