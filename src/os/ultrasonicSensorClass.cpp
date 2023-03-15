@@ -74,7 +74,7 @@ int ultrasonicSensorClass::sense_location()
             }
 
             // main calculations, speed of sound
-            auto timeElapsed = duration_cast<seconds>(stopTime - startTime);
+            auto timeElapsed = duration_cast<milliseconds>(stopTime - startTime);
             int distance = timeElapsed.count() * 17150;
             cout << timeElapsed.count() << endl;
             cout << distance << endl;
