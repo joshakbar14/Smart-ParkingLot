@@ -54,9 +54,9 @@ int ultrasonicSensorClass::sense_location()
         while (true)
         {
             gpioWrite(output_pin, 0);
-            usleep(10);
+            sleep(1)
             gpioWrite(output_pin, 1); // trigger high
-            usleep(10);
+            sleep(0.0001);
             gpioWrite(output_pin, 0); // trigger low
             // save start time
 
@@ -86,7 +86,7 @@ int ultrasonicSensorClass::sense_location()
             startTime = high_resolution_clock::now();
             stopTime = high_resolution_clock::now();
 
-            sleep(0.0060);
+            sleep(0.60);
         }
     }
     catch (const std::exception &e)
