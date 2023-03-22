@@ -47,4 +47,11 @@ parkingLot::parkingLot(int no_spots)
 int parkingLot::get_spotavaliability()
 {
     //return free spot from hash map
+    for (auto spot : spots) {
+        if (spot.second == false) {
+            return spot.first;
+        }
+    }
+    return -1;
+    // or value not found
 }
