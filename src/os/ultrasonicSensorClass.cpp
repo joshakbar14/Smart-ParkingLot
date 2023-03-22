@@ -20,19 +20,6 @@ ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
     // create object of GPIO connection in pin gpioIn and gpioOut
     this->sensor_no = sensor_no;
 
-    // GPIOClass gpioWrite(in); // write
-    // GPIOClass gpioRead(out); // read
-    // this->gpioWrite = gpioWrite;
-    // this->gpioRead = gpioRead;
-    // this->gpioWrite.export_gpio(); // initialize
-    // this->gpioWrite.setdir_gpio("out");
-    // this->gpioRead.export_gpio(); // initialize
-    // this->gpioRead.setdir_gpio("in");
-
-    /*
-     * Re-create the whole GPIOClass using PIGPIO library
-     * For common language and easy-to-use library
-     */
     input_pin = in;
     output_pin = out;
 }
@@ -41,14 +28,15 @@ double ultrasonicSensorClass::sense_location()
 {
     using namespace std::chrono;
     
-    // bool checkStatus = true;
     gpioInitialise();
+    int led_pin = 0;
     gpioSetMode(input_pin, PI_INPUT);
     gpioSetMode(output_pin, PI_OUTPUT);
+    gpioSetMode(led_pin, PI_OUTPUT); //led pin
+    gpioWrite(led_pin, 0);
+    gpioSetISRFunc(led_pin, 1, 0, displayInterrupt);
     high_resolution_clock::time_point startTime;
     high_resolution_clock::time_point stopTime;
-    // time_t startTime;
-    // time_t stopTime;
 
     // call aFunction whenever GPIO 4 changes state
 
@@ -98,6 +86,12 @@ double ultrasonicSensorClass::sense_location()
             // reset chrono time
             startTime = high_resolution_clock::now();
             stopTime = high_resolution_clock::now();
+
+            if (distance < 2) {
+                gpioWrite(led_pin, 1);
+            } else {
+                gpioWrite(led_pin, 0);
+            }
         }
     }
     catch (const std::exception &e)
@@ -105,6 +99,19 @@ double ultrasonicSensorClass::sense_location()
         std::cerr << e.what() << '\n';
     }
     return 0;
+}
+
+void ultrasonicSensorClass::displayInterrupt(int gpio, int level, uint32_t tick) 
+{
+    printf("Interrupt %d\n");
+    for (auto callback : callbacks) {
+        callback->avaliability_changed(sensor_no, true);
+    }
+}
+
+void ultrasonicSensorClass::registerCallback(parkCallback* callback) 
+{
+    callbacks.push_back(callback);
 }
 
 void ultrasonicSensorClass::start(){

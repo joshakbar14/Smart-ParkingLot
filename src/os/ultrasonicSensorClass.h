@@ -10,10 +10,17 @@
 
 using namespace std;
 
+struct parkCallback {
+public:
+	virtual void avaliability_changed(int no, bool avaliability) = 0;
+};
+
 class ultrasonicSensorClass
 {
     public:
         ultrasonicSensorClass(int in, int out, int sensor_no);
+        void displayInterrupt(int gpio, int level, uint32_t tick);
+        void registerCallback(parkCallback* callback);
         void start();
         void stop();
     private:
@@ -23,6 +30,7 @@ class ultrasonicSensorClass
         int output_pin;
         bool running;
         std::thread t;
+        std::vector<parkCallback*> callbacks;
         
 };
 
