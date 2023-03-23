@@ -9,12 +9,16 @@
 
 using namespace std;
 
-struct parkCallback : parkCallback {
+struct aParkCallback : parkCallback {
 public:
-	void avaliability_changed(int no, bool avaliability) {
-        spots[no] = avaliability;
-		cout << "Parking spot:" << no << "  is avaliable =" << avaliability << endl;
-	}
+
+        parkingLot *pl = nullptr;
+	    void avaliability_changed(int no, bool avaliability) {
+            if (pl == nullptr) return;
+            pl->spots[no] = avaliability;
+		    cout << "Parking spot:" << no << "  is avaliable =" << avaliability << endl;
+	    }
+    
 };
 
 /*Class that keeps track of all parking spots, 
@@ -31,7 +35,7 @@ parkingLot::parkingLot(int no_spots)
         spots[i] = avaliability;
 
         //instantiate callback
-        parkCallback callback;
+        aParkCallback callback;
 
         // // instantiate parkClass which is the driver class between the ultrasonic sensors and parkingLot
         // parkClass parkSpot(i);
