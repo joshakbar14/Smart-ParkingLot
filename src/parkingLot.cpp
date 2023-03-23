@@ -39,7 +39,7 @@ parkingLot::parkingLot(int no_spots)
 
         // // instantiate parkClass which is the driver class between the ultrasonic sensors and parkingLot
         // parkClass parkSpot(i);
-        ultrasonicSensorClass parkSpot(18, 24, i);
+        ultrasonicSensorClass parkSpot(22, 23, i);
         //parkSpot.registerCallback(&avaliability);
         parkSpot.registerCallback(&callback);
         parkSpot.start();
@@ -51,4 +51,11 @@ parkingLot::parkingLot(int no_spots)
 int parkingLot::get_spotavaliability()
 {
     //return free spot from hash map
+    for (auto spot : spots) {
+        if (spot.second == false) {
+            return spot.first;
+        }
+    }
+    return -1;
+    // or value not found
 }
