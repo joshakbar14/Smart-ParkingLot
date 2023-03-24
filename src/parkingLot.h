@@ -14,9 +14,9 @@ class parkingLot
     public:
         parkingLot(int no_spots);
         int get_spotavaliability();
+        std::unordered_map<int, bool> spots;
     private:
         int no_spots;
-        std::unordered_map<int, bool> spots;
 };
 
 #endif //PARKINGLOT_H

@@ -7,6 +7,7 @@
 #include "unistd.h"
 #include <pigpio.h>
 #include <thread>
+#include <vector>
 
 using namespace std;
 
