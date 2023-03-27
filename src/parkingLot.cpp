@@ -3,7 +3,7 @@
 #include <pigpio.h>
 #include <iostream>
 #include "parkingLot.h"
-#include "../os/ultrasonicSensorClass.h"
+#include "os/ultrasonicSensorClass.h"
 #include <thread>
 #include <unistd.h>
 
