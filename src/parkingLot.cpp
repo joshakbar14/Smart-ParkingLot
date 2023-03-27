@@ -45,7 +45,7 @@ parkingLot::parkingLot(int no_spots)
         //parkSpot.registerCallback(&avaliability);
         parkSpot.registerCallback(&callback);
         parkSpot.start();
-        sleep(5);
+        sleep(20);
         parkSpot.stop();
     }
 }
