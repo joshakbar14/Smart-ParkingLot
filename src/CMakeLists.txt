@@ -1,4 +1,4 @@
-add_library (Ultrasonic os/ultrasonicSensorClass.cpp os/ultrasonicSensorClass.h)
+add_library (Ultrasonic os/ultrasonicSensorClass.cpp os/ultrasonicSensorClass.h parkingLot.cpp parkingLot.h)
 add_executable (demo main.cpp)
 set_target_properties(
     demo
