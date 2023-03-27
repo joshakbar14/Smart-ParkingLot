@@ -2,9 +2,7 @@
 #include <iostream>
 #include <pigpio.h>
 
-//
 #include "parkingLot.h"
-//
 
 using namespace std;
 
