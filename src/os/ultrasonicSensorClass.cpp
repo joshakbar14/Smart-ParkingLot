@@ -88,7 +88,7 @@ double ultrasonicSensorClass::sense_location()
             startTime = high_resolution_clock::now();
             stopTime = high_resolution_clock::now();
 
-            if (distance < 2) {
+            if (distance < 5.0) {
                 avaliability = false;
                 gpioWrite(led_pin, 1);
             } else {
