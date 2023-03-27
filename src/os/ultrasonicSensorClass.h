@@ -11,15 +11,15 @@
 
 using namespace std;
 
+struct ultrasonicSample {
+    bool avaliability = true;
+    int sensor_no = 0;
+};
+
 class ultrasonicCallback {
 public:
 	//virtual void avaliability_changed(int no, bool avaliability) = 0;
     virtual void avaliability_changed(ultrasonicSample sample) = 0;
-};
-
-struct ultrasonicSample {
-    bool avaliability = true;
-    int sensor_no = 0;
 };
 
 class ultrasonicSensorClass
