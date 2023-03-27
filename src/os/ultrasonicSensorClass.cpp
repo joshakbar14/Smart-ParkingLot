@@ -108,14 +108,27 @@ void ultrasonicSensorClass::displayInterrupt(int gpio, int level, uint32_t tick,
 {
     printf("Interrupt %d\n");
     //for (auto callback : callbacks) {
-        callback->avaliability_changed(userdata);
+        //this->avaliability_changed(userdata);
     //}
+    if (level) {
+			((ultrasonicSensorClass*)userdata)->dataReady();
+		}
 }
 
-void ultrasonicSensorClass::registerCallback(parkCallback* callback) 
+void ultrasonicSensorClass::dataReady() {
+    if (!callback) {
+        return;
+    }
+    ultrasonicSample sample;
+    sample.avaliability = avaliability;
+    sample.sensor_no = sensor_no;
+    callback->avaliability_changed(sample);
+};
+
+void ultrasonicSensorClass::registerCallback(ultrasonicCallback* cb) 
 {
     //callbacks.push_back(callback);
-    this->callback = callback;
+    callback = cb;
 }
 
 void ultrasonicSensorClass::start(){

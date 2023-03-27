@@ -9,16 +9,16 @@
 
 using namespace std;
 
-struct aParkCallback : parkCallback {
+struct aParkCallback : ultrasonicCallback {
 public:
 
         parkingLot *pl = nullptr;
 	    //void avaliability_changed(int no, bool avaliability) {
-        void avaliability_changed(ultrasonicSensorClass s) {
+        void avaliability_changed(ultrasonicSample sample) {
             if (pl == nullptr) return;
             //pl->spots[no] = avaliability;
-            pl->spots[s.sensor_no] = s.avaliability;
-		    cout << "Parking spot:" << s.sensor_no << "  is avaliable =" << s.avaliability << endl;
+            pl->spots[sample.sensor_no] = sample.avaliability;
+		    cout << "Parking spot:" << sample.sensor_no << "  is avaliable =" << sample.avaliability << endl;
 	    }
     
 };
