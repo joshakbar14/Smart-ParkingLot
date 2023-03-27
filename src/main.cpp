@@ -3,7 +3,7 @@
 #include <pigpio.h>
 
 //
-#include "../parkingLot.h"
+#include "parkingLot.h"
 //
 
 using namespace std;
