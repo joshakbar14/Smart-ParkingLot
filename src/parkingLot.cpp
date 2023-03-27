@@ -32,22 +32,41 @@ parkingLot::parkingLot(int no_spots)
     this->no_spots = no_spots;
 
     // fill the hash map with number of spot and avaliability bool
-    for (int i = 0; i < no_spots; i++) {
+    // for (int i = 0; i < no_spots; i++) {
+    //     bool avaliability = true;
+    //     spots[i] = avaliability;
+
+    //     //instantiate callback
+    //     aParkCallback callback;
+
+    //     // // instantiate parkClass which is the driver class between the ultrasonic sensors and parkingLot
+    //     // parkClass parkSpot(i);
+    //     ultrasonicSensorClass parkSpot(i+22, i+23, i);
+    //     //parkSpot.registerCallback(&avaliability);
+    //     parkSpot.registerCallback(&callback);
+    //     parkSpot.start();
+    //     sleep(20);
+    //     parkSpot.stop();
+    // }
         bool avaliability = true;
-        spots[i] = avaliability;
+        spots[0] = avaliability;
+        spots[1] = avaliability;
 
         //instantiate callback
-        aParkCallback callback;
+        aParkCallback callback1;
+        aParkCallback callback2;
 
-        // // instantiate parkClass which is the driver class between the ultrasonic sensors and parkingLot
-        // parkClass parkSpot(i);
-        ultrasonicSensorClass parkSpot(22, 23, i);
+        ultrasonicSensorClass parkSpot1(22, 23, 0);
+        ultrasonicSensorClass parkSpot2(6, 12, 1);
         //parkSpot.registerCallback(&avaliability);
-        parkSpot.registerCallback(&callback);
-        parkSpot.start();
-        sleep(20);
-        parkSpot.stop();
-    }
+        parkSpot1.registerCallback(&callback1);
+        parkSpot2.registerCallback(&callback2);
+        parkSpot1.start();
+        parkSpot2.start();
+        sleep(30);
+        parkSpot1.stop();
+        parkSpot2.stop();
+    
 }
 
 int parkingLot::get_spotavaliability()

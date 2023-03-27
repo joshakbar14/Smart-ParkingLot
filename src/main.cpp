@@ -17,7 +17,7 @@ int main() {
 //     ultrasonic2.stop();
 //     gpioTerminate();
 
-    parkingLot parkinglot(1);
+    parkingLot parkinglot(2);
 
     gpioTerminate();
 }
