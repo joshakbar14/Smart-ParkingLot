@@ -35,7 +35,7 @@ double ultrasonicSensorClass::sense_location()
     gpioSetMode(output_pin, PI_OUTPUT);
     gpioSetMode(led_pin, PI_OUTPUT); //led pin
     gpioWrite(led_pin, 0);
-    gpioSetISRFuncEx(led_pin, 1, 0, displayInterrupt, (void*)this);
+    gpioSetISRFuncEx(led_pin, EITHER_EDGE, 0, displayInterrupt, (void*)this);
     high_resolution_clock::time_point startTime;
     high_resolution_clock::time_point stopTime;
 
