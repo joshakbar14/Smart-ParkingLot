@@ -13,10 +13,12 @@ struct aParkCallback : parkCallback {
 public:
 
         parkingLot *pl = nullptr;
-	    void avaliability_changed(int no, bool avaliability) {
+	    //void avaliability_changed(int no, bool avaliability) {
+        void avaliability_changed(ultrasonicSensorClass s) {
             if (pl == nullptr) return;
-            pl->spots[no] = avaliability;
-		    cout << "Parking spot:" << no << "  is avaliable =" << avaliability << endl;
+            //pl->spots[no] = avaliability;
+            pl->spots[s.sensor_no] = s.avaliability;
+		    cout << "Parking spot:" << s.sensor_no << "  is avaliable =" << s.avaliability << endl;
 	    }
     
 };
@@ -31,7 +33,7 @@ parkingLot::parkingLot(int no_spots)
 
     // fill the hash map with number of spot and avaliability bool
     for (int i = 0; i < no_spots; i++) {
-        bool avaliability = false;
+        bool avaliability = true;
         spots[i] = avaliability;
 
         //instantiate callback
@@ -52,7 +54,7 @@ int parkingLot::get_spotavaliability()
 {
     //return free spot from hash map
     for (auto spot : spots) {
-        if (spot.second == false) {
+        if (spot.second == true) {
             return spot.first;
         }
     }

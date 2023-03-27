@@ -35,7 +35,7 @@ double ultrasonicSensorClass::sense_location()
     gpioSetMode(output_pin, PI_OUTPUT);
     gpioSetMode(led_pin, PI_OUTPUT); //led pin
     gpioWrite(led_pin, 0);
-    gpioSetISRFunc(led_pin, 1, 0, displayInterrupt);
+    gpioSetISRFuncEx(led_pin, 1, 0, displayInterrupt, (void*)this);
     high_resolution_clock::time_point startTime;
     high_resolution_clock::time_point stopTime;
 
@@ -89,8 +89,10 @@ double ultrasonicSensorClass::sense_location()
             stopTime = high_resolution_clock::now();
 
             if (distance < 2) {
+                avaliability = false;
                 gpioWrite(led_pin, 1);
             } else {
+                avaliability = true;
                 gpioWrite(led_pin, 0);
             }
         }
@@ -102,17 +104,18 @@ double ultrasonicSensorClass::sense_location()
     return 0;
 }
 
-void ultrasonicSensorClass::displayInterrupt(int gpio, int level, uint32_t tick) 
+void ultrasonicSensorClass::displayInterrupt(int gpio, int level, uint32_t tick, void* userdata) 
 {
     printf("Interrupt %d\n");
-    for (auto callback : callbacks) {
-        callback->avaliability_changed(sensor_no, true);
-    }
+    //for (auto callback : callbacks) {
+        callback->avaliability_changed(userdata);
+    //}
 }
 
 void ultrasonicSensorClass::registerCallback(parkCallback* callback) 
 {
-    callbacks.push_back(callback);
+    //callbacks.push_back(callback);
+    this->callback = callback;
 }
 
 void ultrasonicSensorClass::start(){

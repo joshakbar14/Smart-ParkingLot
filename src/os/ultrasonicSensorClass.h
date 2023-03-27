@@ -13,25 +13,28 @@ using namespace std;
 
 struct parkCallback {
 public:
-	virtual void avaliability_changed(int no, bool avaliability) = 0;
+	//virtual void avaliability_changed(int no, bool avaliability) = 0;
+    virtual void avaliability_changed(ultrasonicSensorClass s) = 0;
 };
 
 class ultrasonicSensorClass
 {
     public:
         ultrasonicSensorClass(int in, int out, int sensor_no);
-        void displayInterrupt(int gpio, int level, uint32_t tick);
+        static void displayInterrupt(int gpio, int level, uint32_t tick, void* userdata);
         void registerCallback(parkCallback* callback);
         void start();
         void stop();
+        bool avaliability;
+        int sensor_no;
     private:
         double sense_location();
-        int sensor_no;
         int input_pin;
         int output_pin;
         bool running;
         std::thread t;
-        std::vector<parkCallback*> callbacks;
+        //std::vector<parkCallback*> callbacks;
+        parkCallback* callback;
         
 };
 
