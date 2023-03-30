@@ -49,7 +49,7 @@ double ultrasonicSensorClass::sense_location()
             gpioWrite(output_pin, 0);
             sleep(1);
             gpioWrite(output_pin, 1); // trigger high
-            sleep(0.0001);
+            sleep(0.1);
             gpioWrite(output_pin, 0); // trigger low
             // save start time
 
