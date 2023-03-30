@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <thread>
 #include <unistd.h>
+#include <vector>
 
 class parkingLot
 {
@@ -15,6 +16,7 @@ class parkingLot
         parkingLot(int no_spots);
         int get_spotavaliability();
         std::unordered_map<int, bool> spots;
+        std::vector<pair<int, int>> pins;
     private:
         int no_spots;
 };
