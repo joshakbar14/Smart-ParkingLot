@@ -31,6 +31,8 @@ double ultrasonicSensorClass::sense_location()
     
     gpioInitialise();
     int led_pin = 0;
+    gpioSetMode(input_pin, 0);
+    gpioSetMode(output_pin, 0);
     gpioSetMode(input_pin, PI_INPUT);
     gpioSetMode(output_pin, PI_OUTPUT);
     gpioSetMode(led_pin, PI_OUTPUT); //led pin
