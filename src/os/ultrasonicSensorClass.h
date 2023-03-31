@@ -25,22 +25,21 @@ class ultrasonicSensorClass
 {
     public:
         ultrasonicSensorClass(int in, int out, int sensor_no);
-        static void displayInterrupt(int gpio, int level, uint32_t tick, void* userdata);
         void registerCallback(ultrasonicCallback* cb);
         void start();
         void stop();
-        bool avaliability;
-        int sensor_no;
-	int led_pin;
     private:
         double sense_location();
+        static void displayInterrupt(int gpio, int level, uint32_t tick, void* userdata);
         void dataReady();
         int input_pin;
         int output_pin;
         bool running;
         std::thread t;
         ultrasonicCallback* callback = nullptr;
-        
+        bool avaliability;
+        int sensor_no;
+	    int led_pin;
 };
 
 #endif //ULTRASONIC_H

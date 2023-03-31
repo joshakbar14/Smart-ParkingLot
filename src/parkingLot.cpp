@@ -12,10 +12,9 @@ using namespace std;
 
 class aParkCallback : public ultrasonicCallback {
 public:
-
 	bool* avaliable;
         virtual void avaliability_changed(ultrasonicSample sample) {
-            if (avaliable == nullptr) return;
+        if (avaliable == nullptr) return;
 	    *avaliable = sample.avaliability;
 	    cout << "Parking spot:" << sample.sensor_no << "  is avaliable =" << sample.avaliability << endl;
 	}
@@ -23,7 +22,6 @@ public:
 	void registerMap(bool* avaliability) {
 	    avaliable = avaliability;
 	}
-    
 };
 
 /*Class that keeps track of all parking spots, 
@@ -31,6 +29,7 @@ constructor assigns number of parking spots and
 fills a hash map parkSpots with number and avaliability bool*/
 parkingLot::parkingLot(int no_spots)
 {
+    // number of spots in total for parking lot
     this->no_spots = no_spots;
     // vector<pair<int,int>> fill = {
     //     {22, 23},
@@ -38,7 +37,6 @@ parkingLot::parkingLot(int no_spots)
     // };
     // pins = fill;
 
-    // // number of spots in total for parking lot
     // int no = no_spots;
     
     // if (no_spots > pins.size()) {
@@ -71,30 +69,27 @@ parkingLot::parkingLot(int no_spots)
     //     parkSpot->stop();
     // }
 
-        bool avaliability1 = true;
-	    bool avaliability2 = true;
-        spots[0] = avaliability1;
-        spots[1] = avaliability2;
+    bool avaliability1 = true;
+    bool avaliability2 = true;
+    spots[0] = avaliability1;
+    spots[1] = avaliability2;
 
-        //instantiate callback
-        aParkCallback callback1;
-        aParkCallback callback2;
+    //instantiate callback
+    aParkCallback callback1;
+    aParkCallback callback2;
 	
 	callback1.registerMap(&avaliability1);
 	callback2.registerMap(&avaliability2);
 
-        ultrasonicSensorClass parkSpot1(22, 23, 0);
-        ultrasonicSensorClass parkSpot2(6, 12, 1);
-        //parkSpot.registerCallback(&avaliability);
-        parkSpot1.registerCallback(&callback1);
-        parkSpot2.registerCallback(&callback2);
-        parkSpot1.start();
-        parkSpot2.start();
-        sleep(30);
-        parkSpot1.stop();
-        parkSpot2.stop();
-    
-    
+    ultrasonicSensorClass parkSpot1(22, 23, 0);
+    ultrasonicSensorClass parkSpot2(6, 12, 1);
+    parkSpot1.registerCallback(&callback1);
+    parkSpot2.registerCallback(&callback2);
+    parkSpot1.start();
+    parkSpot2.start();
+    sleep(30);
+    parkSpot1.stop();
+    parkSpot2.stop();
 }
 
 int parkingLot::get_spotavaliability()

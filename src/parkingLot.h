@@ -15,10 +15,10 @@ class parkingLot
     public:
         parkingLot(int no_spots);
         int get_spotavaliability();
-        std::unordered_map<int, bool> spots;
-        std::vector<pair<int, int>> pins;
     private:
         int no_spots;
+        std::unordered_map<int, bool> spots;
+        std::vector<pair<int, int>> pins;
 };
 
 #endif //PARKINGLOT_H

@@ -18,9 +18,7 @@ using namespace std;
 
 ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
 {
-    // create object of GPIO connection in pin gpioIn and gpioOut
     this->sensor_no = sensor_no;
-
     input_pin = in;
     output_pin = out;
 }
@@ -28,12 +26,11 @@ ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
 double ultrasonicSensorClass::sense_location()
 {
     using namespace std::chrono;
+    
     gpioSetMode(input_pin, PI_INPUT);
     gpioSetMode(output_pin, PI_OUTPUT);
     high_resolution_clock::time_point startTime;
     high_resolution_clock::time_point stopTime;
-
-    // call aFunction whenever GPIO 4 changes state
 
     try
     {
@@ -45,38 +42,24 @@ double ultrasonicSensorClass::sense_location()
             gpioWrite(output_pin, 1); // trigger high
             sleep(0.0001);
             gpioWrite(output_pin, 0); // trigger low
-            // save start time
 
+            // save start time
             while (gpioRead(input_pin) == 0)
             {
                 // get GPIO read result
                 startTime = high_resolution_clock::now();
-                // startTime = time(&startTime);
             }
 
             // save stop time
-
             while (gpioRead(input_pin) == 1)
             {
                 stopTime = high_resolution_clock::now();
-                // stopTime = time(&stopTime);
             }
 
             // main calculations, speed of sound
             auto timeElapsed = duration_cast<microseconds>(stopTime - startTime);
-            
-            // double timeElapsed = stopTime - startTime;
-            
-            // double distance = timeElapsed.count() * 17150;
             double distance = 100*((timeElapsed.count()/1000000.0)*340.29)/2;
-            // double distance = 100*((timeElapsed/1000000.0)*340.29)/2;
-            
-            // cout << timeElapsed.count() << endl;
-            // cout << timeElapsed << endl;
             cout << this->sensor_no << ": " << distance << " cm" << endl;
-            // cout << distance << endl;
-            // cout << startTime << endl;
-            // cout << stopTime << endl;
 
             // reset chrono time
             startTime = high_resolution_clock::now();
@@ -112,7 +95,7 @@ void ultrasonicSensorClass::dataReady() {
     sample.avaliability = avaliability;
     sample.sensor_no = sensor_no;
     callback->avaliability_changed(sample);
-};
+}//;
 
 void ultrasonicSensorClass::registerCallback(ultrasonicCallback* cb) 
 {
