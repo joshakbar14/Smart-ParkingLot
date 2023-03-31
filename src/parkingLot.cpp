@@ -48,7 +48,7 @@ parkingLot::parkingLot(int no_spots)
     }
 
     //vector with all instantiated sensors
-    vector<ultrasonicSensorClass> sensors_list;
+    vector<ultrasonicSensorClass*> sensors_list;
 
     //fill the hash map with number of spot and avaliability bool
     for (int i = 0; i < no; i++) {
@@ -60,15 +60,15 @@ parkingLot::parkingLot(int no_spots)
         callback.registerMap(&avaliability);
 
         ultrasonicSensorClass parkSpot(pins[i].first, pins[i].second, i);
-        sensors_list.push_back(parkSpot);
+        sensors_list.push_back(&parkSpot);
         parkSpot.registerCallback(&callback);
         parkSpot.start();
     }
 
     sleep(30);
 
-    for (ultrasonicSensorClass& parkSpot : sensors_list) { 
-        parkSpot.stop();
+    for (ultrasonicSensorClass* parkSpot : sensors_list) { 
+        parkSpot->stop();
     }
 
     // fill the hash map with number of spot and avaliability bool
