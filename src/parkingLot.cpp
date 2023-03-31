@@ -51,48 +51,48 @@ parkingLot::parkingLot(int no_spots)
     vector<ultrasonicSensorClass*> sensors_list;
 
     //fill the hash map with number of spot and avaliability bool
-    for (int i = 0; i < no; i++) {
-        bool avaliability = true;
-        spots[i] = avaliability;
-
-        //instantiate callback
-        aParkCallback callback;
-        callback.registerMap(&avaliability);
-
-        ultrasonicSensorClass parkSpot(pins[i].first, pins[i].second, i);
-        sensors_list.push_back(&parkSpot);
-        parkSpot.registerCallback(&callback);
-        parkSpot.start();
-    }
-
-    sleep(30);
-
-    for (ultrasonicSensorClass* parkSpot : sensors_list) { 
-        parkSpot->stop();
-    }
-
-    //     bool avaliability1 = true;
-	//     bool avaliability2 = true;
-    //     spots[0] = avaliability1;
-    //     spots[1] = avaliability2;
+    // for (int i = 0; i < no; i++) {
+    //     bool avaliability = true;
+    //     spots[i] = avaliability;
 
     //     //instantiate callback
-    //     aParkCallback callback1;
-    //     aParkCallback callback2;
-	
-	// callback1.registerMap(&avaliability1);
-	// callback2.registerMap(&avaliability2);
+    //     aParkCallback callback;
+    //     callback.registerMap(&avaliability);
 
-    //     ultrasonicSensorClass parkSpot1(22, 23, 0);
-    //     ultrasonicSensorClass parkSpot2(6, 12, 1);
-    //     //parkSpot.registerCallback(&avaliability);
-    //     parkSpot1.registerCallback(&callback1);
-    //     parkSpot2.registerCallback(&callback2);
-    //     parkSpot1.start();
-    //     parkSpot2.start();
-    //     sleep(30);
-    //     parkSpot1.stop();
-    //     parkSpot2.stop();
+    //     ultrasonicSensorClass parkSpot(pins[i].first, pins[i].second, i);
+    //     sensors_list.push_back(&parkSpot);
+    //     parkSpot.registerCallback(&callback);
+    //     parkSpot.start();
+    // }
+
+    // sleep(30);
+
+    // for (ultrasonicSensorClass* parkSpot : sensors_list) { 
+    //     parkSpot->stop();
+    // }
+
+        bool avaliability1 = true;
+	    bool avaliability2 = true;
+        spots[0] = avaliability1;
+        spots[1] = avaliability2;
+
+        //instantiate callback
+        aParkCallback callback1;
+        aParkCallback callback2;
+	
+	callback1.registerMap(&avaliability1);
+	callback2.registerMap(&avaliability2);
+
+        ultrasonicSensorClass parkSpot1(22, 23, 0);
+        ultrasonicSensorClass parkSpot2(6, 12, 1);
+        //parkSpot.registerCallback(&avaliability);
+        parkSpot1.registerCallback(&callback1);
+        parkSpot2.registerCallback(&callback2);
+        parkSpot1.start();
+        parkSpot2.start();
+        sleep(30);
+        parkSpot1.stop();
+        parkSpot2.stop();
     
     
 }
