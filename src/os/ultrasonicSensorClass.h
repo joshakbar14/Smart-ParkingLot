@@ -32,6 +32,7 @@ class ultrasonicSensorClass
         void stop();
         bool avaliability;
         int sensor_no;
+	int led_pin;
     private:
         double sense_location();
         void dataReady();
