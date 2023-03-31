@@ -31,24 +31,24 @@ constructor assigns number of parking spots and
 fills a hash map parkSpots with number and avaliability bool*/
 parkingLot::parkingLot(int no_spots)
 {
-    vector<pair<int,int>> fill = {
-        {22, 23},
-        {6,  12}
-    };
-    pins = fill;
-
-    // number of spots in total for parking lot
     this->no_spots = no_spots;
-    int no = no_spots;
-    
-    if (no_spots > pins.size()) {
-        cout << "not enough gpio numbers for pins in vector: check 'fill' and add accordingly as connected to rpi" << endl;
-        cout << "will only initialize: " << pins.size() << "sensors." << endl;
-        no = pins.size();
-    }
+    // vector<pair<int,int>> fill = {
+    //     {22, 23},
+    //     {6,  12}
+    // };
+    // pins = fill;
 
-    //vector with all instantiated sensors
-    vector<ultrasonicSensorClass*> sensors_list;
+    // // number of spots in total for parking lot
+    // int no = no_spots;
+    
+    // if (no_spots > pins.size()) {
+    //     cout << "not enough gpio numbers for pins in vector: check 'fill' and add accordingly as connected to rpi" << endl;
+    //     cout << "will only initialize: " << pins.size() << "sensors." << endl;
+    //     no = pins.size();
+    // }
+
+    // //vector with all instantiated sensors
+    // vector<ultrasonicSensorClass*> sensors_list;
 
     //fill the hash map with number of spot and avaliability bool
     // for (int i = 0; i < no; i++) {
