@@ -101,12 +101,7 @@ double ultrasonicSensorClass::sense_location()
 void ultrasonicSensorClass::displayInterrupt(int gpio, int level, uint32_t tick, void* userdata) 
 {
     printf("Interrupt %d\n");
-    //for (auto callback : callbacks) {
-        //this->avaliability_changed(userdata);
-    //}
-    //if (level) {
 			((ultrasonicSensorClass*)userdata)->dataReady();
-		//}
 }
 
 void ultrasonicSensorClass::dataReady() {
@@ -121,7 +116,6 @@ void ultrasonicSensorClass::dataReady() {
 
 void ultrasonicSensorClass::registerCallback(ultrasonicCallback* cb) 
 {
-    //callbacks.push_back(callback);
     callback = cb;
 }
 

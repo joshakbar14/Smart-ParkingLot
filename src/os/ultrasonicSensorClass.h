@@ -18,7 +18,6 @@ struct ultrasonicSample {
 
 class ultrasonicCallback {
 public:
-	//virtual void avaliability_changed(int no, bool avaliability) = 0;
     virtual void avaliability_changed(ultrasonicSample sample) = 0;
 };
 
@@ -40,7 +39,6 @@ class ultrasonicSensorClass
         int output_pin;
         bool running;
         std::thread t;
-        //std::vector<parkCallback*> callbacks;
         ultrasonicCallback* callback = nullptr;
         
 };
