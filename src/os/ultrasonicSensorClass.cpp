@@ -28,14 +28,8 @@ ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
 double ultrasonicSensorClass::sense_location()
 {
     using namespace std::chrono;
-    
-    gpioInitialise();
-    int led_pin = 0;
     gpioSetMode(input_pin, PI_INPUT);
     gpioSetMode(output_pin, PI_OUTPUT);
-    gpioSetMode(led_pin, PI_OUTPUT); //led pin
-    gpioWrite(led_pin, 0);
-    gpioSetISRFuncEx(led_pin, EITHER_EDGE, 0, displayInterrupt, (void*)this);
     high_resolution_clock::time_point startTime;
     high_resolution_clock::time_point stopTime;
 
@@ -110,9 +104,9 @@ void ultrasonicSensorClass::displayInterrupt(int gpio, int level, uint32_t tick,
     //for (auto callback : callbacks) {
         //this->avaliability_changed(userdata);
     //}
-    if (level) {
+    //if (level) {
 			((ultrasonicSensorClass*)userdata)->dataReady();
-		}
+		//}
 }
 
 void ultrasonicSensorClass::dataReady() {
@@ -132,10 +126,15 @@ void ultrasonicSensorClass::registerCallback(ultrasonicCallback* cb)
 }
 
 void ultrasonicSensorClass::start(){
+	led_pin = sensor_no;
+	gpioSetMode(led_pin, PI_OUTPUT);
+	gpioWrite(led_pin, 0);
+	gpioSetISRFuncEx(led_pin, EITHER_EDGE, 0, displayInterrupt, (void*)this);
 	t = thread(&ultrasonicSensorClass::sense_location,this);
 }
 
 void ultrasonicSensorClass::stop(){
     running = false;
-	t.join();
+    t.join();
+	//gpioSetISRFuncEx(led_pin, EITHER_EDGE, -1, NULL, (void*)this);
 }

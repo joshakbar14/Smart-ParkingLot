@@ -9,17 +9,19 @@
 
 using namespace std;
 
-struct aParkCallback : ultrasonicCallback {
+class aParkCallback : public ultrasonicCallback {
 public:
 
-        parkingLot *pl = nullptr;
-	    //void avaliability_changed(int no, bool avaliability) {
-        void avaliability_changed(ultrasonicSample sample) {
-            if (pl == nullptr) return;
-            //pl->spots[no] = avaliability;
-            pl->spots[sample.sensor_no] = sample.avaliability;
-		    cout << "Parking spot:" << sample.sensor_no << "  is avaliable =" << sample.avaliability << endl;
-	    }
+	bool* avaliable;
+        virtual void avaliability_changed(ultrasonicSample sample) {
+            if (avaliable == nullptr) return;
+	    *avaliable = sample.avaliability;
+	    cout << "Parking spot:" << sample.sensor_no << "  is avaliable =" << sample.avaliability << endl;
+	}
+
+	void registerMap(bool* avaliability) {
+	    avaliable = avaliability;
+	}
     
 };
 
@@ -48,13 +50,17 @@ parkingLot::parkingLot(int no_spots)
     //     sleep(20);
     //     parkSpot.stop();
     // }
-        bool avaliability = true;
-        spots[0] = avaliability;
-        spots[1] = avaliability;
+        bool avaliability1 = true;
+	bool avaliability2 = true;
+        spots[0] = avaliability1;
+        spots[1] = avaliability2;
 
         //instantiate callback
         aParkCallback callback1;
         aParkCallback callback2;
+	
+	callback1.registerMap(&avaliability1);
+	callback2.registerMap(&avaliability2);
 
         ultrasonicSensorClass parkSpot1(22, 23, 0);
         ultrasonicSensorClass parkSpot2(6, 12, 1);
