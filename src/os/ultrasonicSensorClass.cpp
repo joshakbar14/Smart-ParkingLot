@@ -11,78 +11,67 @@
 #include "unistd.h"
 #include "ultrasonicSensorClass.h"
 #include <pigpio.h>
+#include <thread>
+#include <vector>
 
 using namespace std;
 
 ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
 {
-    // create object of GPIO connection in pin gpioIn and gpioOut
     this->sensor_no = sensor_no;
-
-    // GPIOClass gpioWrite(in); // write
-    // GPIOClass gpioRead(out); // read
-    // this->gpioWrite = gpioWrite;
-    // this->gpioRead = gpioRead;
-    // this->gpioWrite.export_gpio(); // initialize
-    // this->gpioWrite.setdir_gpio("out");
-    // this->gpioRead.export_gpio(); // initialize
-    // this->gpioRead.setdir_gpio("in");
-
-    /*
-     * Re-create the whole GPIOClass using PIGPIO library
-     * For common language and easy-to-use library
-     */
     input_pin = in;
     output_pin = out;
 }
 
-int ultrasonicSensorClass::sense_location()
+double ultrasonicSensorClass::sense_location()
 {
-    using namespace std::chrono
+    using namespace std::chrono;
     
-    // bool checkStatus = true;
-    gpioInitialise();
     gpioSetMode(input_pin, PI_INPUT);
     gpioSetMode(output_pin, PI_OUTPUT);
     high_resolution_clock::time_point startTime;
     high_resolution_clock::time_point stopTime;
 
-    // call aFunction whenever GPIO 4 changes state
-
     try
     {
-        while (true)
+        running = true;
+        while (running)
         {
+            gpioWrite(output_pin, 0);
+            sleep(1);
             gpioWrite(output_pin, 1); // trigger high
-            usleep(10);
+            sleep(0.0001);
             gpioWrite(output_pin, 0); // trigger low
-            // save start time
 
-            while (gpioRead(input_pin) == 1)
+            // save start time
+            while (gpioRead(input_pin) == 0)
             {
                 // get GPIO read result
                 startTime = high_resolution_clock::now();
             }
 
             // save stop time
-
-            while (gpioRead(input_pin) == 0)
+            while (gpioRead(input_pin) == 1)
             {
                 stopTime = high_resolution_clock::now();
             }
 
             // main calculations, speed of sound
             auto timeElapsed = duration_cast<microseconds>(stopTime - startTime);
-            int distance = timeElapsed.count() * 0.0343 / 2;
-            cout << distance << endl;
-            // cout << startTime << endl;
-            // cout << stopTime << endl;
+            double distance = 100*((timeElapsed.count()/1000000.0)*340.29)/2;
+            cout << this->sensor_no << ": " << distance << " cm" << endl;
 
             // reset chrono time
             startTime = high_resolution_clock::now();
             stopTime = high_resolution_clock::now();
 
-            sleep(1);
+            if (distance < 5.0) {
+                avaliability = false;
+                gpioWrite(led_pin, 1);
+            } else {
+                avaliability = true;
+                gpioWrite(led_pin, 0);
+            }
         }
     }
     catch (const std::exception &e)
@@ -90,4 +79,39 @@ int ultrasonicSensorClass::sense_location()
         std::cerr << e.what() << '\n';
     }
     return 0;
+}
+
+void ultrasonicSensorClass::displayInterrupt(int gpio, int level, uint32_t tick, void* userdata) 
+{
+    printf("Interrupt %d\n");
+			((ultrasonicSensorClass*)userdata)->dataReady();
+}
+
+void ultrasonicSensorClass::dataReady() {
+    if (!callback) {
+        return;
+    }
+    ultrasonicSample sample;
+    sample.avaliability = avaliability;
+    sample.sensor_no = sensor_no;
+    callback->avaliability_changed(sample);
+}//;
+
+void ultrasonicSensorClass::registerCallback(ultrasonicCallback* cb) 
+{
+    callback = cb;
+}
+
+void ultrasonicSensorClass::start(){
+	led_pin = sensor_no;
+	gpioSetMode(led_pin, PI_OUTPUT);
+	gpioWrite(led_pin, 0);
+	gpioSetISRFuncEx(led_pin, EITHER_EDGE, 0, displayInterrupt, (void*)this);
+	t = thread(&ultrasonicSensorClass::sense_location,this);
+}
+
+void ultrasonicSensorClass::stop(){
+    running = false;
+    t.join();
+	//gpioSetISRFuncEx(led_pin, EITHER_EDGE, -1, NULL, (void*)this);
 }

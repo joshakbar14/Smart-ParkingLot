@@ -1,12 +1,14 @@
 #include "os/ultrasonicSensorClass.h"
 #include <iostream>
 #include <pigpio.h>
+#include "parkingLot.h"
 
 using namespace std;
 
 int main() {
-    gpioInitialise();
-    ultrasonicSensorClass ultrasonic(23, 24, 1);
-    ultrasonic.sense_location();
+	gpioInitialise();    
+
+    parkingLot parkinglot(2);
+
     gpioTerminate();
 }
