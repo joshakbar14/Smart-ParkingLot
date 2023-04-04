@@ -71,6 +71,9 @@ class parkingLot
         //  Thread which runs the park function that initialises all sensors and callbacks.
         std::thread t;
 
+        // Bool used to keep thread alive until stop is called.
+        bool running;
+
 
 };
 

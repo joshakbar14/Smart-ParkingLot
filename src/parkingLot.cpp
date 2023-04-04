@@ -69,6 +69,13 @@ void parkingLot::park() {
 	cout << "test";
     }
 
+    try {
+        running = true;
+        while(running);
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << '\n';
+    }
+
     // bool avaliability1 = true;
     // bool avaliability2 = true;
     // spots[0] = avaliability1;
@@ -116,9 +123,9 @@ void parkingLot::stop()
 	
         parkSpot->stop();
     }
-
     // spot1->stop();
     // spot2->stop();
+    running = false;
     t.join();
 }
 
