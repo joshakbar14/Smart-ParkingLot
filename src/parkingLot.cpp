@@ -13,6 +13,7 @@ using namespace std;
 // Class implementing the ultrasonicCallback and avaliability_changed function
 // to update the avaliability of parking spots in the parkingLot class.
 class aParkCallback : public ultrasonicCallback {
+public:
     // Bool that registers the avaliability of a certain parking spot.
 	bool* avaliable;
 
