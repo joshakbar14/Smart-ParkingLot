@@ -10,7 +10,7 @@ using namespace std;
 int main() {
 	gpioInitialise();    
 
-    parkingLot parkinglot(2);
+    //parkingLot parkinglot(2);
     RFID_main rfid(1);
 
     gpioTerminate();

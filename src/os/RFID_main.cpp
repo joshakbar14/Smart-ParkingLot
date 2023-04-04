@@ -11,38 +11,37 @@ using namespace std;
 
 class aCallback : public RFIDCallback {
 public:
-	bool* avaliable;
+	bool* present;
         virtual void card_changed(RFIDSample sample) {
-        if (avaliable == nullptr) return;
-	    *avaliable = sample.cardpresent;
-	    cout << "RFID read:" << sample.sensor_no << "  is present =" << sample.cardpresent << endl;
+        if (present == nullptr) return;
+	    *present = sample.cardpresent;
+	    cout << "RFID read:" << sample.rfid_no << "  is present =" << sample.cardpresent << endl;
 	}
 
-	void registerMap(bool* cardpresent) {
-	    avaliable = cardpresent;
+	void registerCard(bool* cardpresent) {
+	    present = cardpresent;
 	}
 };
 
-RFID_main::RFID_main(int no_spots)
+RFID_main::RFID_main(int no_rfid)
 {
-    this->no_spots = no_spots;
+    this->no_rfid = no_rfid;
 
-    bool avaliability1 = true;
-    
-    spots[0] = avaliability1;
+    bool card = false;
 
     //instantiate callback
     aCallback callback1;
 	
-	callback1.registerMap(&avaliability1);
+	callback1.registerCard(&card);
 
-    RFIDClass rfid1(22, 23, 0);
+    RFIDclass rfid1(3);
     
     rfid1.registerCallback(&callback1);
 
     rfid1.start();
 
     sleep(30);
+    
     rfid1.stop();
 
 }

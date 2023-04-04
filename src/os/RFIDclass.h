@@ -7,11 +7,13 @@
 #include "unistd.h"
 #include <thread>
 #include <pigpio.h>
+#include <vector>
 
 using namespace std;
 
 struct RFIDSample {
     bool cardpresent = true;
+    int rfid_no=0;
 };
 
 class RFIDCallback {
@@ -22,7 +24,7 @@ public:
 class RFIDclass
 {
     public:
-        RFIDclass(int sensor_no);
+        RFIDclass(int rfid_no);
         void registerCallback(RFIDCallback* cb);
         void start();
         void stop();
@@ -30,13 +32,12 @@ class RFIDclass
         double sense_card();
         static void displayInterrupt(int gpio, int level, uint32_t tick, void* userdata);
         void dataReady();
-        int sensor_no;
-        int input_pin;
-        int output_pin;
+        int rfid_no;
         bool running;
         std::thread t;
         RFIDCallback* callback = nullptr;
         bool cardpresent;
+        int led_pin;
 };
 
 #endif //RFIDCLASS_H
