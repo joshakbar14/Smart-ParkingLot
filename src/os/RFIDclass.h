@@ -11,7 +11,7 @@
 using namespace std;
 
 struct RFIDSample {
-    bool avaliability = true;
+    bool cardpresent = true;
 };
 
 class RFIDCallback {
@@ -19,10 +19,10 @@ public:
     virtual void card_changed(RFIDSample sample) = 0;
 };
 
-class RFIDClass
+class RFIDclass
 {
     public:
-        RFIDClass(int sensor_no);
+        RFIDclass(int sensor_no);
         void registerCallback(RFIDCallback* cb);
         void start();
         void stop();

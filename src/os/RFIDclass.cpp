@@ -8,20 +8,19 @@
 #include <pigpio.h>
 #include "RFIDclass.h"
 
-RFIDClass::RFIDClass(int sensor_no)
+RFIDclass::RFIDclass(int sensor_no)
 {
     this->sensor_no = sensor_no;
 }
 
-double RFIDClass::sense_card() 
+double RFIDclass::sense_card() 
 {
-    signal(SIGINT, end_read);
     MFRC522 MIFAREReader;
     MIFAREReader.PCD_Init();
 
 
     while (running) {
-        cardpresent = False;
+        cardpresent = false;
         if (!MIFAREReader.PICC_IsNewCardPresent()) {
             continue;
         }
@@ -29,7 +28,7 @@ double RFIDClass::sense_card()
         if (!MIFAREReader.PICC_ReadCardSerial()) {
             continue;
         }
-        cardpresent = True;
+        cardpresent = true;
         std::cout << "Card detected" << std::endl;
         MFRC522::Uid uid = MIFAREReader.uid;
         std::cout << "Card read UID: ";
@@ -48,7 +47,7 @@ double RFIDClass::sense_card()
 // 			((RFIDClass*)userdata)->dataReady();
 // }
 
-void RFIDClass::dataReady() {
+void RFIDclass::dataReady() {
     if (!callback) {
         return;
     }
@@ -57,7 +56,7 @@ void RFIDClass::dataReady() {
     callback->card_changed(sample);
 }//;
 
-void RFIDClass::registerCallback(RFIDCallback* cb) 
+void RFIDclass::registerCallback(RFIDCallback* cb) 
 {
     callback = cb;
 }
