@@ -1,4 +1,6 @@
-add_library (Ultrasonic os/ultrasonicSensorClass.cpp os/ultrasonicSensorClass.h parkingLot.cpp parkingLot.h)
+add_library (Ultrasonic os/ultrasonicSensorClass.cpp os/ultrasonicSensorClass.h parkingLot.cpp parkingLot.h
+             os/RFIDClass.cpp os/RFIDClass.h os/RFID_main.cpp os/RFID_main.h
+)
 add_executable (demo main.cpp)
 set_target_properties(
     demo
