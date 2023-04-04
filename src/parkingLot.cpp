@@ -66,6 +66,7 @@ void parkingLot::park() {
         sensors.push_back(&parkSpot);
         parkSpot.registerCallback(&callback);
         parkSpot.start();
+	cout << "test";
     }
 
     // bool avaliability1 = true;
@@ -105,12 +106,14 @@ int parkingLot::get_spotavaliability()
 
 void parkingLot::start()
 {
+    cout << "start";
     t = thread(&parkingLot::park,this);
 }
 
 void parkingLot::stop()
-{
+{cout << "stop";
     for (ultrasonicSensorClass* parkSpot : sensors) { 
+	
         parkSpot->stop();
     }
 
