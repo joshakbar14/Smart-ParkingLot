@@ -20,18 +20,37 @@ class parkingLot
     public:
         /**
          * parkingLot class constructor. @param no_spots determines the number of 
-         * parking spots that will be allocated in this parking lot. Initialises
-         * the corresponding ultrasonic sensors and callbacks for the ultrasonicSensorClass
-         * that are registered with the class. Begins the sensor readings and ends them
-         * when the program is done.
+         * parking spots that will be allocated in this parking lot. 
          **/
         parkingLot(int no_spots);
+
+        /**
+         * Initialises the corresponding ultrasonic sensors and callbacks for the 
+         * ultrasonicSensorClass that are registered with the class. Begins the
+         * sensor readings and puts the instances of the sensors in the sensors vector.
+         **/
+        void park();
 
         /**
          * Checks the hashmap containing the parking spots and avaliability and @returns 
          * the parking spot id number if a spot is avaliable, otherwise @returns -1.
          **/
         int get_spotavaliability();
+
+        /**
+         * Begins the thread that runs the park function.
+         **/
+        void start();
+
+        /**
+         * Stops the sensor readings and ends them when called. Joins the thread.
+         **/
+        void stop();
+
+        // /**
+        //  * 
+        //  **/
+        // void registerCallback();
 
     private:
         // Number of parking spots in this parking lot assigned from the main program.
@@ -45,6 +64,14 @@ class parkingLot
         // Vector of pairs of pins that can be used as input and output pins
         // for instances of ultrasonic sensors.
         std::vector<pair<int, int>> pins;
+
+        //  Vector of pointer to instances of sensors.
+        std::vector<ultrasonicSensorClass*> sensors;
+
+        //  Thread which runs the park function that initialises all sensors and callbacks.
+        std::thread t;
+
+
 };
 
 #endif //PARKINGLOT_H
