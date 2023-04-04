@@ -10,5 +10,11 @@ int main() {
 
     parkingLot parkinglot(2);
 
+    parkinglot.start();
+
+    sleep(20);
+
+    parkinglot.stop();
+
     gpioTerminate();
 }
