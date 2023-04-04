@@ -23,7 +23,7 @@ ultrasonicSensorClass::ultrasonicSensorClass(int in, int out, int sensor_no)
     output_pin = out;
 }
 
-double ultrasonicSensorClass::sense_location()
+void ultrasonicSensorClass::sense_location()
 {
     using namespace std::chrono;
     
@@ -78,7 +78,7 @@ double ultrasonicSensorClass::sense_location()
     {
         std::cerr << e.what() << '\n';
     }
-    return 0;
+    //return 0;
 }
 
 void ultrasonicSensorClass::displayInterrupt(int gpio, int level, uint32_t tick, void* userdata) 
@@ -95,7 +95,7 @@ void ultrasonicSensorClass::dataReady() {
     sample.avaliability = avaliability;
     sample.sensor_no = sensor_no;
     callback->avaliability_changed(sample);
-}//;
+}
 
 void ultrasonicSensorClass::registerCallback(ultrasonicCallback* cb) 
 {

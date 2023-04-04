@@ -10,23 +10,27 @@
 
 using namespace std;
 
+// Class implementing the ultrasonicCallback and avaliability_changed function
+// to update the avaliability of parking spots in the parkingLot class.
 class aParkCallback : public ultrasonicCallback {
-public:
+    // Bool that registers the avaliability of a certain parking spot.
 	bool* avaliable;
-        virtual void avaliability_changed(ultrasonicSample sample) {
+
+    // Update the avaliability of a certain parking spot. @param sample contains
+    // the avaliability and sensor_no from ultrasonicSample.
+    virtual void avaliability_changed(ultrasonicSample sample) {
         if (avaliable == nullptr) return;
 	    *avaliable = sample.avaliability;
 	    cout << "Parking spot:" << sample.sensor_no << "  is avaliable =" << sample.avaliability << endl;
 	}
 
+    // Register the @param avaliability that contains the avaliability of 
+    // a certain parking spot. Updated in avaliability_changed.
 	void registerMap(bool* avaliability) {
 	    avaliable = avaliability;
 	}
 };
 
-/*Class that keeps track of all parking spots, 
-constructor assigns number of parking spots and 
-fills a hash map parkSpots with number and avaliability bool*/
 parkingLot::parkingLot(int no_spots)
 {
     // number of spots in total for parking lot
