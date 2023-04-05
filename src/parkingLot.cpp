@@ -29,7 +29,7 @@ public:
 
         if (sample.avaliability == false) {
             *avaliable = sample.avaliability;
-            if (pl->check_in_list[sample.sensor_no] != "") {
+            if (pl->check_in_list.find(sample.sensor_no) != pl->check_in_list.end() && pl->check_in_list[sample.sensor_no] != "") {
                 cout << "Parking spot:" << sample.sensor_no << "  is now full. Avaliability =" << sample.avaliability << endl;
             }
             else {
