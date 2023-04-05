@@ -16,7 +16,6 @@ set_target_properties(
 )
 target_link_libraries (demo Dev pigpio pthread bcm2835)
 target_link_libraries (demo Qt5::Widgets)
-target_link_libraries (demo qwt-qt5)
 #target_link_libraries (demo pigpio pthread) #for setting linker to PIGPIO library in /usr/lib/
 #
 install(TARGETS demo)
