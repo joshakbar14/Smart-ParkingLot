@@ -1,7 +1,3 @@
-//This code is to test wether the RFID is working or not
-/*This code is not made by team member, meanwhile it was downloaded from the other webpage*/
-/*This code is not to submit for the task, it is only to check the RFID module*/
-
 #include <iostream>
 #include <signal.h>
 #include "MFRC522.h"

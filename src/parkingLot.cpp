@@ -33,15 +33,23 @@ public:
 	}
 };
 
+// Class implementing the RFIDCallback and card_changed function
+// to update if a card is present in the parkingLot class.
 class aCallback : public RFIDCallback {
 public:
+    // Bool that registers if a card is present.
 	bool* present;
+
+        // Update if a card is present. @param sample contains
+        // the rfid_no and the cardpresent bool from RFIDsample.
         virtual void card_changed(RFIDSample sample) {
         if (present == nullptr) return;
 	    *present = sample.cardpresent;
 	    cout << "RFID read:" << sample.rfid_no << "  is present =" << sample.cardpresent << endl;
 	}
 
+    // Register the @param cardpresent that contains the card boolean. 
+    // Updated in card_changed.
 	void registerCard(bool* cardpresent) {
 	    present = cardpresent;
 	}
