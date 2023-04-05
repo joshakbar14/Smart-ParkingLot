@@ -62,9 +62,9 @@ public:
     // Pointer to instance of parkingLot class.
 	parkingLot* pl;
 
-        // Update if a card is present. @param sample contains
-        // the rfid_no and the cardpresent bool from RFIDsample.
-        virtual void card_changed(RFIDSample sample) {
+    // Update if a card is present. @param sample contains
+    // the rfid_no and the cardpresent bool from RFIDsample.
+    virtual void card_changed(RFIDSample sample) {
         if (pl == nullptr) return;
         int spot = pl->get_spotavaliability();
         if (spot != -1) {
@@ -128,7 +128,7 @@ parkingLot::parkingLot(int no_spots)
 
     //bool avaliability1 = true;
     //bool avaliability2 = true;
-    bool card = false;
+    //bool card = false;
     spots[0] = true;
     spots[1] = true;
 
@@ -138,7 +138,7 @@ parkingLot::parkingLot(int no_spots)
     aCallback callback3;
 	
     callback1.registerMap(&spots[0]);
-    callback2.registerMap(&spots[0]);
+    callback2.registerMap(&spots[1]);
     callback1.registerClass((parkingLot*)this);
     callback2.registerClass((parkingLot*)this);
     callback3.registerClass((parkingLot*)this);
