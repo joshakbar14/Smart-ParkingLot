@@ -32,12 +32,10 @@ double RFIDclass::sense_card()
         MFRC522::Uid uid = MIFAREReader.uid;
         //std::cout << "Card read UID: ";
         for (size_t i = 0; i < uid.size; ++i) {
-            card_no += static_cast<int>(uid.uidByte[i]);
-            card_no = card_no*1000;
+            card_no.append((char *)(uid.uidByte[i]), sizeof(uid.uidByte[i]));
             std::cout << static_cast<int>(uid.uidByte[i]) << ",";
         }
         std::cout << std::endl;
-        card_no = 0;
     }
     return 0;
     // it should return card UID callbacks
