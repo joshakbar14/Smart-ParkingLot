@@ -18,12 +18,29 @@ public:
     // Bool that registers the avaliability of a certain parking spot.
 	bool* avaliable;
 
+    // Pointer to instance of parkingLot class.
+    parkingLot* pl;
+
     // Update the avaliability of a certain parking spot. @param sample contains
     // the avaliability and sensor_no from ultrasonicSample.
     virtual void avaliability_changed(ultrasonicSample sample) {
         if (avaliable == nullptr) return;
-        *avaliable = sample.avaliability;
-	    cout << "Parking spot:" << sample.sensor_no << "  is avaliable =" << sample.avaliability << endl;
+        if (pl == nullptr) return;
+
+        if (sample.avaliability == false) {
+            *avaliable = sample.avaliability;
+            if (pl->check_in_list[sample.sensor_no] != "") {
+                cout << "Parking spot:" << sample.sensor_no << "  is now full. Avaliability =" << sample.avaliability << endl;
+            }
+            else {
+                cout << "Wrong spot. Start buzzer." << endl;
+            }
+        }
+        else {
+            pl->check_in_list[sample.sensor_no] = "";
+            *avaliable = sample.avaliability;
+            cout << "Parking spot:" << sample.sensor_no << "  is now avaliable. Avaliability =" << sample.avaliability << endl;
+        }
 	}
 
     // Register the @param avaliability that contains the avaliability of 
@@ -31,13 +48,18 @@ public:
 	void registerMap(bool* avaliability) {
 	    avaliable = avaliability;
 	}
+
+    // Register the pointer instance to the @param parkingLot class.
+    void registerClass(parkingLot* parkinglot) {
+	    pl = parkinglot;
+	}
 };
 
 // Class implementing the RFIDCallback and card_changed function
 // to update if a card is present in the parkingLot class.
 class aCallback : public RFIDCallback {
 public:
-    // Bool that registers if a card is present.
+    // Pointer to instance of parkingLot class.
 	parkingLot* pl;
 
         // Update if a card is present. @param sample contains
@@ -56,9 +78,8 @@ public:
         }
 	}
 
-    // Register the @param cardpresent that contains the card boolean. 
-    // Updated in card_changed.
-	void registerCard(parkingLot* parkinglot) {
+    // Register the pointer instance to the @param parkingLot class.
+	void registerClass(parkingLot* parkinglot) {
 	    pl = parkinglot;
 	}
 };
@@ -118,7 +139,9 @@ parkingLot::parkingLot(int no_spots)
 	
     callback1.registerMap(&avaliability1);
     callback2.registerMap(&avaliability2);
-    callback3.registerCard((parkingLot*)this);
+    callback1.registerClass((parkingLot*)this);
+    callback2.registerClass((parkingLot*)this);
+    callback3.registerClass((parkingLot*)this);
 
     ultrasonicSensorClass parkSpot1(22, 23, 0);
     ultrasonicSensorClass parkSpot2(6, 12, 1);
