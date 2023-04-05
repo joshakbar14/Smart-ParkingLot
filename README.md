@@ -1,6 +1,8 @@
 # Smart Parking Lot
+![HeaderSpaceIt](https://user-images.githubusercontent.com/56721954/230046019-0ab0f713-a5ff-4f26-965a-71f06fece0cc.png)
 
-A smart parking system that automatically check empty parking space and return a guidance path and booking code to the user for that space.
+
+A smart parking solution that automatically check available parking space and return a guidance path and booking code to the user for the designated space.
 
 ## Specification
 
