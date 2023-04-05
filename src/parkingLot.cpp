@@ -71,7 +71,8 @@ void parkingLot::park() {
 
     try {
         running = true;
-        while(running);
+        while(running){
+	    };
     } catch (const std::exception &e) {
         std::cerr << e.what() << '\n';
     }
