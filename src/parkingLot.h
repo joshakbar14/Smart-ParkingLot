@@ -38,15 +38,15 @@ class parkingLot
          **/
         int get_spotavaliability();
 
-        /**
-         * Begins the thread that runs the park function.
-         **/
-        void start();
+        // /**
+        //  * Begins the thread that runs the park function.
+        //  **/
+        // void start();
 
-        /**
-         * Stops the sensor readings and ends them when called. Joins the thread.
-         **/
-        void stop();
+        // /**
+        //  * Stops the sensor readings and ends them when called. Joins the thread.
+        //  **/
+        // void stop();
 
         // /**
         //  * 

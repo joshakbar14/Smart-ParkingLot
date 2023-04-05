@@ -132,21 +132,21 @@ int parkingLot::get_spotavaliability()
     return -1;
 }
 
-void parkingLot::start()
-{
-    t = thread(&parkingLot::park,this);
-}
+// void parkingLot::start()
+// {
+//     t = thread(&parkingLot::park,this);
+// }
 
-void parkingLot::stop()
-{
-    for (ultrasonicSensorClass* parkSpot : sensors) { 
-        parkSpot->stop();
-    }
-    // spot1->stop();
-    // spot2->stop();
-    running = false;
-    t.join();
-}
+// void parkingLot::stop()
+// {
+//     for (ultrasonicSensorClass* parkSpot : sensors) { 
+//         parkSpot->stop();
+//     }
+//     // spot1->stop();
+//     // spot2->stop();
+//     running = false;
+//     t.join();
+// }
 
 // void parkingLot::registerCallback()
 // {
