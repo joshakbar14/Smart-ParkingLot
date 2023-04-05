@@ -1,10 +1,7 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <qwt/qwt_thermo.h>
-#include <qwt/qwt_plot.h>
-#include <qwt/qwt_plot_curve.h>
-
+#include <QApplication>
 #include <QBoxLayout>
 #include <QPushButton>
 
@@ -25,9 +22,6 @@ private:
 	static constexpr double gain = 7.5;
 
 	QPushButton  *button;
-	QwtThermo    *thermo;
-	QwtPlot      *plot;
-	QwtPlotCurve *curve;
 
 	// layout elements from Qt itself http://qt-project.org/doc/qt-4.8/classes.html
 	QVBoxLayout  *vLayout;  // vertical layout
