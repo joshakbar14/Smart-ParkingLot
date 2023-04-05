@@ -10,14 +10,14 @@ using namespace std;
 int main() {
 	gpioInitialise();    
 
-    //parkingLot parkinglot(2);
-    RFID_main rfid(1);
+    parkingLot parkinglot(2);
+    //RFID_main rfid(1);
 
-    parkinglot.start();
+    //parkinglot.start();
 
-    sleep(20);
+    //sleep(20);
 
-    parkinglot.stop();
+    //parkinglot.stop();
 
     gpioTerminate();
 }

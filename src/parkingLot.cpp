@@ -4,6 +4,7 @@
 #include <iostream>
 #include "parkingLot.h"
 #include "os/ultrasonicSensorClass.h"
+#include "os/RFIDclass.h"
 #include <thread>
 #include <unistd.h>
 #include <vector>
@@ -29,6 +30,20 @@ public:
     // a certain parking spot. Updated in avaliability_changed.
 	void registerMap(bool* avaliability) {
 	    avaliable = avaliability;
+	}
+};
+
+class aCallback : public RFIDCallback {
+public:
+	bool* present;
+        virtual void card_changed(RFIDSample sample) {
+        if (present == nullptr) return;
+	    *present = sample.cardpresent;
+	    cout << "RFID read:" << sample.rfid_no << "  is present =" << sample.cardpresent << endl;
+	}
+
+	void registerCard(bool* cardpresent) {
+	    present = cardpresent;
 	}
 };
 
@@ -77,25 +92,32 @@ parkingLot::parkingLot(int no_spots)
 
     bool avaliability1 = true;
     bool avaliability2 = true;
+    bool card = false;
     spots[0] = avaliability1;
     spots[1] = avaliability2;
 
     //instantiate callback
     aParkCallback callback1;
     aParkCallback callback2;
+    aCallback callback3;
 	
 	callback1.registerMap(&avaliability1);
 	callback2.registerMap(&avaliability2);
+    callback1.registerCard(&card);
 
     ultrasonicSensorClass parkSpot1(22, 23, 0);
     ultrasonicSensorClass parkSpot2(6, 12, 1);
+    RFIDclass rfid1(3);
     parkSpot1.registerCallback(&callback1);
     parkSpot2.registerCallback(&callback2);
+    rfid1.registerCallback(&callback3);
     parkSpot1.start();
     parkSpot2.start();
+    rfid1.start();
     sleep(30);
     parkSpot1.stop();
     parkSpot2.stop();
+    rfid1.stop();
 }
 
 int parkingLot::get_spotavaliability()

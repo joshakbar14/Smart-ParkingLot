@@ -5,6 +5,7 @@
 #include <pigpio.h>
 #include <iostream>
 #include "os/ultrasonicSensorClass.h"
+#include "os/RFIDclass.h"
 #include <unordered_map>
 #include <thread>
 #include <unistd.h>
