@@ -21,6 +21,11 @@ struct RFIDSample {
     bool cardpresent = true;
 
     /**
+     * Card number.
+     **/
+    std::string card_no = "";
+
+    /**
      * RFID id number.
      **/
     int rfid_no = 0;
@@ -79,6 +84,9 @@ class RFIDclass
 
         // Id number of this instance of the class.
         int rfid_no;
+
+        // Card number from the card that is read.
+        std::string card_no = "";
 
         // Bool used to control while loop in worker function sense_card.
         bool running;

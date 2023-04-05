@@ -22,7 +22,7 @@ public:
     // the avaliability and sensor_no from ultrasonicSample.
     virtual void avaliability_changed(ultrasonicSample sample) {
         if (avaliable == nullptr) return;
-	    *avaliable = sample.avaliability;
+        *avaliable = sample.avaliability;
 	    cout << "Parking spot:" << sample.sensor_no << "  is avaliable =" << sample.avaliability << endl;
 	}
 
@@ -38,20 +38,28 @@ public:
 class aCallback : public RFIDCallback {
 public:
     // Bool that registers if a card is present.
-	bool* present;
+	parkingLot* pl;
 
         // Update if a card is present. @param sample contains
         // the rfid_no and the cardpresent bool from RFIDsample.
         virtual void card_changed(RFIDSample sample) {
-        if (present == nullptr) return;
-	    *present = sample.cardpresent;
-	    cout << "RFID read:" << sample.rfid_no << "  is present =" << sample.cardpresent << endl;
+        if (pl == nullptr) return;
+        int spot = pl->get_spotavaliability();
+        if (spot != -1) {
+            pl->check_in_list[spot] = sample.card_no;
+            cout << "Check in point: " << sample.rfid_no << " . Welcome user " << sample.card_no << endl;
+            cout << "Parking spot number " << spot << " is avaliable. Please proceed and park there." << endl;
+        }
+        else {
+            cout << "Check in point: " << sample.rfid_no << " . Welcome user " << sample.card_no << endl;
+            cout << "No avaliable parking at this moment, please return another time." << endl;
+        }
 	}
 
     // Register the @param cardpresent that contains the card boolean. 
     // Updated in card_changed.
-	void registerCard(bool* cardpresent) {
-	    present = cardpresent;
+	void registerCard(parkingLot* parkinglot) {
+	    pl = parkinglot;
 	}
 };
 
@@ -110,7 +118,7 @@ parkingLot::parkingLot(int no_spots)
 	
     callback1.registerMap(&avaliability1);
     callback2.registerMap(&avaliability2);
-    callback3.registerCard(&card);
+    callback3.registerCard((parkingLot*)this);
 
     ultrasonicSensorClass parkSpot1(22, 23, 0);
     ultrasonicSensorClass parkSpot2(6, 12, 1);

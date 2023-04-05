@@ -28,10 +28,11 @@ double RFIDclass::sense_card()
         cardpresent = true;
         gpioWrite(led_pin, 1);
         sleep(1);
-        std::cout << "Card detected" << std::endl;
+        //std::cout << "Card detected" << std::endl;
         MFRC522::Uid uid = MIFAREReader.uid;
-        std::cout << "Card read UID: ";
+        //std::cout << "Card read UID: ";
         for (size_t i = 0; i < uid.size; ++i) {
+            card_no.append(static_cast<int>(uid.uidByte[i]));
             std::cout << static_cast<int>(uid.uidByte[i]) << ",";
         }
         std::cout << std::endl;
@@ -42,7 +43,7 @@ double RFIDclass::sense_card()
 
  void RFIDclass::displayInterrupt(int gpio, int level, uint32_t tick, void* userdata) 
  {
-     printf("Interrupt %d\n");
+    //printf("Interrupt %d\n");
  			((RFIDclass*)userdata)->dataReady();
  }
 
@@ -51,9 +52,11 @@ void RFIDclass::dataReady() {
         return;
     }
     RFIDSample sample;
+    sample.rfid_no = rfid_no;
     sample.cardpresent = cardpresent;
+    sample.card_no = card_no;
     callback->card_changed(sample);
-}//;
+}
 
 void RFIDclass::registerCallback(RFIDCallback* cb) 
 {
@@ -70,6 +73,6 @@ void RFIDclass::start() {
 
 void RFIDclass::stop() {
     running = false;
-    std::cout << "Ctrl+C captured, ending read." << std::endl;
+    //std::cout << "Ctrl+C captured, ending read." << std::endl;
     t.join();
 }

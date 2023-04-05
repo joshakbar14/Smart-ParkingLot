@@ -53,6 +53,10 @@ class parkingLot
         //  **/
         // void registerCallback();
 
+        // Keeps track of which user (card_no) is supposed to park at what parking spot.
+        // std::string empty if parking spot empty or car correcly parked.
+        std::unordered_map<int, std::string> check_in_list;
+
     private:
         // Number of parking spots in this parking lot assigned from the main program.
         int no_spots;
