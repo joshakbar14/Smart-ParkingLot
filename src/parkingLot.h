@@ -5,6 +5,7 @@
 #include <pigpio.h>
 #include <iostream>
 #include "os/ultrasonicSensorClass.h"
+#include "os/RFIDclass.h"
 #include <unordered_map>
 #include <thread>
 #include <unistd.h>
@@ -24,12 +25,12 @@ class parkingLot
          **/
         parkingLot(int no_spots);
 
-        /**
-         * Initialises the corresponding ultrasonic sensors and callbacks for the 
-         * ultrasonicSensorClass that are registered with the class. Begins the
-         * sensor readings and puts the instances of the sensors in the sensors vector.
-         **/
-        void park();
+        // /**
+        //  * Initialises the corresponding ultrasonic sensors and callbacks for the 
+        //  * ultrasonicSensorClass that are registered with the class. Begins the
+        //  * sensor readings and puts the instances of the sensors in the sensors vector.
+        //  **/
+        // void park();
 
         /**
          * Checks the hashmap containing the parking spots and avaliability and @returns 
@@ -37,15 +38,15 @@ class parkingLot
          **/
         int get_spotavaliability();
 
-        /**
-         * Begins the thread that runs the park function.
-         **/
-        void start();
+        // /**
+        //  * Begins the thread that runs the park function.
+        //  **/
+        // void start();
 
-        /**
-         * Stops the sensor readings and ends them when called. Joins the thread.
-         **/
-        void stop();
+        // /**
+        //  * Stops the sensor readings and ends them when called. Joins the thread.
+        //  **/
+        // void stop();
 
         // /**
         //  * 
