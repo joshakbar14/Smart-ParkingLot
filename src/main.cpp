@@ -4,14 +4,20 @@
 #include "parkingLot.h"
 #include "os/RFID_main.h"
 #include "os/RFIDclass.h"
+#include "gui/interface/window.h"
+#include <QApplication>
 
 using namespace std;
 
-int main() {
-	gpioInitialise();    
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
 
-    //parkingLot parkinglot(2);
-    RFID_main rfid(1);
+	gpioInitialise();    
+    Window window;
+    window.show();
+    parkingLot parkinglot(2);
 
     gpioTerminate();
+
+    return app.exec();
 }
