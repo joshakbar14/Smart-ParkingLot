@@ -59,7 +59,7 @@ void ultrasonicSensorClass::sense_location()
             // main calculations, speed of sound
             auto timeElapsed = duration_cast<microseconds>(stopTime - startTime);
             double distance = 100*((timeElapsed.count()/1000000.0)*340.29)/2;
-            cout << this->sensor_no << ": " << distance << " cm" << endl;
+            // cout << this->sensor_no << ": " << distance << " cm" << endl;
 
             // reset chrono time
             startTime = high_resolution_clock::now();
@@ -83,7 +83,7 @@ void ultrasonicSensorClass::sense_location()
 
 void ultrasonicSensorClass::displayInterrupt(int gpio, int level, uint32_t tick, void* userdata) 
 {
-    printf("Interrupt %d\n");
+    //printf("Interrupt %d\n");
 			((ultrasonicSensorClass*)userdata)->dataReady();
 }
 
