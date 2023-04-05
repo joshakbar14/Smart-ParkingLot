@@ -4,6 +4,13 @@
 
 A smart parking solution that automatically check available parking space and return a guidance path and booking code to the user for the designated space.
 
+## Key Features
++ Showing designated parking spot ​
++ Identify car's owner​
++ Showing available spaces (real time)​
++ Identify the designated spot (right/wrong) (real time)​
++ In/out time record (real time)
+
 ## Specification
 
 1 x Raspberry Pi 4\
