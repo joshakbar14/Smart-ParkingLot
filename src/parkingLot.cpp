@@ -103,7 +103,7 @@ parkingLot::parkingLot(int no_spots)
 	
 	callback1.registerMap(&avaliability1);
 	callback2.registerMap(&avaliability2);
-    callback1.registerCard(&card);
+    callback3.registerCard(&card);
 
     ultrasonicSensorClass parkSpot1(22, 23, 0);
     ultrasonicSensorClass parkSpot2(6, 12, 1);
