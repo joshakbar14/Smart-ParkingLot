@@ -126,19 +126,19 @@ parkingLot::parkingLot(int no_spots)
 //         std::cerr << e.what() << '\n';
 //     }
 
-    bool avaliability1 = true;
-    bool avaliability2 = true;
+    //bool avaliability1 = true;
+    //bool avaliability2 = true;
     bool card = false;
-    spots[0] = avaliability1;
-    spots[1] = avaliability2;
+    spots[0] = true;
+    spots[1] = true;
 
     //instantiate callback
     aParkCallback callback1;
     aParkCallback callback2;
     aCallback callback3;
 	
-    callback1.registerMap(&avaliability1);
-    callback2.registerMap(&avaliability2);
+    callback1.registerMap(&spots[0]);
+    callback2.registerMap(&spots[0]);
     callback1.registerClass((parkingLot*)this);
     callback2.registerClass((parkingLot*)this);
     callback3.registerClass((parkingLot*)this);
