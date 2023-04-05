@@ -25,26 +25,22 @@ double RFIDclass::sense_card()
         if (!MIFAREReader.PICC_ReadCardSerial()) {
             continue;
         }
+        MFRC522::Uid uid = MIFAREReader.uid;
+        for (size_t i = 0; i < uid.size; ++i) {
+            card_no.append(std::to_string(static_cast<int>(uid.uidByte[i])));
+            card_no.append(".");
+        }
         cardpresent = true;
         gpioWrite(led_pin, 1);
         sleep(1);
-        //std::cout << "Card detected" << std::endl;
-        MFRC522::Uid uid = MIFAREReader.uid;
-        //std::cout << "Card read UID: ";
-        for (size_t i = 0; i < uid.size; ++i) {
-            card_no.append((char *)(uid.uidByte[i]), sizeof(uid.uidByte[i]));
-            std::cout << static_cast<int>(uid.uidByte[i]) << ",";
+        card_no = "";
         }
-        std::cout << std::endl;
-    }
     return 0;
-    // it should return card UID callbacks
 }
 
  void RFIDclass::displayInterrupt(int gpio, int level, uint32_t tick, void* userdata) 
  {
-    //printf("Interrupt %d\n");
- 			((RFIDclass*)userdata)->dataReady();
+ 	((RFIDclass*)userdata)->dataReady();
  }
 
 void RFIDclass::dataReady() {
@@ -73,6 +69,5 @@ void RFIDclass::start() {
 
 void RFIDclass::stop() {
     running = false;
-    //std::cout << "Ctrl+C captured, ending read." << std::endl;
     t.join();
 }

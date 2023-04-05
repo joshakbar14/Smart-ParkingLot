@@ -78,13 +78,11 @@ void ultrasonicSensorClass::sense_location()
     {
         std::cerr << e.what() << '\n';
     }
-    //return 0;
 }
 
 void ultrasonicSensorClass::displayInterrupt(int gpio, int level, uint32_t tick, void* userdata) 
 {
-    //printf("Interrupt %d\n");
-			((ultrasonicSensorClass*)userdata)->dataReady();
+	((ultrasonicSensorClass*)userdata)->dataReady();
 }
 
 void ultrasonicSensorClass::dataReady() {
