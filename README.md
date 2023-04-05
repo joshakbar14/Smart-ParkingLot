@@ -14,6 +14,7 @@ A smart parking solution that automatically check available parking space and re
 1 x Monitor
 
 ## Program Flow Chart
+![Shopping Process Flow Graph (1)](https://user-images.githubusercontent.com/56721954/230095325-960b2b8f-7d38-4a16-8ade-bc07b927bafd.png)
 
 ## Backend Work
 
