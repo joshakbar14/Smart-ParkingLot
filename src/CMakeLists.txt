@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7.0)
 
 add_library (Dev os/ultrasonicSensorClass.cpp os/ultrasonicSensorClass.h parkingLot.cpp parkingLot.h
              os/RFIDclass.cpp os/RFIDclass.h os/RFID_main.cpp os/RFID_main.h
-             os/MFRC522.cpp os/MFRC522.h
+             os/MFRC522.cpp os/MFRC522.h os/BuzzerClass.cpp os/BuzzerClass.h
 )
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
