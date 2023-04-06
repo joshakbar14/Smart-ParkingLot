@@ -30,6 +30,7 @@ public:
     virtual void avaliability_changed(ultrasonicSample sample) {
         if (avaliable == nullptr) return;
         if (pl == nullptr) return;
+        if (bz == nullptr) return;
 
         if (sample.avaliability == false) {
             *avaliable = sample.avaliability;
