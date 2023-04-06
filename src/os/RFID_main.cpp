@@ -38,7 +38,8 @@ RFID_main::RFID_main(int no_rfid)
     
     rfid1.registerCallback(&callback1);
 
-    rfid1.start();
+    std::thread t;
+    rfid1.start(&t);
 
     sleep(30);
     
