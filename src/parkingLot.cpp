@@ -165,6 +165,7 @@ parkingLot::parkingLot(int no_spots)
     parkSpot2.start();
     rfid1.start();
     sleep(30);
+    //getchar();
     parkSpot1.stop();
     parkSpot2.stop();
     rfid1.stop();

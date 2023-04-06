@@ -16,6 +16,7 @@ int main() {
     //parkinglot.start();
 
     //sleep(20);
+    //getchar();
 
     //parkinglot.stop();
 
