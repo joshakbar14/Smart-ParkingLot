@@ -86,38 +86,62 @@ public:
 
 parkingLot::parkingLot(int no_spots)
 {
-    // number of spots in total for parking lot
     this->no_spots = no_spots;
-// }
+}
 
-// void parkingLot::park() {
-//     vector<pair<int,int>> fill = {
-//         {22, 23},
-//         {6,  12}
-//     };
-//     pins = fill;
+parkingLot::parkingLot(int no_spots, int no_rfid) {
+    this->no_spots = no_spots;
+    this->no_rfid = no_rfid;
+}
 
-//     int no = no_spots;
-//     if (no_spots > pins.size()) {
-//         cout << "not enough gpio numbers for pins in vector: check 'fill' and add accordingly as connected to rpi" << endl;
-//         cout << "will only initialize: " << pins.size() << "sensors." << endl;
-//         no = pins.size();
-//     }
+void parkingLot::park() {
+    vector<pair<int,int>> fill = {
+        {22, 23},
+        {6,  12}
+    };
+    pins = fill;
 
-//     //fill the hash map with number of spot and avaliability bool
-//     for (int i = 0; i < no; i++) {
-//         bool avaliability = true;
-//         spots[i] = avaliability;
+    int no = no_spots;
+    if (no_spots > pins.size()) {
+        cout << "not enough gpio numbers for pins in vector: check 'fill' and add accordingly as connected to rpi" << endl;
+        cout << "will only initialize: " << pins.size() << "sensors." << endl;
+        no = pins.size();
+    }
 
-//         //instantiate callback
-//         aParkCallback callback;
-//         callback.registerMap(&avaliability);
+    //fill the spot hasp map with number of spot and avaliability bool
+    //fill sensors vector with the created instances of sensors
+    for (int i = 0; i < no; i++) {
+        spots[i] = true;
 
-//         ultrasonicSensorClass parkSpot(pins[i].first, pins[i].second, i);
-//         sensors.push_back(&parkSpot);
-//         parkSpot.registerCallback(&callback);
-//         parkSpot.start();
-//     }
+        //instantiate callback
+        aParkCallback callback;
+        callback.registerMap(&spots[i]);
+        callback.registerClass((parkingLot*)this);
+
+        ultrasonicSensorClass parkSpot(pins[i].first, pins[i].second, i);
+        sensors.push_back(&parkSpot);
+        parkSpot.registerCallback(&callback);
+        parkSpot.start();
+    }
+
+    //fill rfids vector with the created instances of rfids
+    for (int i = 0; i < no_rfid; i++) {
+        aCallback callback;
+        callback.registerClass((parkingLot*)this);
+
+        RFIDclass rfid(no+i);
+        rfids.push_back(&rfid);
+        rfid.registerCallback(&callback);
+        rfid.start();
+    }
+    sleep(30);
+
+    for (ultrasonicSensorClass* parkSpot : sensors) { 
+        parkSpot->stop();
+    }
+    for (RFIDclass* rfid : rfids) { 
+        rfid->stop();
+    }
 
 //     try {
 //         running = true;
@@ -126,36 +150,33 @@ parkingLot::parkingLot(int no_spots)
 //         std::cerr << e.what() << '\n';
 //     }
 
-    //bool avaliability1 = true;
-    //bool avaliability2 = true;
-    //bool card = false;
-    spots[0] = true;
-    spots[1] = true;
+    // spots[0] = true;
+    // spots[1] = true;
 
-    //instantiate callback
-    aParkCallback callback1;
-    aParkCallback callback2;
-    aCallback callback3;
+    // //instantiate callback
+    // aParkCallback callback1;
+    // aParkCallback callback2;
+    // aCallback callback3;
 	
-    callback1.registerMap(&spots[0]);
-    callback2.registerMap(&spots[1]);
-    callback1.registerClass((parkingLot*)this);
-    callback2.registerClass((parkingLot*)this);
-    callback3.registerClass((parkingLot*)this);
+    // callback1.registerMap(&spots[0]);
+    // callback2.registerMap(&spots[1]);
+    // callback1.registerClass((parkingLot*)this);
+    // callback2.registerClass((parkingLot*)this);
+    // callback3.registerClass((parkingLot*)this);
 
-    ultrasonicSensorClass parkSpot1(22, 23, 0);
-    ultrasonicSensorClass parkSpot2(6, 12, 1);
-    RFIDclass rfid1(3);
-    parkSpot1.registerCallback(&callback1);
-    parkSpot2.registerCallback(&callback2);
-    rfid1.registerCallback(&callback3);
-    parkSpot1.start();
-    parkSpot2.start();
-    rfid1.start();
-    sleep(30);
-    parkSpot1.stop();
-    parkSpot2.stop();
-    rfid1.stop();
+    // ultrasonicSensorClass parkSpot1(22, 23, 0);
+    // ultrasonicSensorClass parkSpot2(6, 12, 1);
+    // RFIDclass rfid1(3);
+    // parkSpot1.registerCallback(&callback1);
+    // parkSpot2.registerCallback(&callback2);
+    // rfid1.registerCallback(&callback3);
+    // parkSpot1.start();
+    // parkSpot2.start();
+    // rfid1.start();
+    // sleep(30);
+    // parkSpot1.stop();
+    // parkSpot2.stop();
+    // rfid1.stop();
 }
 
 int parkingLot::get_spotavaliability()

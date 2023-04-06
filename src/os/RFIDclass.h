@@ -89,7 +89,7 @@ class RFIDclass
         std::string card_no = "";
 
         // Bool used to control while loop in worker function sense_card.
-        bool running;
+        bool running = false;
 
         // Thread which runs sense_card function.
         std::thread t;

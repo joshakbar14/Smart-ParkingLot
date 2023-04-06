@@ -90,7 +90,7 @@ class ultrasonicSensorClass
         int output_pin;
 
         // Bool used to control while loop in worker function sense_location.
-        bool running;
+        bool running  = false;
 
         // Thread which runs sense_location function and registers sensor inputs.
         std::thread t;
@@ -99,7 +99,7 @@ class ultrasonicSensorClass
         ultrasonicCallback* callback = nullptr;
 
         // State of avaliability of parking spot.
-        bool avaliability;
+        bool avaliability = false;
 
         // Id number of this instance of the class.
         int sensor_no;
