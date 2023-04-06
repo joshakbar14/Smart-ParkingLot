@@ -14,10 +14,10 @@ class BuzzerClass
 {
     public:
         /**
-         * BuzzerClass constructor. @param sensor_pin and @param buzzer_pin are 
-         * GPIO input and output for the buzzer initalised.
+         * BuzzerClass constructor. @param buzzer_pin is the GPIO output 
+         * for the buzzer initalised.
          **/
-        BuzzerClass(int sensor_pin, int buzzer_pin);
+        BuzzerClass(int buzzer_pin);
 
         /**
          * Turn buzzer on.
@@ -30,9 +30,6 @@ class BuzzerClass
         void buzzer_off();
 
     private:
-        // GPIO input pin for buzzer.
-        int sensor_pin;
-
         // GPIO output pin for buzzer.
         int buzzer_pin;
 };

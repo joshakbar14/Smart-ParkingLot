@@ -139,8 +139,8 @@ parkingLot::parkingLot(int no_spots)
 
     spots[0] = true;
     spots[1] = true;
-    BuzzerClass buzzer1(17, 18);
-    //BuzzerClass buzzer2(17, 18);
+    BuzzerClass buzzer1(26);
+    BuzzerClass buzzer2(27);
 
     //instantiate callback
     aParkCallback callback1;
@@ -153,8 +153,7 @@ parkingLot::parkingLot(int no_spots)
     callback2.registerClass((parkingLot*)this);
     callback3.registerClass((parkingLot*)this);
     callback1.registerBuzzer(&buzzer1);
-    callback2.registerBuzzer(&buzzer1);
-    //callback2.registerBuzzer(&buzzer2);
+    callback2.registerBuzzer(&buzzer2);
 
     ultrasonicSensorClass parkSpot1(22, 23, 0);
     ultrasonicSensorClass parkSpot2(6, 12, 1);

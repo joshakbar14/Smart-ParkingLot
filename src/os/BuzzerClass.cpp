@@ -6,11 +6,9 @@
 
 using namespace std;
 
-BuzzerClass::BuzzerClass(int sensor_pin, int buzzer_pin)
+BuzzerClass::BuzzerClass(int sensor_pin)
 {
-  this->sensor_pin = sensor_pin;
   this->buzzer_pin = buzzer_pin;
-  gpioSetMode(sensor_pin, PI_INPUT);
   gpioSetMode(buzzer_pin, PI_OUTPUT);
 }
 
