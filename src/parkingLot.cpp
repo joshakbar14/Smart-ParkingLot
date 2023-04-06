@@ -121,7 +121,6 @@ void parkingLot::park() {
         ultrasonicSensorClass parkSpot(pins[i].first, pins[i].second, i);
         sensors.push_back(&parkSpot);
         parkSpot.registerCallback(&callback);
-        parkSpot.start();
     }
 
     //fill rfids vector with the created instances of rfids
@@ -132,15 +131,24 @@ void parkingLot::park() {
         RFIDclass rfid(no+i);
         rfids.push_back(&rfid);
         rfid.registerCallback(&callback);
-        rfid.start();
     }
-    sleep(30);
 
-    for (ultrasonicSensorClass* parkSpot : sensors) { 
-        parkSpot->stop();
-    }
-    for (RFIDclass* rfid : rfids) { 
-        rfid->stop();
+    {
+        for (ultrasonicSensorClass* parkSpot : sensors) { 
+            parkSpot->start();
+        }
+        for (RFIDclass* rfid : rfids) { 
+            rfid->start();
+        }
+
+        sleep(30);
+
+        for (ultrasonicSensorClass* parkSpot : sensors) { 
+            parkSpot->stop();
+        }
+        for (RFIDclass* rfid : rfids) { 
+            rfid->stop();
+        }
     }
 
 //     try {
