@@ -44,7 +44,11 @@ public:
 };
 
 /**
- * Main class for the RFID.
+ * Main class for the RFID. Initialises an object of MFRC522 which registers if a card
+ * is present at the RFID reader or not. Will send an interrupt which triggers a callback 
+ * to the parkingLot class if a card is present. start() begins a separate thread for 
+ * every RFID reader and stop() ends it. registerCallback needs to be called from host 
+ * class (parkingLot) to be able to get data.
  **/
 class RFIDclass
 {
@@ -72,8 +76,8 @@ class RFIDclass
         void stop();
 
     private:
-        // Worker function for threads. Reads..
-        // Interrupt sent if the change in 
+        // Worker function for threads. The MFRC522 object reads the RFID reader.
+        // Interrupt sent if a card is present.
         double sense_card();
 
         // Static pigpio interrupt function. @param userdata contains pointer to this class instance.
