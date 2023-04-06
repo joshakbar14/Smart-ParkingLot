@@ -62,9 +62,9 @@ class RFIDclass
 
         /**
          * Sets up GPIO settings for triggering pin for pigpio interrupt function and
-         * initializes thread for instance of RFIDclass.
+         * starts thread for instance of RFIDclass.
          **/
-        void start();
+        void start(std::thread* t);
 
         /**
          * Stops thread execution and ends RFID readings.
@@ -91,8 +91,8 @@ class RFIDclass
         // Bool used to control while loop in worker function sense_card.
         bool running = false;
 
-        // Thread which runs sense_card function.
-        std::thread t;
+        // Pointer to thread which runs sense_card function.
+        std::thread* t;
 
         // Callback interface which is registered with parkingLot class.
         RFIDCallback* callback = nullptr;

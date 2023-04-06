@@ -63,9 +63,9 @@ class ultrasonicSensorClass
 
         /**
          * Sets up GPIO settings for triggering pin for pigpio interrupt function and
-         * initializes thread for instance of ultrasonicSensorClass.
+         * starts thread for instance of ultrasonicSensorClass.
          **/
-        void start();
+        void start(std::thread* t);
 
         /**
          * Stops thread execution and ends ultrasonic sensor readings.
@@ -92,8 +92,8 @@ class ultrasonicSensorClass
         // Bool used to control while loop in worker function sense_location.
         bool running  = false;
 
-        // Thread which runs sense_location function and registers sensor inputs.
-        std::thread t;
+        // Pointer to thread which runs sense_location function and registers sensor inputs.
+        std::thread* t;
 
         // Callback interface which is registered with parkingLot class.
         ultrasonicCallback* callback = nullptr;

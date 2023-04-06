@@ -135,10 +135,14 @@ void parkingLot::park() {
 
     {
         for (ultrasonicSensorClass* parkSpot : sensors) { 
-            parkSpot->start();
+            std::thread t;
+            sensor_thr.push_back(&t);
+            parkSpot->start(&t);
         }
         for (RFIDclass* rfid : rfids) { 
-            rfid->start();
+            std::thread t;
+            rfid_thr.push_back(&t);
+            rfid->start(&t);
         }
 
         sleep(30);

@@ -86,6 +86,12 @@ class parkingLot
         //  Vector of pointer to instances of RFID readers.
         std::vector<RFIDclass*> rfids;
 
+        //  Vector of pointer to instances of sensor threads.
+        std::vector<std::thread*> sensor_thr;
+
+        //  Vector of pointer to instances of rfid threads.
+        std::vector<std::thread*> rfid_thr;
+
         // //  Thread which runs the park function that initialises all sensors and callbacks.
         // std::thread t;
 
