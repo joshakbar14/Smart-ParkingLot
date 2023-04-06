@@ -5,6 +5,7 @@
 #include "parkingLot.h"
 #include "os/ultrasonicSensorClass.h"
 #include "os/RFIDclass.h"
+#include "os/BuzzerClass.h"
 #include <thread>
 #include <unistd.h>
 #include <vector>
@@ -21,6 +22,9 @@ public:
     // Pointer to instance of parkingLot class.
     parkingLot* pl;
 
+    // Pointer to buzzer class.
+    BuzzerClass* bz;
+
     // Update the avaliability of a certain parking spot. @param sample contains
     // the avaliability and sensor_no from ultrasonicSample.
     virtual void avaliability_changed(ultrasonicSample sample) {
@@ -33,11 +37,13 @@ public:
                 cout << "Parking spot:" << sample.sensor_no << "  is now full. Avaliability =" << sample.avaliability << endl;
             }
             else {
+                bz->buzzer_on();
                 cout << "Wrong spot. Start buzzer." << endl;
             }
         }
         else {
             pl->check_in_list[sample.sensor_no] = "";
+            bz->buzzer_off();                           //Check if this is the best way
             *avaliable = sample.avaliability;
             cout << "Parking spot:" << sample.sensor_no << "  is now avaliable. Avaliability =" << sample.avaliability << endl;
         }
@@ -52,6 +58,11 @@ public:
     // Register the pointer instance to the @param parkingLot class.
     void registerClass(parkingLot* parkinglot) {
 	    pl = parkinglot;
+	}
+
+    // Register the pointer instance to the @param buzzer class.
+    void registerBuzzer(BuzzerClass* buzzer) {
+	    bz = buzzer;
 	}
 };
 
@@ -126,11 +137,10 @@ parkingLot::parkingLot(int no_spots)
 //         std::cerr << e.what() << '\n';
 //     }
 
-    //bool avaliability1 = true;
-    //bool avaliability2 = true;
-    //bool card = false;
     spots[0] = true;
     spots[1] = true;
+    BuzzerClass buzzer1(17, 18);
+    //BuzzerClass buzzer2(17, 18);
 
     //instantiate callback
     aParkCallback callback1;
@@ -142,6 +152,9 @@ parkingLot::parkingLot(int no_spots)
     callback1.registerClass((parkingLot*)this);
     callback2.registerClass((parkingLot*)this);
     callback3.registerClass((parkingLot*)this);
+    callback1.registerBuzzer(&buzzer1);
+    callback2.registerBuzzer(&buzzer1);
+    //callback2.registerBuzzer(&buzzer2);
 
     ultrasonicSensorClass parkSpot1(22, 23, 0);
     ultrasonicSensorClass parkSpot2(6, 12, 1);
