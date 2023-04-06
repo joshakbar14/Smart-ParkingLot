@@ -177,7 +177,9 @@ int parkingLot::get_spotavaliability()
     //return free spot from hash map
     for (auto spot : spots) {
         if (spot.second == true) {
-            return spot.first;
+            if (check_in_list[spot.first] == "") {
+                return spot.first;
+            }
         }
     }
     //or value not found
