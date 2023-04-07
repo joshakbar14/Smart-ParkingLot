@@ -1,9 +1,16 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <QApplication>
+#include <qwt/qwt_thermo.h>
+#include <qwt/qwt_plot.h>
+#include <qwt/qwt_plot_curve.h>
+
 #include <QBoxLayout>
 #include <QPushButton>
+#include <QPixmap>
+#include <QLabel>
+#include <QPixmap>
+#include <QFont>
 
 // class definition 'Window'
 class Window : public QWidget
@@ -21,7 +28,9 @@ private:
 	static constexpr int plotDataSize = 100;
 	static constexpr double gain = 7.5;
 
-	QPushButton  *button;
+	QLabel       *label;
+	QLabel		 *header;
+	QLabel		 *welcomemessage;
 
 	// layout elements from Qt itself http://qt-project.org/doc/qt-4.8/classes.html
 	QVBoxLayout  *vLayout;  // vertical layout
@@ -32,8 +41,11 @@ private:
 	double yData[plotDataSize];
 
 	long count = 0;
-
 	void reset();
+	void welcomescreen();
+
+public slots:
+	void rfidscan();	
 };
 
 #endif // WINDOW_H
