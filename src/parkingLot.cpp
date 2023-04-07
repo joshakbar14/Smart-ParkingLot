@@ -108,7 +108,7 @@ void parkingLot::park() {
         no = pins.size();
     }
 
-    //fill the spot hasp map with number of spot and avaliability bool
+    //fill the spot hash map with number of spot and avaliability bool
     //fill sensors vector with the created instances of sensors
     for (int i = 0; i < no; i++) {
         spots[i] = true;
