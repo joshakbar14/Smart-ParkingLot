@@ -1,10 +1,49 @@
 #include "window.h"
+#include "src/parkingLot.h"
 
 #include <cmath>  // for sine stuff
 
+class aWindowCallback : public parkCallback {
+public:
+	// the Qslots
+
+	// get callbacks from parkinglot spots
+	// and return: 
+	// user uid
+	// spot available, spot occupied
+	// and designated parking space
+
+	// if spot available = 0
+	// return lable "I am sorry the parking is full, would you please try again later?"
+	Window* windows;
+
+	virtual void change_window(parkSample sample){
+		if (windows == nullptr) return;
+		*aspotlabeltext = sample.lot_no;
+		*aspotavailabletext = sample.emptyspace;
+		*aspotoccupiedtext = sample.occupiedspace;
+		*auidlabeltext = sample.uid;
+		windows->rfidscan();
+
+  	}
+
+	void registerText(int* lot_no, int* emptyspace, int* occupiedspace, string* uid){
+		aspotlabeltext = lot_no;
+		aspotavailabletext = emptyspace;
+		aspotoccupiedtext = occupiedspace;
+		auidlabeltext = uid;
+	}
+
+	void registerClass(Window* window){
+		windows = window;
+	}
+
+}
 
 Window::Window()
 {
+
+
 
 	// set up the initial plot data
 	for( int index=0; index<plotDataSize; ++index )
@@ -30,15 +69,38 @@ Window::Window()
 	welcomemessage->setFont(font);
 	welcomemessage->setAlignment(Qt::AlignCenter);
 
-	// see https://doc.qt.io/qt-5/signalsandslots-syntaxes.html
+	spotlabel = new QLabel("Designated Spot");
+	spotlabel->setFont(font);
+	spotlabel->setAlignment(Qt::AlignCenter);
 
-	// set up the layout - button above thermometer
+	uidlabel = new QLabel("UID");
+    uidlabel->setFont(font);
+	uidlabel->setAlignment(Qt::AlignCenter);
+
+	spotavailable = new QLabel("Available Spot");
+    spotavailable->setFont(font);
+	spotavailable->setAlignment(Qt::AlignCenter);
+
+	spotoccupied = new QLabel("Occupied Spot");
+	spotoccupied->setFont(font);
+	spotoccupied->setAlignment(Qt::AlignCenter);
+
+	// see https://doc.qt.io/qt-5/signalsandslots-syntaxes.html
+	// Register callbacks
+	parkingLot spot1;
+	spot1.registerCallback(&callback);
+
+	// set up the layout
 	vLayout = new QVBoxLayout();
 	vLayout->addWidget(label);
 	vLayout->addWidget(header);
 	vLayout->addWidget(welcomemessage);
+	vLayout->addWidget(spotlabel);
+	vLayout->addWidget(uidlabel);
+	vLayout->addWidget(spotavailable);
+	vLayout->addWidget(spotoccupied);
 
-	// plot to the left of button and thermometer
+	// plot to the left
 	hLayout = new QHBoxLayout();
 	hLayout->addLayout(vLayout);
 
@@ -47,16 +109,10 @@ Window::Window()
 
 void Window::rfidscan()
 {
-	// the Qslots
+	// Set the callbacks
+	aWindowCallback callback;	
+	callback.registerText(spotlabeltext, spotavailabletext, spotoccupiedtext, uidlabeltext)
 
-	// get callbacks from parkinglot spots
-	// and return: 
-	// user uid
-	// spot available, spot occupied
-	// and designated parking space
-
-	// if spot available = 0
-	// return lable "I am sorry the parking is full, would you please try again later?"
 }
 
 void Window::reset() {
@@ -71,15 +127,9 @@ void Window::reset() {
 
 void Window::timerEvent( QTimerEvent * )
 {
-	double inVal = gain * sin( M_PI * count/50.0 );
-	++count;
-
-	// add the new input to the plot
-	std::move( yData, yData + plotDataSize - 1, yData+1 );
-	yData[0] = inVal;
-	// curve->setSamples(xData, yData, plotDataSize);
-	// plot->replot();
-
-	// // set the thermometer value
-	// thermo->setValue( fabs(inVal) );
+	// Pass in to the GUI
+	spotlabel->setText(spotlabeltext);
+	spotavailable->setText(spotavailabletext);
+	spotoccupied->setText(spotoccupiedtext);
+	uidlabel->setText(uidlabeltext);
 }

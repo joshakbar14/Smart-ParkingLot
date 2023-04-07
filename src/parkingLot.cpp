@@ -90,6 +90,7 @@ public:
             cout << "Check in point: " << sample.rfid_no << " . Welcome user " << sample.card_no << endl;
             cout << "No avaliable parking at this moment, please return another time." << endl;
         }
+        pl->to_window();
 	}
 
     // Register the pointer instance to the @param parkingLot class.
@@ -188,11 +189,6 @@ int parkingLot::get_spotavaliability()
     return -1;
 }
 
-void parkingLot::registerWindowCallback(parkCallback* cb)
-{
-    windowcallback = cb;
-}
-
 void parkingLot::to_window()
 {
     if (!windowcallback){
@@ -206,6 +202,11 @@ void parkingLot::to_window()
     sample.uid = uid;
     windowcallback->change_window(sample);
 
+}
+
+void parkingLot::registerWindowCallback(parkCallback* cb)
+{
+    windowcallback = cb;
 }
 
 // void parkingLot::start()

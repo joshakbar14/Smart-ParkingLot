@@ -4,13 +4,16 @@
 #include <qwt/qwt_thermo.h>
 #include <qwt/qwt_plot.h>
 #include <qwt/qwt_plot_curve.h>
-
+#include "src/parkingLot.h"
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QPixmap>
 #include <QLabel>
 #include <QPixmap>
 #include <QFont>
+#include <string>
+
+using namespace std;
 
 // class definition 'Window'
 class Window : public QWidget
@@ -43,6 +46,11 @@ private:
 	long count = 0;
 	void reset();
 	void welcomescreen();
+
+	string spotlabeltext;
+	string uidlabeltext;
+	string spotavailabletext;
+	string spotoccupiedtext;
 
 public slots:
 	void rfidscan();	
