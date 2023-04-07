@@ -44,7 +44,7 @@ public:
         }
         else {
             pl->check_in_list[sample.sensor_no] = "";
-            bz->buzzer_off();                           //Check if this is the best way
+            bz->buzzer_off();
             *avaliable = sample.avaliability;
             cout << "Parking spot:" << sample.sensor_no << "  is now avaliable. Avaliability =" << sample.avaliability << endl;
         }
@@ -103,40 +103,6 @@ parkingLot::parkingLot(int no_spots)
 // }
 
 // void parkingLot::park() {
-//     vector<pair<int,int>> fill = {
-//         {22, 23},
-//         {6,  12}
-//     };
-//     pins = fill;
-
-//     int no = no_spots;
-//     if (no_spots > pins.size()) {
-//         cout << "not enough gpio numbers for pins in vector: check 'fill' and add accordingly as connected to rpi" << endl;
-//         cout << "will only initialize: " << pins.size() << "sensors." << endl;
-//         no = pins.size();
-//     }
-
-//     //fill the hash map with number of spot and avaliability bool
-//     for (int i = 0; i < no; i++) {
-//         bool avaliability = true;
-//         spots[i] = avaliability;
-
-//         //instantiate callback
-//         aParkCallback callback;
-//         callback.registerMap(&avaliability);
-
-//         ultrasonicSensorClass parkSpot(pins[i].first, pins[i].second, i);
-//         sensors.push_back(&parkSpot);
-//         parkSpot.registerCallback(&callback);
-//         parkSpot.start();
-//     }
-
-//     try {
-//         running = true;
-//         while(running);
-//     } catch (const std::exception &e) {
-//         std::cerr << e.what() << '\n';
-//     }
 
     spots[0] = true;
     spots[1] = true;
@@ -185,22 +151,6 @@ int parkingLot::get_spotavaliability()
     //or value not found
     return -1;
 }
-
-// void parkingLot::start()
-// {
-//     t = thread(&parkingLot::park,this);
-// }
-
-// void parkingLot::stop()
-// {
-//     for (ultrasonicSensorClass* parkSpot : sensors) { 
-//         parkSpot->stop();
-//     }
-//     // spot1->stop();
-//     // spot2->stop();
-//     running = false;
-//     t.join();
-// }
 
 // void parkingLot::registerCallback()
 // {

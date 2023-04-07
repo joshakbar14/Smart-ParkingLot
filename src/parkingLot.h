@@ -15,7 +15,7 @@
 /**
  * Main class for the parking lot. Initialises the ultrasonic sensors and RFIDs and 
  * stores the corresponding parking spots connected to the sensors in an allocated 
- * hashmap which keeps track of the avaliability of the parking spots.
+ * hash map which keeps track of the avaliability of the parking spots.
  **/
 class parkingLot
 {
@@ -29,7 +29,7 @@ class parkingLot
         // /**
         //  * Initialises the corresponding ultrasonic sensors, RFIDs and callbacks for the 
         //  * ultrasonicSensorClass and RFIDclass that are registered in the classes. Begins the
-        //  * sensor and RFID readings (((and puts the instances of the sensors in the sensors vector))).
+        //  * sensor and RFID readings.
         //  **/
         // void park();
 
@@ -40,29 +40,19 @@ class parkingLot
         int get_spotavaliability();
 
         // /**
-        //  * Begins the thread that runs the park function.
-        //  **/
-        // void start();
-
-        // /**
-        //  * Stops the sensor readings and ends them when called. Joins the thread.
-        //  **/
-        // void stop();
-
-        // /**
         //  * 
         //  **/
         // void registerCallback();
 
         // Keeps track of which user (card_no) is supposed to park at what parking spot.
-        // std::string empty if parking spot empty or car correcly parked.
+        // std::string empty if parking spot empty.
         std::unordered_map<int, std::string> check_in_list;
 
     private:
         // Number of parking spots in this parking lot assigned from the main program.
         int no_spots;
 
-        // Unordered hashmap for the parking spots which contains the id number
+        // Unordered hash map for the parking spots which contains the id number
         // of the spot and the avaliability of the parking spot. Updated by 
         // the class aParkCallback that implements the interface ultrasonicCallback.
         std::unordered_map<int, bool> spots;
@@ -70,17 +60,6 @@ class parkingLot
         // Vector of pairs of pins that can be used as input and output pins
         // for instances of ultrasonic sensors.
         std::vector<pair<int, int>> pins;
-
-        // //  Vector of pointer to instances of sensors.
-        // std::vector<ultrasonicSensorClass*> sensors;
-
-        // //  Thread which runs the park function that initialises all sensors and callbacks.
-        // std::thread t;
-
-        // // Bool used to keep thread alive until stop is called.
-        // bool running;
-
-
 };
 
 #endif //PARKINGLOT_H
