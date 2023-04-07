@@ -9,13 +9,13 @@
 #include <thread>
 #include <unistd.h>
 #include <vector>
-#include <QWidget>
-#include <gui/interface/window.h>
+#include "window.h"
 
 using namespace std;
 
 // Class implementing the ultrasonicCallback and avaliability_changed function
 // to update the avaliability of parking spots in the parkingLot class.
+
 class aParkCallback : public ultrasonicCallback {
 public:
     // Bool that registers the avaliability of a certain parking spot.
