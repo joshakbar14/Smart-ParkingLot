@@ -59,13 +59,13 @@ void RFIDclass::registerCallback(RFIDCallback* cb)
     callback = cb;
 }
 
-void RFIDclass::start(std::thread* t) {
+void RFIDclass::start(std::thread* th) {
     led_pin = rfid_no;
     gpioSetMode(led_pin, PI_OUTPUT);
     gpioWrite(led_pin, 0);
     gpioSetISRFuncEx(led_pin, RISING_EDGE, 0, displayInterrupt, (void*)this);
-    this->t = t;
-	*t = thread(&RFIDclass::sense_card,this);
+	*th = thread(&RFIDclass::sense_card,this);
+    this->t = th;
 }
 
 void RFIDclass::stop() {

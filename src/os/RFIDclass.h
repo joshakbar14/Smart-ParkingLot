@@ -64,7 +64,7 @@ class RFIDclass
          * Sets up GPIO settings for triggering pin for pigpio interrupt function and
          * starts thread for instance of RFIDclass.
          **/
-        void start(std::thread* t);
+        void start(std::thread* th);
 
         /**
          * Stops thread execution and ends RFID readings.

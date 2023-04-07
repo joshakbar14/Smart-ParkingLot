@@ -100,13 +100,13 @@ void ultrasonicSensorClass::registerCallback(ultrasonicCallback* cb)
     callback = cb;
 }
 
-void ultrasonicSensorClass::start(std::thread* t){
+void ultrasonicSensorClass::start(std::thread* th){
 	led_pin = sensor_no;
 	gpioSetMode(led_pin, PI_OUTPUT);
 	gpioWrite(led_pin, 0);
 	gpioSetISRFuncEx(led_pin, EITHER_EDGE, 0, displayInterrupt, (void*)this);
-    this->t = t;
-	*t = thread(&ultrasonicSensorClass::sense_location,this);
+	*th = thread(&ultrasonicSensorClass::sense_location,this);
+    this->t = th;
 }
 
 void ultrasonicSensorClass::stop(){

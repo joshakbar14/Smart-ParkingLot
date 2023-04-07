@@ -65,7 +65,7 @@ class ultrasonicSensorClass
          * Sets up GPIO settings for triggering pin for pigpio interrupt function and
          * starts thread for instance of ultrasonicSensorClass.
          **/
-        void start(std::thread* t);
+        void start(std::thread* th);
 
         /**
          * Stops thread execution and ends ultrasonic sensor readings.
