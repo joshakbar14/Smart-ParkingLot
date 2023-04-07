@@ -9,6 +9,8 @@
 #include <thread>
 #include <unistd.h>
 #include <vector>
+#include <QWidget>
+#include <gui/interface/window.h>
 
 using namespace std;
 
@@ -184,6 +186,26 @@ int parkingLot::get_spotavaliability()
     }
     //or value not found
     return -1;
+}
+
+void parkingLot::registerWindowCallback(parkCallback* cb)
+{
+    windowcallback = cb;
+}
+
+void parkingLot::to_window()
+{
+    if (!windowcallback){
+        return;
+    }
+
+    parkSample sample;
+    sample.occupiedspace = occupiedspace;
+    sample.emptyspace = emptyspace;
+    sample.lot_no = lot_no;
+    sample.uid = uid;
+    windowcallback->change_window(sample);
+
 }
 
 // void parkingLot::start()

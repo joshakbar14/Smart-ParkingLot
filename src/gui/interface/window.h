@@ -41,9 +41,11 @@ private:
 	double yData[plotDataSize];
 
 	long count = 0;
-	void rfidscan();
 	void reset();
 	void welcomescreen();
+
+public slots:
+	void rfidscan();	
 };
 
 #endif // WINDOW_H

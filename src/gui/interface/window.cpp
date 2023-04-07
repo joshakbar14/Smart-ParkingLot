@@ -45,11 +45,6 @@ Window::Window()
 	setLayout(hLayout);
 }
 
-void Window::welcomescreen()
-{
-
-}
-
 void Window::rfidscan()
 {
 	// the Qslots
