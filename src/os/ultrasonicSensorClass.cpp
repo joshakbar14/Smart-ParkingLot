@@ -106,7 +106,7 @@ void ultrasonicSensorClass::start(std::thread* th){
 	gpioWrite(led_pin, 0);
 	gpioSetISRFuncEx(led_pin, EITHER_EDGE, 0, displayInterrupt, (void*)this);
 	*th = thread(&ultrasonicSensorClass::sense_location,this);
-    this->t = th;
+    t = th;
 }
 
 void ultrasonicSensorClass::stop(){

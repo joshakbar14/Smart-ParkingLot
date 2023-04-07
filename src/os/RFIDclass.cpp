@@ -65,7 +65,7 @@ void RFIDclass::start(std::thread* th) {
     gpioWrite(led_pin, 0);
     gpioSetISRFuncEx(led_pin, RISING_EDGE, 0, displayInterrupt, (void*)this);
 	*th = thread(&RFIDclass::sense_card,this);
-    this->t = th;
+    t = th;
 }
 
 void RFIDclass::stop() {
