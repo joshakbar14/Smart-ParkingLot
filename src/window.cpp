@@ -89,7 +89,7 @@ Window::Window()
 	// see https://doc.qt.io/qt-5/signalsandslots-syntaxes.html
 	// Register callbacks
 	aWindowCallback callback;	
-	callback.registerText(&spotlabeltext, &spotavailabletext, &spotoccupiedtext, &uidlabeltext)
+	callback.registerText(&spotlabeltext, &spotavailabletext, &spotoccupiedtext, &uidlabeltext);
 	parkingLot spot1;
 	spot1.registerWindowCallback(&callback);
 
@@ -128,8 +128,8 @@ void Window::reset() {
 void Window::timerEvent( QTimerEvent * )
 {
 	// Pass in to the GUI
-	spotlabel->setText(spotlabeltext);
-	spotavailable->setText(spotavailabletext);
-	spotoccupied->setText(spotoccupiedtext);
+	spotlabel->setText(std::to_string(spotlabeltext));
+	spotavailable->setText(std::to_string(spotavailabletext));
+	spotoccupied->setText(std::to_string(spotoccupiedtext));
 	uidlabel->setText(uidlabeltext);
 }
