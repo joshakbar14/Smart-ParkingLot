@@ -19,6 +19,14 @@ class Window : public QWidget
 	// must include the Q_OBJECT macro for for the Qt signals/slots framework to work with this class
 	Q_OBJECT
 
+private:
+	class parkWindow : public parkingLot {
+		public:
+			parkWindow(Window* w) : window(*w) {}
+		private:
+			Window& window;
+	};
+
 public:
 	Window(); // default constructor - called when a Window is declared without arguments
 	void updateWindow(int spotlabeltext, string uidlabeltext);

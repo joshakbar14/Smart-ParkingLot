@@ -6,7 +6,7 @@ using namespace std;
 
 Window::Window()
 {
-	parkingLot park(2, this)
+	park = new parkWindow(2, this);
 	this->spotlabeltext = 0;
 	this->uidlabeltext = "";
 	
