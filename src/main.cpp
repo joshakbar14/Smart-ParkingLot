@@ -6,10 +6,10 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    
-    // Window window;
-    // window.show();
-    parkingLot parkinglot(2, argc, *argv[1]);
+    QApplication app(argc, argv);
+    Window window;
+    window.show();
+    parkingLot parkinglot(2, &window);
     //RFID_main rfid(1);
 
     //parkinglot.start();
@@ -18,5 +18,5 @@ int main(int argc, char *argv[]) {
     //getchar();
 
     //parkinglot.stop();
-
+    return app.exec();
 }

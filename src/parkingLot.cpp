@@ -106,7 +106,7 @@ public:
 	}
 };
 
-parkingLot::parkingLot(int no_spots, int argc, char *argv[])
+parkingLot::parkingLot(int no_spots, Window* window)
 {
     // number of spots in total for parking lot
     this->no_spots = no_spots;
@@ -147,14 +147,13 @@ parkingLot::parkingLot(int no_spots, int argc, char *argv[])
 //     } catch (const std::exception &e) {
 //         std::cerr << e.what() << '\n';
 //     }
-    QApplication app;
+    
     spots[0] = true;
     spots[1] = true;
 
     gpioInitialise();
     BuzzerClass buzzer1(26);
     BuzzerClass buzzer2(27);
-    Window window;
 
     //instantiate callback
     aParkCallback callback1;
@@ -178,20 +177,16 @@ parkingLot::parkingLot(int no_spots, int argc, char *argv[])
     rfid1.registerCallback(&callback3);
 
     // Running Thread
-    window.show();
     parkSpot1.start();
     parkSpot2.start();
     rfid1.start();
-    // Qt start loop
-    app.exec();
     
     sleep(30);
     //getchar();
+    
     parkSpot1.stop();
     parkSpot2.stop();
     rfid1.stop();
-    // Qt end loop
-    app.exit();
     gpioTerminate();
 }
 
