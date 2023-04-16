@@ -9,8 +9,8 @@ set(CMAKE_AUTOUIC ON)
 
 add_executable (running 
                 main.cpp
-                window.h
                 window.cpp
+                parkingLot.cpp
 )
 set_target_properties(
     running
@@ -20,11 +20,11 @@ set_target_properties(
 
 target_link_libraries (running Dev pigpio pthread bcm2835 Qt5::Widgets)
 
-add_library (Dev  os/ultrasonicSensorClass.cpp os/ultrasonicSensorClass.h parkingLot.cpp parkingLot.h
-             os/RFIDclass.cpp os/RFIDclass.h os/RFID_main.cpp os/RFID_main.h
-             os/MFRC522.cpp os/MFRC522.h os/BuzzerClass.cpp os/BuzzerClass.h
+add_library (Dev os/ultrasonicSensorClass.cpp os/ultrasonicSensorClass.h
+             os/RFIDclass.cpp os/RFIDclass.h os/MFRC522.cpp os/MFRC522.h os/BuzzerClass.cpp os/BuzzerClass.h
 )
 
+# parkingLot.cpp parkingLot.h
 # src/window.h src/window.cpp
 
 install(TARGETS running)

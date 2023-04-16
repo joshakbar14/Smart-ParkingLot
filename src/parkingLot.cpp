@@ -1,4 +1,5 @@
 
+#include <QApplication>
 #include <stdio.h>
 #include <pigpio.h>
 #include <iostream>
@@ -6,6 +7,7 @@
 #include "os/ultrasonicSensorClass.h"
 #include "os/RFIDclass.h"
 #include "os/BuzzerClass.h"
+#include "window.h"
 #include <thread>
 #include <unistd.h>
 #include <vector>
@@ -89,14 +91,17 @@ public:
             cout << "Check in point: " << sample.rfid_no << " . Welcome user " << sample.card_no << endl;
             cout << "No avaliable parking at this moment, please return another time." << endl;
         }
-        pl->lot_no = sample.rfid_no;
-        pl->uid = sample.card_no;
-        pl->to_window();
+
+        wd->updateWindow(sample.rfid_no, sample.card_no);
 	}
 
     // Register the pointer instance to the @param parkingLot class.
 	void registerClass(parkingLot* parkinglot) {
 	    pl = parkinglot;
+	}
+
+    void registerWindow(Window* window) {
+	    wd = window;
 	}
 };
 
@@ -141,13 +146,14 @@ parkingLot::parkingLot(int no_spots)
 //     } catch (const std::exception &e) {
 //         std::cerr << e.what() << '\n';
 //     }
-
+    QApplication app(argc, argv);
     spots[0] = true;
     spots[1] = true;
 
-    // gpioInitialise();
-    // BuzzerClass buzzer1(26);
-    // BuzzerClass buzzer2(27);
+    gpioInitialise();
+    BuzzerClass buzzer1(26);
+    BuzzerClass buzzer2(27);
+    Window window;
 
     //instantiate callback
     aParkCallback callback1;
@@ -161,6 +167,7 @@ parkingLot::parkingLot(int no_spots)
     callback3.registerClass((parkingLot*)this);
     callback1.registerBuzzer(&buzzer1);
     callback2.registerBuzzer(&buzzer2);
+    callback3.registerWindow(&window);
 
     ultrasonicSensorClass parkSpot1(22, 23, 0);
     ultrasonicSensorClass parkSpot2(6, 12, 1);
@@ -170,15 +177,21 @@ parkingLot::parkingLot(int no_spots)
     rfid1.registerCallback(&callback3);
 
     // Running Thread
-    // parkSpot1.start();
-    // parkSpot2.start();
-    // rfid1.start();
-    // // sleep(30);
-    // //getchar();
-    // parkSpot1.stop();
-    // parkSpot2.stop();
-    // rfid1.stop();
-    // gpioTerminate();
+    window.show();
+    parkSpot1.start();
+    parkSpot2.start();
+    rfid1.start();
+    // Qt start loop
+    app.exec()
+    
+    sleep(30);
+    //getchar();
+    parkSpot1.stop();
+    parkSpot2.stop();
+    rfid1.stop();
+    // Qt end loop
+    app.exit();
+    gpioTerminate();
 }
 
 int parkingLot::get_spotavaliability()
@@ -195,55 +208,25 @@ int parkingLot::get_spotavaliability()
     return -1;
 }
 
-void parkingLot::to_window()
-{
-    if (!windowcallback){
-        return;
-    }
+// void parkingLot::start()
+// {
+//     t = thread(&parkingLot::park,this);
+//     catch (const std::exception &e)
+//     {
+//         std::cerr << e.what() << '\n';
+//     }
+// }
 
-    parkSample sample;
-    sample.occupiedspace = occupiedspace;
-    sample.emptyspace = emptyspace;
-    sample.lot_no = lot_no;
-    sample.uid = uid;
-    windowcallback->change_window(sample);
-
-}
-
-void parkingLot::registerWindowCallback(parkCallback* cb)
-{
-    windowcallback = cb;
-}
-
-void parkingLot::start()
-{
-    t = thread(&parkingLot::park,this);
-    gpioInitialise();
-    BuzzerClass buzzer1(26);
-    BuzzerClass buzzer2(27);
-    parkSpot1.start();
-    parkSpot2.start();
-    rfid1.start();
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-}
-
-void parkingLot::stop()
-{
-    for (ultrasonicSensorClass* parkSpot : sensors) { 
-        parkSpot->stop();
-    }
-    // spot1->stop();
-    // spot2->stop();
-    running = false;
-    parkSpot1.stop();
-    parkSpot2.stop();
-    rfid1.stop();
-    gpioTerminate();
-    t.join();
-}
+// void parkingLot::stop()
+// {
+//     for (ultrasonicSensorClass* parkSpot : sensors) { 
+//         parkSpot->stop();
+//     }
+//     // spot1->stop();
+//     // spot2->stop();
+//     running = false;
+//     t.join();
+// }
 
 // void parkingLot::registerCallback()
 // {

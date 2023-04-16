@@ -9,7 +9,6 @@
 #include <QPixmap>
 #include <QFont>
 #include <string>
-#include "parkingLot.h"
 
 using namespace std;
 
@@ -21,7 +20,7 @@ class Window : public QWidget
 
 public:
 	Window(); // default constructor - called when a Window is declared without arguments
-
+	void updateWindow(int spotlabeltext, string uidlabeltext);
 	void timerEvent( QTimerEvent * );
 
 // internal variables for the window class

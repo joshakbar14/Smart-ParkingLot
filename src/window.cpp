@@ -1,45 +1,6 @@
 #include "window.h"
-#include "parkingLot.h"
 
-class aWindowCallback : public parkCallback {
-public:
-	// get callbacks from parkinglot spots
-	// and return: 
-	// user uid
-	// spot available, spot occupied
-	// and designated parking space
-
-	// if spot available = 0
-	// return label "I am sorry the parking is full, would you please try again later?"
-
-	int* aspotlabeltext;
-	int* aspotavailabletext;
-	int* aspotoccupiedtext;
-	string* auidlabeltext;
-	
-	Window* windows;
-
-	virtual void change_window(parkSample sample){
-		if (windows == nullptr) return;
-		*aspotlabeltext = sample.lot_no;
-		*aspotavailabletext = sample.emptyspace;
-		*aspotoccupiedtext = sample.occupiedspace;
-		*auidlabeltext = sample.uid;
-
-  	}
-
-	void registerText(int* lot_no, int* emptyspace, int* occupiedspace, string* uid){
-		aspotlabeltext = lot_no;
-		aspotavailabletext = emptyspace;
-		aspotoccupiedtext = occupiedspace;
-		auidlabeltext = uid;
-	}
-
-	void registerClass(Window* window){
-		windows = window;
-	}
-
-};
+using namespace std;
 
 Window::Window()
 {
@@ -76,16 +37,6 @@ Window::Window()
 	spotoccupied = new QLabel("Occupied Spot");
 	spotoccupied->setFont(font);
 	spotoccupied->setAlignment(Qt::AlignCenter);
-
-	// Register callbacks
-	aWindowCallback callback;	
-	callback.registerText(&spotlabeltext, &spotavailabletext, &spotoccupiedtext, &uidlabeltext);
-	callback.registerClass((Window*)this);
-	parkingLot spot1(2);
-	spot1.start();
-	sleep(30);
-	spot1.stop();
-	spot1.registerWindowCallback(&callback);
 	
 	// set up the layout
 	vLayout = new QVBoxLayout();
@@ -111,4 +62,12 @@ void Window::timerEvent( QTimerEvent * )
 	// spotavailable->setText(std::to_string(spotavailabletext));
 	// spotoccupied->setText(std::to_string(spotoccupiedtext));
 	// uidlabel->setText(uidlabeltext);
+}
+
+void updateWindow(int spottext, string uidtext){
+
+	spotlabeltext = spottext;
+	uidlabeltext = uidtext;
+	cout << "This is in the window " << spotlabeltext << " and " << uidlabeltext << endl; 
+
 }

@@ -7,25 +7,12 @@
 #include "os/ultrasonicSensorClass.h"
 #include "os/RFIDclass.h"
 #include "os/BuzzerClass.h"
+#include "window.h"
 #include <unordered_map>
 #include <thread>
 #include <unistd.h>
 #include <vector>
 #include <string>
-
-struct parkSample {
-    int occupiedspace = 0;
-    int emptyspace = 0;
-    int lot_no = 0;
-    string uid = "";
-};
-
-class parkCallback
-{
-    public:
-    virtual void change_window(parkSample sample) = 0;
-
-};
 
 class parkingLot
 {
@@ -33,14 +20,7 @@ class parkingLot
     public:
         parkingLot(int no_spots);
         int get_spotavaliability();
-        void registerWindowCallback(parkCallback* cb);
         std::unordered_map<int, std::string> check_in_list;
-        void to_window();
-        int lot_no;
-        string uid = "";
-
-        void start();
-        void stop();
 
     private:
         int no_spots;
@@ -48,10 +28,6 @@ class parkingLot
         std::vector<pair<int, int>> pins;
         int occupiedspace;
         int emptyspace;
-
-        // Callback function that is called by RFID scans
-        
-        parkCallback* windowcallback = nullptr;
 
 };
 
