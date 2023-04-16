@@ -29,9 +29,13 @@ private:
 	static constexpr int plotDataSize = 100;
 	static constexpr double gain = 7.5;
 
-	QLabel       *label;
-	QLabel		 *header;
-	QLabel		 *welcomemessage;
+	QLabel  *label;
+	QLabel	*header;
+	QLabel	*welcomemessage;
+	QLabel	*spotlabel;
+	QLabel	*uidlabel;
+	QLabel	*spotavailable;
+	QLabel 	*spotoccupied;
 
 	// layout elements from Qt itself http://qt-project.org/doc/qt-4.8/classes.html
 	QVBoxLayout  *vLayout;  // vertical layout
@@ -45,10 +49,10 @@ private:
 	void reset();
 	void welcomescreen();
 
-	string spotlabeltext;
+	int spotlabeltext;
+	int spotavailabletext;
+	int spotoccupiedtext;
 	string uidlabeltext;
-	string spotavailabletext;
-	string spotoccupiedtext;
 
 public slots:
 	void rfidscan();	

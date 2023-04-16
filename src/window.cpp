@@ -15,6 +15,11 @@ public:
 
 	// if spot available = 0
 	// return lable "I am sorry the parking is full, would you please try again later?"
+	int* aspotlabeltext;
+	int* aspotavailabletext;
+	int* aspotoccupiedtext;
+	string* auidlabeltext;
+	
 	Window* windows;
 
 	virtual void change_window(parkSample sample){
@@ -23,7 +28,6 @@ public:
 		*aspotavailabletext = sample.emptyspace;
 		*aspotoccupiedtext = sample.occupiedspace;
 		*auidlabeltext = sample.uid;
-		windows->rfidscan();
 
   	}
 
@@ -42,9 +46,6 @@ public:
 
 Window::Window()
 {
-
-
-
 	// set up the initial plot data
 	for( int index=0; index<plotDataSize; ++index )
 	{
@@ -87,8 +88,10 @@ Window::Window()
 
 	// see https://doc.qt.io/qt-5/signalsandslots-syntaxes.html
 	// Register callbacks
+	aWindowCallback callback;	
+	callback.registerText(&spotlabeltext, &spotavailabletext, &spotoccupiedtext, &uidlabeltext)
 	parkingLot spot1;
-	spot1.registerCallback(&callback);
+	spot1.registerWindowCallback(&callback);
 
 	// set up the layout
 	vLayout = new QVBoxLayout();
@@ -110,9 +113,6 @@ Window::Window()
 void Window::rfidscan()
 {
 	// Set the callbacks
-	aWindowCallback callback;	
-	callback.registerText(&spotlabeltext, &spotavailabletext, &spotoccupiedtext, &uidlabeltext)
-
 }
 
 void Window::reset() {
