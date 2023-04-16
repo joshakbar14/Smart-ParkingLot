@@ -39,6 +39,9 @@ class parkingLot
         int lot_no;
         string uid = "";
 
+        void start();
+        void stop();
+
     private:
         int no_spots;
         std::unordered_map<int, bool> spots;

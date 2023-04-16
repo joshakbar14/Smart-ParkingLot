@@ -82,6 +82,9 @@ Window::Window()
 	callback.registerText(&spotlabeltext, &spotavailabletext, &spotoccupiedtext, &uidlabeltext);
 	callback.registerClass((Window*)this);
 	parkingLot spot1(2);
+	spot1.start();
+	sleep(30);
+	spot1.stop();
 	spot1.registerWindowCallback(&callback);
 	
 	// set up the layout
