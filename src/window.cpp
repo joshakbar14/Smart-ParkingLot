@@ -38,7 +38,7 @@ public:
 		windows = window;
 	}
 
-}
+};
 
 Window::Window()
 {
@@ -111,7 +111,7 @@ void Window::rfidscan()
 {
 	// Set the callbacks
 	aWindowCallback callback;	
-	callback.registerText(spotlabeltext, spotavailabletext, spotoccupiedtext, uidlabeltext)
+	callback.registerText(&spotlabeltext, &spotavailabletext, &spotoccupiedtext, &uidlabeltext)
 
 }
 
