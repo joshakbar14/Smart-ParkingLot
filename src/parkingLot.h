@@ -36,6 +36,8 @@ class parkingLot
         void registerWindowCallback(parkCallback* cb);
         std::unordered_map<int, std::string> check_in_list;
         void to_window();
+        int lot_no;
+        string uid = "";
 
     private:
         int no_spots;
@@ -43,8 +45,6 @@ class parkingLot
         std::vector<pair<int, int>> pins;
         int occupiedspace;
         int emptyspace;
-        int lot_no;
-        string uid = "";
 
         // Callback function that is called by RFID scans
         
