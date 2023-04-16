@@ -89,6 +89,8 @@ public:
             cout << "Check in point: " << sample.rfid_no << " . Welcome user " << sample.card_no << endl;
             cout << "No avaliable parking at this moment, please return another time." << endl;
         }
+        pl->lot_no = sample.rfid_no;
+        pl->uid = sample.card_no;
         pl->to_window();
 	}
 
@@ -164,6 +166,9 @@ parkingLot::parkingLot(int no_spots)
     parkSpot1.registerCallback(&callback1);
     parkSpot2.registerCallback(&callback2);
     rfid1.registerCallback(&callback3);
+
+    // Running Thread
+    gpioInitialise();
     parkSpot1.start();
     parkSpot2.start();
     rfid1.start();
@@ -172,6 +177,7 @@ parkingLot::parkingLot(int no_spots)
     parkSpot1.stop();
     parkSpot2.stop();
     rfid1.stop();
+    gpioTerminate();
 }
 
 int parkingLot::get_spotavaliability()

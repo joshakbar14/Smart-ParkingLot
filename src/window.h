@@ -26,9 +26,6 @@ public:
 
 // internal variables for the window class
 private:
-	static constexpr int plotDataSize = 100;
-	static constexpr double gain = 7.5;
-
 	QLabel  *label;
 	QLabel	*header;
 	QLabel	*welcomemessage;
@@ -41,12 +38,6 @@ private:
 	QVBoxLayout  *vLayout;  // vertical layout
 	QHBoxLayout  *hLayout;  // horizontal layout
 
-	// data arrays for the plot
-	double xData[plotDataSize];
-	double yData[plotDataSize];
-
-	long count = 0;
-	void reset();
 	void welcomescreen();
 
 	int spotlabeltext;
@@ -54,8 +45,6 @@ private:
 	int spotoccupiedtext;
 	string uidlabeltext;
 
-public slots:
-	void rfidscan();	
 };
 
 #endif // WINDOW_H

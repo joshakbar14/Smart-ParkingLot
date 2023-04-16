@@ -1,12 +1,8 @@
 #include "window.h"
 #include "parkingLot.h"
 
-#include <cmath>  // for sine stuff
-
 class aWindowCallback : public parkCallback {
 public:
-	// the Qslots
-
 	// get callbacks from parkinglot spots
 	// and return: 
 	// user uid
@@ -14,7 +10,8 @@ public:
 	// and designated parking space
 
 	// if spot available = 0
-	// return lable "I am sorry the parking is full, would you please try again later?"
+	// return label "I am sorry the parking is full, would you please try again later?"
+
 	int* aspotlabeltext;
 	int* aspotavailabletext;
 	int* aspotoccupiedtext;
@@ -46,12 +43,6 @@ public:
 
 Window::Window()
 {
-	// set up the initial plot data
-	for( int index=0; index<plotDataSize; ++index )
-	{
-		xData[index] = index;
-		yData[index] = 0;
-	}
 
 	QFont font("Arial", 25);
 
@@ -86,13 +77,13 @@ Window::Window()
 	spotoccupied->setFont(font);
 	spotoccupied->setAlignment(Qt::AlignCenter);
 
-	// see https://doc.qt.io/qt-5/signalsandslots-syntaxes.html
 	// Register callbacks
 	aWindowCallback callback;	
 	callback.registerText(&spotlabeltext, &spotavailabletext, &spotoccupiedtext, &uidlabeltext);
-	parkingLot spot1;
+	callback.registerClass((Window*)this);
+	parkingLot spot1(2);
 	spot1.registerWindowCallback(&callback);
-
+	
 	// set up the layout
 	vLayout = new QVBoxLayout();
 	vLayout->addWidget(label);
@@ -110,26 +101,11 @@ Window::Window()
 	setLayout(hLayout);
 }
 
-void Window::rfidscan()
-{
-	// Set the callbacks
-}
-
-void Window::reset() {
-	// set up the initial plot data
-	for( int index=0; index<plotDataSize; ++index )
-	{
-		xData[index] = index;
-		yData[index] = 0;
-	}
-}
-
-
 void Window::timerEvent( QTimerEvent * )
 {
 	// Pass in to the GUI
-	spotlabel->setText(std::to_string(spotlabeltext));
-	spotavailable->setText(std::to_string(spotavailabletext));
-	spotoccupied->setText(std::to_string(spotoccupiedtext));
-	uidlabel->setText(uidlabeltext);
+	// spotlabel->setText(std::to_string(spotlabeltext));
+	// spotavailable->setText(std::to_string(spotavailabletext));
+	// spotoccupied->setText(std::to_string(spotoccupiedtext));
+	// uidlabel->setText(uidlabeltext);
 }
