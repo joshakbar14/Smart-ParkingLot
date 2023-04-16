@@ -22,7 +22,7 @@ class Window : public QWidget
 private:
 	class parkWindow : public parkingLot {
 		public:
-			parkWindow(Window* w) : window(*w) {}
+			parkWindow(int spots, Window* w) : window(*w) {}
 		private:
 			Window& window;
 	};
