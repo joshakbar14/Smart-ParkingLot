@@ -9,10 +9,15 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Widgets)
 
 add_subdirectory (src)
+
+set(CMAKE_PREFIX_PATH "usr/lib/")
+
 #add_subdirectory (test)
 
 #enable_testing ()
 #add_test (NAME ultrasonicTest COMMAND Test)
+
+set(CMAKE_PREFIX_PATH "/usr/lib/")

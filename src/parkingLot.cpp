@@ -9,7 +9,6 @@
 #include <thread>
 #include <unistd.h>
 #include <vector>
-#include "window.h"
 
 using namespace std;
 

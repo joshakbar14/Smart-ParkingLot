@@ -1,11 +1,11 @@
+#include <QApplication>
 #include "os/ultrasonicSensorClass.h"
 #include <iostream>
 #include <pigpio.h>
 #include "parkingLot.h"
 #include "os/RFID_main.h"
 #include "os/RFIDclass.h"
-#include "gui/interface/window.h"
-#include <QApplication>
+#include "window.h"
 
 using namespace std;
 
