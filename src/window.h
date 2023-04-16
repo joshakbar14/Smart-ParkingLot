@@ -22,6 +22,11 @@ public:
 	Window(); // default constructor - called when a Window is declared without arguments
 	void updateWindow(int spotlabeltext, string uidlabeltext);
 	void timerEvent( QTimerEvent * );
+	
+	int spotlabeltext;
+	// int spotavailabletext;
+	// int spotoccupiedtext;
+	string uidlabeltext;
 
 // internal variables for the window class
 private:
@@ -39,10 +44,6 @@ private:
 
 	void welcomescreen();
 
-	int spotlabeltext;
-	int spotavailabletext;
-	int spotoccupiedtext;
-	string uidlabeltext;
 
 };
 

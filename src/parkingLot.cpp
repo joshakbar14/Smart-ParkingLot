@@ -76,6 +76,7 @@ class aCallback : public RFIDCallback {
 public:
     // Pointer to instance of parkingLot class.
 	parkingLot* pl;
+    Window* wd;
 
     // Update if a card is present. @param sample contains
     // the rfid_no and the cardpresent bool from RFIDsample.
@@ -105,7 +106,7 @@ public:
 	}
 };
 
-parkingLot::parkingLot(int no_spots)
+parkingLot::parkingLot(int no_spots, int argc, char *argv[])
 {
     // number of spots in total for parking lot
     this->no_spots = no_spots;
@@ -146,7 +147,7 @@ parkingLot::parkingLot(int no_spots)
 //     } catch (const std::exception &e) {
 //         std::cerr << e.what() << '\n';
 //     }
-    QApplication app(argc, argv);
+    QApplication app;
     spots[0] = true;
     spots[1] = true;
 
@@ -182,7 +183,7 @@ parkingLot::parkingLot(int no_spots)
     parkSpot2.start();
     rfid1.start();
     // Qt start loop
-    app.exec()
+    app.exec();
     
     sleep(30);
     //getchar();

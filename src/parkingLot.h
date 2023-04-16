@@ -18,7 +18,7 @@ class parkingLot
 {
 
     public:
-        parkingLot(int no_spots);
+        parkingLot(int no_spots, int argc, char *argv[]);
         int get_spotavaliability();
         std::unordered_map<int, std::string> check_in_list;
 

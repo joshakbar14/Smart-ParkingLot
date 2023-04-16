@@ -1,10 +1,13 @@
 #include "window.h"
+#include <iostream>
 
 using namespace std;
 
 Window::Window()
 {
-
+	this->spotlabeltext = 0;
+	this->uidlabeltext = "";
+	
 	QFont font("Arial", 25);
 
 	label = new QLabel("Test");
@@ -64,10 +67,10 @@ void Window::timerEvent( QTimerEvent * )
 	// uidlabel->setText(uidlabeltext);
 }
 
-void updateWindow(int spottext, string uidtext){
-
+void Window::updateWindow(int spottext, string uidtext){
+	
 	spotlabeltext = spottext;
 	uidlabeltext = uidtext;
-	cout << "This is in the window " << spotlabeltext << " and " << uidlabeltext << endl; 
+	cout << "This is in the window " << spottext << " and " << uidtext << endl; 
 
 }

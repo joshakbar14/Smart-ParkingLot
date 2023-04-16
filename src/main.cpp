@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
     
     // Window window;
     // window.show();
-    parkingLot parkinglot(2);
+    parkingLot parkinglot(2, argc, *argv[1]);
     //RFID_main rfid(1);
 
     //parkinglot.start();
