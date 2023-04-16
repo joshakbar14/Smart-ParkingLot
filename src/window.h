@@ -9,6 +9,7 @@
 #include <QPixmap>
 #include <QFont>
 #include <string>
+#include "parkingLot.h"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ public:
 	Window(); // default constructor - called when a Window is declared without arguments
 	void updateWindow(int spotlabeltext, string uidlabeltext);
 	void timerEvent( QTimerEvent * );
-	
+	void startParkingLot();
 	int spotlabeltext;
 	// int spotavailabletext;
 	// int spotoccupiedtext;

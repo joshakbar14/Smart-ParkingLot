@@ -177,17 +177,17 @@ parkingLot::parkingLot(int no_spots, Window* window)
     rfid1.registerCallback(&callback3);
 
     // Running Thread
-    parkSpot1.start();
-    parkSpot2.start();
-    rfid1.start();
+    // parkSpot1.start();
+    // parkSpot2.start();
+    // rfid1.start();
     
-    sleep(30);
+    // sleep(30);
     //getchar();
     
-    parkSpot1.stop();
-    parkSpot2.stop();
-    rfid1.stop();
-    gpioTerminate();
+    // parkSpot1.stop();
+    // parkSpot2.stop();
+    // rfid1.stop();
+    // gpioTerminate();
 }
 
 int parkingLot::get_spotavaliability()
@@ -204,25 +204,21 @@ int parkingLot::get_spotavaliability()
     return -1;
 }
 
-// void parkingLot::start()
-// {
-//     t = thread(&parkingLot::park,this);
-//     catch (const std::exception &e)
-//     {
-//         std::cerr << e.what() << '\n';
-//     }
-// }
+void parkingLot::start()
+{
+    gpioInitialise();
+    this->parkSpot1.start();
+    this->parkSpot2.start();
+    this->rfid1.start();
+}
 
-// void parkingLot::stop()
-// {
-//     for (ultrasonicSensorClass* parkSpot : sensors) { 
-//         parkSpot->stop();
-//     }
-//     // spot1->stop();
-//     // spot2->stop();
-//     running = false;
-//     t.join();
-// }
+void parkingLot::stop()
+{
+    this->parkSpot1.stop();
+    this->parkSpot2.stop();
+    this->rfid1.stop();
+    gpioTerminate();
+}
 
 // void parkingLot::registerCallback()
 // {

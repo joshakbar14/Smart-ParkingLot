@@ -1,10 +1,12 @@
 #include "window.h"
 #include <iostream>
+#include "parkingLot.h"
 
 using namespace std;
 
 Window::Window()
 {
+	parkingLot park(2, this)
 	this->spotlabeltext = 0;
 	this->uidlabeltext = "";
 	
@@ -69,8 +71,18 @@ void Window::timerEvent( QTimerEvent * )
 
 void Window::updateWindow(int spottext, string uidtext){
 	
+	spotlabel->setText()
 	spotlabeltext = spottext;
 	uidlabeltext = uidtext;
 	cout << "This is in the window " << spottext << " and " << uidtext << endl; 
 
+}
+
+void Window::startParkingLot(){
+	park->start();
+}
+
+Window::~Window(){
+	park->stop();
+	delete park;
 }

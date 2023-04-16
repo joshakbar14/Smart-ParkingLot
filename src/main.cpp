@@ -9,9 +9,10 @@ int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
     Window window;
     window.show();
-    parkingLot parkinglot(2, &window);
+    // parkingLot parkinglot(2, &window);
     //RFID_main rfid(1);
-
+    window.startParkingLot();
+    window.startTimer(40);
     //parkinglot.start();
 
     //sleep(20);
