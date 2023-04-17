@@ -19,9 +19,34 @@ A smart parking solution that automatically check available parking space and re
 ## Program Flow Chart
 ![Shopping Process Flow Graph (1)](https://user-images.githubusercontent.com/56721954/230095325-960b2b8f-7d38-4a16-8ade-bc07b927bafd.png)
 
-## Installation
+# Installation
+## Prerequisites
+
+    apt-get install cmake
+    apt-get install libpigpio-dev
 
 
+## Building:
+
+To build:
+
+    cmake .
+
+    make
+
+## Run it
+
+    sudo ./running.o
+
+## Usage examples
+
++ Wire the required hardware into the PI. See the hardware wiring diagram in the doc file.
++ run the program
++ Tap an ID card into the RFID card reader
++ Program will print the designated parking space according to the ultrasonic sensor position
++ Park the car into the designated space
++ The parking space availability will automatically updated and sent in the command window
++ If the parking space is full, the program will return "No parking space available, please come back later"
 
 ## Documentation
 Doxygen documentation of project
