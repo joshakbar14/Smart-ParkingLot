@@ -25,4 +25,7 @@ A smart parking system that automatically check empty parking space and return a
 ### Software
 
 Doxygen documentation of project
++ Clone the repo
++ go to html/
++ run index.html in your browser
 [doxygen documentation html](html/index.html)
