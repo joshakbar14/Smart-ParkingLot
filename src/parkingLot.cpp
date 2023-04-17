@@ -100,9 +100,9 @@ parkingLot::parkingLot(int no_spots)
 {
     // number of spots in total for parking lot
     this->no_spots = no_spots;
-// }
+}
 
-// void parkingLot::park() {
+void parkingLot::park() {
 
     spots[0] = true;
     spots[1] = true;
@@ -151,8 +151,3 @@ int parkingLot::get_spotavaliability()
     //or value not found
     return -1;
 }
-
-// void parkingLot::registerCallback()
-// {
-
-// }

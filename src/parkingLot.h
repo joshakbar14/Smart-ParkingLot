@@ -26,23 +26,18 @@ class parkingLot
          **/
         parkingLot(int no_spots);
 
-        // /**
-        //  * Initialises the corresponding ultrasonic sensors, RFIDs and callbacks for the 
-        //  * ultrasonicSensorClass and RFIDclass that are registered in the classes. Begins the
-        //  * sensor and RFID readings.
-        //  **/
-        // void park();
+        /**
+         * Initialises the corresponding ultrasonic sensors, RFIDs and callbacks for the 
+         * ultrasonicSensorClass and RFIDclass that are registered in the classes. Begins the
+         * sensor and RFID readings.
+         **/
+        void park();
 
         /**
          * Checks the hashmap containing the parking spots and avaliability and @returns 
          * the parking spot id number if a spot is avaliable, otherwise @returns -1.
          **/
         int get_spotavaliability();
-
-        // /**
-        //  * 
-        //  **/
-        // void registerCallback();
 
         // Keeps track of which user (card_no) is supposed to park at what parking spot.
         // std::string empty if parking spot empty.

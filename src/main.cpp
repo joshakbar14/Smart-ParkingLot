@@ -11,6 +11,7 @@ int main() {
 	gpioInitialise();    
 
     parkingLot parkinglot(2);
+    parkinglot.park();
 
     gpioTerminate();
 }
