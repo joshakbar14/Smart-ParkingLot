@@ -1,0 +1,169 @@
+\hypertarget{group__spi}{}\doxysection{SPI access}
+\label{group__spi}\index{SPI access@{SPI access}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__spi_gac888dc9b78b695f6c13eeeaa813c0d82}{bcm2835\+\_\+spi\+\_\+begin}} (void)
+\item 
+void \mbox{\hyperlink{group__spi_gad25421b3a4a6ca280dfdd39c94c3279a}{bcm2835\+\_\+spi\+\_\+end}} (void)
+\item 
+void \mbox{\hyperlink{group__spi_ga0127eab1b6c3f8bf127bdac474fdc0f9}{bcm2835\+\_\+spi\+\_\+set\+Bit\+Order}} (uint8\+\_\+t order)
+\item 
+void \mbox{\hyperlink{group__spi_gad623657d9513faa89d22ae1dc87eec38}{bcm2835\+\_\+spi\+\_\+set\+Clock\+Divider}} (uint16\+\_\+t divider)
+\item 
+void \mbox{\hyperlink{group__spi_gabfbf797499756d38e3667f05ee8fd11d}{bcm2835\+\_\+spi\+\_\+set\+Data\+Mode}} (uint8\+\_\+t mode)
+\item 
+void \mbox{\hyperlink{group__spi_ga2fa186568605c21e9166a19b1d82ea95}{bcm2835\+\_\+spi\+\_\+chip\+Select}} (uint8\+\_\+t cs)
+\item 
+void \mbox{\hyperlink{group__spi_gaee4edaf16fe21455441965bc57e78724}{bcm2835\+\_\+spi\+\_\+set\+Chip\+Select\+Polarity}} (uint8\+\_\+t cs, uint8\+\_\+t active)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__spi_ga600dc972f1064908b41b349c92d7647d}{bcm2835\+\_\+spi\+\_\+transfer}} (uint8\+\_\+t value)
+\item 
+void \mbox{\hyperlink{group__spi_gac24692f270bb3411990ea706ddd4fee9}{bcm2835\+\_\+spi\+\_\+transfernb}} (char $\ast$tbuf, char $\ast$rbuf, uint32\+\_\+t len)
+\item 
+void \mbox{\hyperlink{group__spi_ga06884e9cd71dfe380f846b09f47b7248}{bcm2835\+\_\+spi\+\_\+transfern}} (char $\ast$buf, uint32\+\_\+t len)
+\item 
+void \mbox{\hyperlink{group__spi_ga1b668c248fb9c09239bb59b7a2fad902}{bcm2835\+\_\+spi\+\_\+writenb}} (char $\ast$buf, uint32\+\_\+t len)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+These functions let you use SPI0 (Serial Peripheral Interface) to interface with an external SPI device. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__spi_gac888dc9b78b695f6c13eeeaa813c0d82}\label{group__spi_gac888dc9b78b695f6c13eeeaa813c0d82}} 
+\index{SPI access@{SPI access}!bcm2835\_spi\_begin@{bcm2835\_spi\_begin}}
+\index{bcm2835\_spi\_begin@{bcm2835\_spi\_begin}!SPI access@{SPI access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_spi\_begin()}{bcm2835\_spi\_begin()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+spi\+\_\+begin (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Start SPI operations. Forces RPi SPI0 pins P1-\/19 (MOSI), P1-\/21 (MISO), P1-\/23 (CLK), P1-\/24 (CE0) and P1-\/26 (CE1) to alternate function ALT0, which enables those pins for SPI interface. You should call \mbox{\hyperlink{group__spi_gad25421b3a4a6ca280dfdd39c94c3279a}{bcm2835\+\_\+spi\+\_\+end()}} when all SPI funcitons are complete to return the pins to their default functions \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__spi_gad25421b3a4a6ca280dfdd39c94c3279a}{bcm2835\+\_\+spi\+\_\+end()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__spi_ga2fa186568605c21e9166a19b1d82ea95}\label{group__spi_ga2fa186568605c21e9166a19b1d82ea95}} 
+\index{SPI access@{SPI access}!bcm2835\_spi\_chipSelect@{bcm2835\_spi\_chipSelect}}
+\index{bcm2835\_spi\_chipSelect@{bcm2835\_spi\_chipSelect}!SPI access@{SPI access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_spi\_chipSelect()}{bcm2835\_spi\_chipSelect()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+spi\+\_\+chip\+Select (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{cs }\end{DoxyParamCaption})}
+
+Sets the chip select pin(s) When an \mbox{\hyperlink{group__spi_ga600dc972f1064908b41b349c92d7647d}{bcm2835\+\_\+spi\+\_\+transfer()}} is made, the selected pin(s) will be asserted during the transfer. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cs} & Specifies the CS pins(s) that are used to activate the desired slave. One of BCM2835\+\_\+\+SPI\+\_\+\+CS$\ast$, see \mbox{\hyperlink{group__constants_ga29bba154633d37d07fa130a86e4a1f2a}{bcm2835\+SPIChip\+Select}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__spi_gad25421b3a4a6ca280dfdd39c94c3279a}\label{group__spi_gad25421b3a4a6ca280dfdd39c94c3279a}} 
+\index{SPI access@{SPI access}!bcm2835\_spi\_end@{bcm2835\_spi\_end}}
+\index{bcm2835\_spi\_end@{bcm2835\_spi\_end}!SPI access@{SPI access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_spi\_end()}{bcm2835\_spi\_end()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+spi\+\_\+end (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+End SPI operations. SPI0 pins P1-\/19 (MOSI), P1-\/21 (MISO), P1-\/23 (CLK), P1-\/24 (CE0) and P1-\/26 (CE1) are returned to their default INPUT behaviour. \mbox{\Hypertarget{group__spi_ga0127eab1b6c3f8bf127bdac474fdc0f9}\label{group__spi_ga0127eab1b6c3f8bf127bdac474fdc0f9}} 
+\index{SPI access@{SPI access}!bcm2835\_spi\_setBitOrder@{bcm2835\_spi\_setBitOrder}}
+\index{bcm2835\_spi\_setBitOrder@{bcm2835\_spi\_setBitOrder}!SPI access@{SPI access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_spi\_setBitOrder()}{bcm2835\_spi\_setBitOrder()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+spi\+\_\+set\+Bit\+Order (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{order }\end{DoxyParamCaption})}
+
+Sets the SPI bit order NOTE\+: has no effect. Not supported by SPI0. Defaults to 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em order} & The desired bit order, one of BCM2835\+\_\+\+SPI\+\_\+\+BIT\+\_\+\+ORDER\+\_\+$\ast$, see \mbox{\hyperlink{group__constants_ga1dd00efbd834646f75240c39a41c9856}{bcm2835\+SPIBit\+Order}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__spi_gaee4edaf16fe21455441965bc57e78724}\label{group__spi_gaee4edaf16fe21455441965bc57e78724}} 
+\index{SPI access@{SPI access}!bcm2835\_spi\_setChipSelectPolarity@{bcm2835\_spi\_setChipSelectPolarity}}
+\index{bcm2835\_spi\_setChipSelectPolarity@{bcm2835\_spi\_setChipSelectPolarity}!SPI access@{SPI access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_spi\_setChipSelectPolarity()}{bcm2835\_spi\_setChipSelectPolarity()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+spi\+\_\+set\+Chip\+Select\+Polarity (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{cs,  }\item[{uint8\+\_\+t}]{active }\end{DoxyParamCaption})}
+
+Sets the chip select pin polarity for a given pin When an \mbox{\hyperlink{group__spi_ga600dc972f1064908b41b349c92d7647d}{bcm2835\+\_\+spi\+\_\+transfer()}} occurs, the currently selected chip select pin(s) will be asserted to the value given by active. When transfers are not happening, the chip select pin(s) return to the complement (inactive) value. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cs} & The chip select pin to affect \\
+\hline
+\mbox{\texttt{ in}}  & {\em active} & Whether the chip select pin is to be active HIGH \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__spi_gad623657d9513faa89d22ae1dc87eec38}\label{group__spi_gad623657d9513faa89d22ae1dc87eec38}} 
+\index{SPI access@{SPI access}!bcm2835\_spi\_setClockDivider@{bcm2835\_spi\_setClockDivider}}
+\index{bcm2835\_spi\_setClockDivider@{bcm2835\_spi\_setClockDivider}!SPI access@{SPI access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_spi\_setClockDivider()}{bcm2835\_spi\_setClockDivider()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+spi\+\_\+set\+Clock\+Divider (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{divider }\end{DoxyParamCaption})}
+
+Sets the SPI clock divider and therefore the SPI clock speed. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em divider} & The desired SPI clock divider, one of BCM2835\+\_\+\+SPI\+\_\+\+CLOCK\+\_\+\+DIVIDER\+\_\+$\ast$, see \mbox{\hyperlink{group__constants_gaf2e0ca069b8caef24602a02e8a00884e}{bcm2835\+SPIClock\+Divider}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__spi_gabfbf797499756d38e3667f05ee8fd11d}\label{group__spi_gabfbf797499756d38e3667f05ee8fd11d}} 
+\index{SPI access@{SPI access}!bcm2835\_spi\_setDataMode@{bcm2835\_spi\_setDataMode}}
+\index{bcm2835\_spi\_setDataMode@{bcm2835\_spi\_setDataMode}!SPI access@{SPI access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_spi\_setDataMode()}{bcm2835\_spi\_setDataMode()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+spi\+\_\+set\+Data\+Mode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+Sets the SPI data mode Sets the clock polariy and phase 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mode} & The desired data mode, one of BCM2835\+\_\+\+SPI\+\_\+\+MODE$\ast$, see \mbox{\hyperlink{group__constants_ga8dd7bb496565324800130100e6bf6d86}{bcm2835\+SPIMode}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__spi_ga600dc972f1064908b41b349c92d7647d}\label{group__spi_ga600dc972f1064908b41b349c92d7647d}} 
+\index{SPI access@{SPI access}!bcm2835\_spi\_transfer@{bcm2835\_spi\_transfer}}
+\index{bcm2835\_spi\_transfer@{bcm2835\_spi\_transfer}!SPI access@{SPI access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_spi\_transfer()}{bcm2835\_spi\_transfer()}}
+{\footnotesize\ttfamily uint8\+\_\+t bcm2835\+\_\+spi\+\_\+transfer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+Transfers one byte to and from the currently selected SPI slave. Asserts the currently selected CS pins (as previously set by bcm2835\+\_\+spi\+\_\+chip\+Select) during the transfer. Clocks the 8 bit value out on MOSI, and simultaneously clocks in data from MISO. Returns the read data byte from the slave. Uses polled transfer as per section 10.\+6.\+1 of the BCM 2835 ARM Peripherls manual 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value} & The 8 bit data byte to write to MOSI \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The 8 bit byte simultaneously read from MISO 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__spi_ga06884e9cd71dfe380f846b09f47b7248}{bcm2835\+\_\+spi\+\_\+transfern()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__spi_ga06884e9cd71dfe380f846b09f47b7248}\label{group__spi_ga06884e9cd71dfe380f846b09f47b7248}} 
+\index{SPI access@{SPI access}!bcm2835\_spi\_transfern@{bcm2835\_spi\_transfern}}
+\index{bcm2835\_spi\_transfern@{bcm2835\_spi\_transfern}!SPI access@{SPI access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_spi\_transfern()}{bcm2835\_spi\_transfern()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+spi\+\_\+transfern (\begin{DoxyParamCaption}\item[{char $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+Transfers any number of bytes to and from the currently selected SPI slave using bcm2835\+\_\+spi\+\_\+transfernb. The returned data from the slave replaces the transmitted data in the buffer. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em buf} & Buffer of bytes to send. Received bytes will replace the contents \\
+\hline
+\mbox{\texttt{ in}}  & {\em len} & Number of bytes int eh buffer, and the number of bytes to send/received \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__spi_ga600dc972f1064908b41b349c92d7647d}{bcm2835\+\_\+spi\+\_\+transfer()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__spi_gac24692f270bb3411990ea706ddd4fee9}\label{group__spi_gac24692f270bb3411990ea706ddd4fee9}} 
+\index{SPI access@{SPI access}!bcm2835\_spi\_transfernb@{bcm2835\_spi\_transfernb}}
+\index{bcm2835\_spi\_transfernb@{bcm2835\_spi\_transfernb}!SPI access@{SPI access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_spi\_transfernb()}{bcm2835\_spi\_transfernb()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+spi\+\_\+transfernb (\begin{DoxyParamCaption}\item[{char $\ast$}]{tbuf,  }\item[{char $\ast$}]{rbuf,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+Transfers any number of bytes to and from the currently selected SPI slave. Asserts the currently selected CS pins (as previously set by bcm2835\+\_\+spi\+\_\+chip\+Select) during the transfer. Clocks the len 8 bit bytes out on MOSI, and simultaneously clocks in data from MISO. The data read read from the slave is placed into rbuf. rbuf must be at least len bytes long Uses polled transfer as per section 10.\+6.\+1 of the BCM 2835 ARM Peripherls manual 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em tbuf} & Buffer of bytes to send. \\
+\hline
+\mbox{\texttt{ out}}  & {\em rbuf} & Received bytes will by put in this buffer \\
+\hline
+\mbox{\texttt{ in}}  & {\em len} & Number of bytes in the tbuf buffer, and the number of bytes to send/received \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__spi_ga600dc972f1064908b41b349c92d7647d}{bcm2835\+\_\+spi\+\_\+transfer()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__spi_ga1b668c248fb9c09239bb59b7a2fad902}\label{group__spi_ga1b668c248fb9c09239bb59b7a2fad902}} 
+\index{SPI access@{SPI access}!bcm2835\_spi\_writenb@{bcm2835\_spi\_writenb}}
+\index{bcm2835\_spi\_writenb@{bcm2835\_spi\_writenb}!SPI access@{SPI access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_spi\_writenb()}{bcm2835\_spi\_writenb()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+spi\+\_\+writenb (\begin{DoxyParamCaption}\item[{char $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+Transfers any number of bytes to the currently selected SPI slave. Asserts the currently selected CS pins (as previously set by bcm2835\+\_\+spi\+\_\+chip\+Select) during the transfer. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em buf} & Buffer of bytes to send. \\
+\hline
+\mbox{\texttt{ in}}  & {\em len} & Number of bytes in the tbuf buffer, and the number of bytes to send \\
+\hline
+\end{DoxyParams}

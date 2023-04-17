@@ -33,3 +33,10 @@ A smart parking solution that automatically check available parking space and re
 + Ultrasonic sensor connection class
 
 ### Software
+
+Doxygen documentation of project
++ Clone the repo
++ go to html/
++ run index.html in your browser
+[doxygen documentation html](html/index.html)
+

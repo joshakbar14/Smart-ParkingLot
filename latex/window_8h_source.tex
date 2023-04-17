@@ -1,0 +1,53 @@
+\hypertarget{window_8h_source}{}\doxysection{window.\+h}
+\label{window_8h_source}\index{src/gui/interface/window.h@{src/gui/interface/window.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ WINDOW\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ WINDOW\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <qwt/qwt\_thermo.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <qwt/qwt\_plot.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <qwt/qwt\_plot\_curve.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QBoxLayout>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QLabel>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ class\ definition\ 'Window'}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_window}{Window}}\ :\ \textcolor{keyword}{public}\ QWidget}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ must\ include\ the\ Q\_OBJECT\ macro\ for\ for\ the\ Qt\ signals/slots\ framework\ to\ work\ with\ this\ class}}
+\DoxyCodeLine{00016\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_window}{Window}}();\ \textcolor{comment}{//\ default\ constructor\ -\/\ called\ when\ a\ Window\ is\ declared\ without\ arguments}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ timerEvent(\ QTimerEvent\ *\ );}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ internal\ variables\ for\ the\ window\ class}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ plotDataSize\ =\ 100;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ gain\ =\ 7.5;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ QPushButton\ \ *button;}
+\DoxyCodeLine{00029\ \ \ \ \ QwtThermo\ \ \ \ *thermo;}
+\DoxyCodeLine{00030\ \ \ \ \ QwtPlot\ \ \ \ \ \ *plot;}
+\DoxyCodeLine{00031\ \ \ \ \ QwtPlotCurve\ *curve;}
+\DoxyCodeLine{00032\ \ \ \ \ QLabel\ \ \ \ \ \ \ *label;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ layout\ elements\ from\ Qt\ itself\ http://qt-\/project.org/doc/qt-\/4.8/classes.html}}
+\DoxyCodeLine{00035\ \ \ \ \ QVBoxLayout\ \ *vLayout;\ \ \textcolor{comment}{//\ vertical\ layout}}
+\DoxyCodeLine{00036\ \ \ \ \ QHBoxLayout\ \ *hLayout;\ \ \textcolor{comment}{//\ horizontal\ layout}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ data\ arrays\ for\ the\ plot}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{double}\ xData[plotDataSize];}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{double}\ yData[plotDataSize];}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{long}\ count\ =\ 0;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ reset();}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WINDOW\_H}}
+
+\end{DoxyCode}
