@@ -1,0 +1,37 @@
+\hypertarget{group__st}{}\doxysection{System Timer access}
+\label{group__st}\index{System Timer access@{System Timer access}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{group__st_ga2bafb65648b5481d95f528b1639b18d2}{bcm2835\+\_\+st\+\_\+read}} (void)
+\item 
+void \mbox{\hyperlink{group__st_ga7596cf7e06a7437703b96f11585be622}{bcm2835\+\_\+st\+\_\+delay}} (uint64\+\_\+t offset\+\_\+micros, uint64\+\_\+t micros)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Allows access to and delays using the System Timer Counter. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__st_ga7596cf7e06a7437703b96f11585be622}\label{group__st_ga7596cf7e06a7437703b96f11585be622}} 
+\index{System Timer access@{System Timer access}!bcm2835\_st\_delay@{bcm2835\_st\_delay}}
+\index{bcm2835\_st\_delay@{bcm2835\_st\_delay}!System Timer access@{System Timer access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_st\_delay()}{bcm2835\_st\_delay()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+st\+\_\+delay (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{offset\+\_\+micros,  }\item[{uint64\+\_\+t}]{micros }\end{DoxyParamCaption})}
+
+Delays for the specified number of microseconds with offset. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em offset\+\_\+micros} & Offset in microseconds \\
+\hline
+\mbox{\texttt{ in}}  & {\em micros} & Delay in microseconds \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__st_ga2bafb65648b5481d95f528b1639b18d2}\label{group__st_ga2bafb65648b5481d95f528b1639b18d2}} 
+\index{System Timer access@{System Timer access}!bcm2835\_st\_read@{bcm2835\_st\_read}}
+\index{bcm2835\_st\_read@{bcm2835\_st\_read}!System Timer access@{System Timer access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_st\_read()}{bcm2835\_st\_read()}}
+{\footnotesize\ttfamily uint64\+\_\+t bcm2835\+\_\+st\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Read the System Timer Counter register. \begin{DoxyReturn}{Returns}
+the value read from the System Timer Counter Lower 32 bits register 
+\end{DoxyReturn}

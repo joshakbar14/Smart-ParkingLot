@@ -1,0 +1,105 @@
+\hypertarget{group__lowlevel}{}\doxysection{Low level register access}
+\label{group__lowlevel}\index{Low level register access@{Low level register access}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__lowlevel_ga5f242135f5088f8c319492426a1ed5e3}{bcm2835\+\_\+peri\+\_\+read}} (volatile uint32\+\_\+t $\ast$paddr)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__lowlevel_ga0f541d0997978dd30f60231b64f10230}{bcm2835\+\_\+peri\+\_\+read\+\_\+nb}} (volatile uint32\+\_\+t $\ast$paddr)
+\item 
+void \mbox{\hyperlink{group__lowlevel_ga639da6963ab76e3109b9909f3a9e6171}{bcm2835\+\_\+peri\+\_\+write}} (volatile uint32\+\_\+t $\ast$paddr, uint32\+\_\+t value)
+\item 
+void \mbox{\hyperlink{group__lowlevel_ga1c158b76d194b94d0b2fb1488f9ff30e}{bcm2835\+\_\+peri\+\_\+write\+\_\+nb}} (volatile uint32\+\_\+t $\ast$paddr, uint32\+\_\+t value)
+\item 
+void \mbox{\hyperlink{group__lowlevel_ga01949a6285305f38ce0a47154e55c1b6}{bcm2835\+\_\+peri\+\_\+set\+\_\+bits}} (volatile uint32\+\_\+t $\ast$paddr, uint32\+\_\+t value, uint32\+\_\+t mask)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+These functions provide low level register access, and should not generally need to be used 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__lowlevel_ga5f242135f5088f8c319492426a1ed5e3}\label{group__lowlevel_ga5f242135f5088f8c319492426a1ed5e3}} 
+\index{Low level register access@{Low level register access}!bcm2835\_peri\_read@{bcm2835\_peri\_read}}
+\index{bcm2835\_peri\_read@{bcm2835\_peri\_read}!Low level register access@{Low level register access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_peri\_read()}{bcm2835\_peri\_read()}}
+{\footnotesize\ttfamily uint32\+\_\+t bcm2835\+\_\+peri\+\_\+read (\begin{DoxyParamCaption}\item[{volatile uint32\+\_\+t $\ast$}]{paddr }\end{DoxyParamCaption})}
+
+Reads 32 bit value from a peripheral address The read is done twice, and is therefore always safe in terms of manual section 1.\+3 Peripheral access precautions for correct memory ordering 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em paddr} & Physical address to read from. See BCM2835\+\_\+\+GPIO\+\_\+\+BASE etc. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value read from the 32 bit register 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Physical Addresses 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__lowlevel_ga0f541d0997978dd30f60231b64f10230}\label{group__lowlevel_ga0f541d0997978dd30f60231b64f10230}} 
+\index{Low level register access@{Low level register access}!bcm2835\_peri\_read\_nb@{bcm2835\_peri\_read\_nb}}
+\index{bcm2835\_peri\_read\_nb@{bcm2835\_peri\_read\_nb}!Low level register access@{Low level register access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_peri\_read\_nb()}{bcm2835\_peri\_read\_nb()}}
+{\footnotesize\ttfamily uint32\+\_\+t bcm2835\+\_\+peri\+\_\+read\+\_\+nb (\begin{DoxyParamCaption}\item[{volatile uint32\+\_\+t $\ast$}]{paddr }\end{DoxyParamCaption})}
+
+Reads 32 bit value from a peripheral address without the read barrier You should only use this when your code has previously called \mbox{\hyperlink{group__lowlevel_ga5f242135f5088f8c319492426a1ed5e3}{bcm2835\+\_\+peri\+\_\+read()}} within the same peripheral, and no other peripheral access has occurred since. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em paddr} & Physical address to read from. See BCM2835\+\_\+\+GPIO\+\_\+\+BASE etc. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value read from the 32 bit register 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Physical Addresses 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__lowlevel_ga01949a6285305f38ce0a47154e55c1b6}\label{group__lowlevel_ga01949a6285305f38ce0a47154e55c1b6}} 
+\index{Low level register access@{Low level register access}!bcm2835\_peri\_set\_bits@{bcm2835\_peri\_set\_bits}}
+\index{bcm2835\_peri\_set\_bits@{bcm2835\_peri\_set\_bits}!Low level register access@{Low level register access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_peri\_set\_bits()}{bcm2835\_peri\_set\_bits()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+peri\+\_\+set\+\_\+bits (\begin{DoxyParamCaption}\item[{volatile uint32\+\_\+t $\ast$}]{paddr,  }\item[{uint32\+\_\+t}]{value,  }\item[{uint32\+\_\+t}]{mask }\end{DoxyParamCaption})}
+
+Alters a number of bits in a 32 peripheral regsiter. It reads the current valu and then alters the bits deines as 1 in mask, according to the bit value in value. All other bits that are 0 in the mask are unaffected. Use this to alter a subset of the bits in a register. The write is done twice, and is therefore always safe in terms of manual section 1.\+3 Peripheral access precautions for correct memory ordering 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em paddr} & Physical address to read from. See BCM2835\+\_\+\+GPIO\+\_\+\+BASE etc. \\
+\hline
+\mbox{\texttt{ in}}  & {\em value} & The 32 bit value to write, masked in by mask. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mask} & Bitmask that defines the bits that will be altered in the register. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Physical Addresses 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__lowlevel_ga639da6963ab76e3109b9909f3a9e6171}\label{group__lowlevel_ga639da6963ab76e3109b9909f3a9e6171}} 
+\index{Low level register access@{Low level register access}!bcm2835\_peri\_write@{bcm2835\_peri\_write}}
+\index{bcm2835\_peri\_write@{bcm2835\_peri\_write}!Low level register access@{Low level register access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_peri\_write()}{bcm2835\_peri\_write()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+peri\+\_\+write (\begin{DoxyParamCaption}\item[{volatile uint32\+\_\+t $\ast$}]{paddr,  }\item[{uint32\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+Writes 32 bit value from a peripheral address The write is done twice, and is therefore always safe in terms of manual section 1.\+3 Peripheral access precautions for correct memory ordering 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em paddr} & Physical address to read from. See BCM2835\+\_\+\+GPIO\+\_\+\+BASE etc. \\
+\hline
+\mbox{\texttt{ in}}  & {\em value} & The 32 bit value to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Physical Addresses 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__lowlevel_ga1c158b76d194b94d0b2fb1488f9ff30e}\label{group__lowlevel_ga1c158b76d194b94d0b2fb1488f9ff30e}} 
+\index{Low level register access@{Low level register access}!bcm2835\_peri\_write\_nb@{bcm2835\_peri\_write\_nb}}
+\index{bcm2835\_peri\_write\_nb@{bcm2835\_peri\_write\_nb}!Low level register access@{Low level register access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_peri\_write\_nb()}{bcm2835\_peri\_write\_nb()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+peri\+\_\+write\+\_\+nb (\begin{DoxyParamCaption}\item[{volatile uint32\+\_\+t $\ast$}]{paddr,  }\item[{uint32\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+Writes 32 bit value from a peripheral address without the write barrier You should only use this when your code has previously called \mbox{\hyperlink{group__lowlevel_ga639da6963ab76e3109b9909f3a9e6171}{bcm2835\+\_\+peri\+\_\+write()}} within the same peripheral, and no other peripheral access has occurred since. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em paddr} & Physical address to read from. See BCM2835\+\_\+\+GPIO\+\_\+\+BASE etc. \\
+\hline
+\mbox{\texttt{ in}}  & {\em value} & The 32 bit value to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Physical Addresses 
+\end{DoxySeeAlso}

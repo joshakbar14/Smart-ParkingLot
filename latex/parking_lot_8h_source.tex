@@ -1,0 +1,48 @@
+\hypertarget{parking_lot_8h_source}{}\doxysection{parking\+Lot.\+h}
+\label{parking_lot_8h_source}\index{src/parkingLot.h@{src/parkingLot.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PARKINGLOT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PARKINGLOT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <pigpio.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}os/ultrasonicSensorClass.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}os/RFIDclass.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}os/BuzzerClass.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classparking_lot}{parkingLot}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classparking_lot}{parkingLot}}(\textcolor{keywordtype}{int}\ no\_spots);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classparking_lot_af93ff2559b523de609b1e9bc3d0a4e62}{park}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classparking_lot_ab587afbb3c329e3bf7d771907d0a9650}{get\_spotavaliability}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keeps\ track\ of\ which\ user\ (card\_no)\ is\ supposed\ to\ park\ at\ what\ parking\ spot.}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::string\ empty\ if\ parking\ spot\ empty.}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ std::unordered\_map<int,\ std::string>\ check\_in\_list;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ parking\ spots\ in\ this\ parking\ lot\ assigned\ from\ the\ main\ program.}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ no\_spots;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unordered\ hash\ map\ for\ the\ parking\ spots\ which\ contains\ the\ id\ number}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ of\ the\ spot\ and\ the\ avaliability\ of\ the\ parking\ spot.\ Updated\ by\ }}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ class\ aParkCallback\ that\ implements\ the\ interface\ ultrasonicCallback.}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ std::unordered\_map<int,\ bool>\ spots;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vector\ of\ pairs\ of\ pins\ that\ can\ be\ used\ as\ input\ and\ output\ pins}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ instances\ of\ ultrasonic\ sensors.}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::vector<pair<int,\ int>>\ pins;}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PARKINGLOT\_H}}
+
+\end{DoxyCode}
