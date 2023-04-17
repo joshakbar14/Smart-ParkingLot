@@ -7,7 +7,7 @@
 #include "os/ultrasonicSensorClass.h"
 #include "os/RFIDclass.h"
 #include "os/BuzzerClass.h"
-#include "window.h"
+#include "Window.h"
 #include <thread>
 #include <unistd.h>
 #include <vector>
@@ -167,7 +167,7 @@ parkingLot::parkingLot(int no_spots, Window* window)
     callback3.registerClass((parkingLot*)this);
     callback1.registerBuzzer(&buzzer1);
     callback2.registerBuzzer(&buzzer2);
-    callback3.registerWindow(&window);
+    callback3.registerWindow(window);
 
     ultrasonicSensorClass parkSpot1(22, 23, 0);
     ultrasonicSensorClass parkSpot2(6, 12, 1);
@@ -176,18 +176,18 @@ parkingLot::parkingLot(int no_spots, Window* window)
     parkSpot2.registerCallback(&callback2);
     rfid1.registerCallback(&callback3);
 
-    // Running Thread
-    // parkSpot1.start();
-    // parkSpot2.start();
-    // rfid1.start();
+     //Running Thread
+     parkSpot1.start();
+     parkSpot2.start();
+     rfid1.start();
     
-    // sleep(30);
-    //getchar();
+     sleep(1);
+     //getchar();
     
-    // parkSpot1.stop();
-    // parkSpot2.stop();
-    // rfid1.stop();
-    // gpioTerminate();
+     parkSpot1.stop();
+     parkSpot2.stop();
+     rfid1.stop();
+     gpioTerminate();
 }
 
 int parkingLot::get_spotavaliability()
@@ -204,21 +204,21 @@ int parkingLot::get_spotavaliability()
     return -1;
 }
 
-void parkingLot::start()
-{
-    gpioInitialise();
-    this->parkSpot1.start();
-    this->parkSpot2.start();
-    this->rfid1.start();
-}
+//void parkingLot::start()
+//{
+    //gpioInitialise();
+    //this->parkSpot1.start();
+    //this->parkSpot2.start();
+    //this->rfid1.start();
+//}
 
-void parkingLot::stop()
-{
-    this->parkSpot1.stop();
-    this->parkSpot2.stop();
-    this->rfid1.stop();
-    gpioTerminate();
-}
+//void parkingLot::stop()
+//{
+    ////this->parkSpot1.stop();
+    ////this->parkSpot2.stop();
+    ////this->rfid1.stop();
+    ////gpioTerminate();
+//}
 
 // void parkingLot::registerCallback()
 // {

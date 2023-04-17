@@ -9,8 +9,8 @@ set(CMAKE_AUTOUIC ON)
 
 add_executable (running 
                 main.cpp
-                window.cpp
                 parkingLot.cpp
+                Window.cpp
 )
 set_target_properties(
     running
