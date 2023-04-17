@@ -11,9 +11,13 @@ A smart parking solution that automatically check available parking space and re
 
 ## Hardware Needed
 
+![WhatsApp Image 2023-04-17 at 19 30 42](https://user-images.githubusercontent.com/122471221/232579129-8b6bc4cc-c8ce-4b1e-8033-c9cdf1c03d5a.jpg)
+
 1 x Raspberry Pi 3\
 2 x Ultrasonic Sensor (HC-SR04 module)\
+2 x Buzzer\
 1 x RFID reader (RFID RC522)\
+2 x Toy Car or equivalent\
 1 x Monitor
 
 ## Program Flow Chart
