@@ -20,6 +20,10 @@ A smart parking solution that automatically check available parking space and re
 2 x Toy Car or equivalent\
 1 x Monitor
 
+## UML
+![UML class](https://user-images.githubusercontent.com/56721954/232925987-1163e684-ac65-45ea-a20b-585b28e22e48.png)
+
+
 ## Program Flow Chart
 ![Shopping Process Flow Graph (1)](https://user-images.githubusercontent.com/56721954/230095325-960b2b8f-7d38-4a16-8ade-bc07b927bafd.png)
 
