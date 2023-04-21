@@ -1,4 +1,5 @@
 
+#include <QApplication>
 #include <stdio.h>
 #include <pigpio.h>
 #include <iostream>
@@ -6,6 +7,7 @@
 #include "os/ultrasonicSensorClass.h"
 #include "os/RFIDclass.h"
 #include "os/BuzzerClass.h"
+#include "Window.h"
 #include <thread>
 #include <unistd.h>
 #include <vector>
@@ -14,6 +16,7 @@ using namespace std;
 
 // Class implementing the ultrasonicCallback and avaliability_changed function
 // to update the avaliability of parking spots in the parkingLot class.
+
 class aParkCallback : public ultrasonicCallback {
 public:
     // Bool that registers the avaliability of a certain parking spot.
@@ -73,6 +76,7 @@ class aCallback : public RFIDCallback {
 public:
     // Pointer to instance of parkingLot class.
 	parkingLot* pl;
+    Window* wd;
 
     // Update if a card is present. @param sample contains
     // the rfid_no and the cardpresent bool from RFIDsample.
@@ -88,24 +92,66 @@ public:
             cout << "Check in point: " << sample.rfid_no << " . Welcome user " << sample.card_no << endl;
             cout << "No avaliable parking at this moment, please return another time." << endl;
         }
+
+        wd->updateWindow(sample.rfid_no, sample.card_no);
 	}
 
     // Register the pointer instance to the @param parkingLot class.
 	void registerClass(parkingLot* parkinglot) {
 	    pl = parkinglot;
 	}
+
+    void registerWindow(Window* window) {
+	    wd = window;
+	}
 };
 
-parkingLot::parkingLot(int no_spots)
+parkingLot::parkingLot(int no_spots, Window* window)
 {
     // number of spots in total for parking lot
     this->no_spots = no_spots;
-}
+// }
 
-void parkingLot::park() {
+// void parkingLot::park() {
+//     vector<pair<int,int>> fill = {
+//         {22, 23},
+//         {6,  12}
+//     };
+//     pins = fill;
 
+//     int no = no_spots;
+//     if (no_spots > pins.size()) {
+//         cout << "not enough gpio numbers for pins in vector: check 'fill' and add accordingly as connected to rpi" << endl;
+//         cout << "will only initialize: " << pins.size() << "sensors." << endl;
+//         no = pins.size();
+//     }
+
+//     //fill the hash map with number of spot and avaliability bool
+//     for (int i = 0; i < no; i++) {
+//         bool avaliability = true;
+//         spots[i] = avaliability;
+
+//         //instantiate callback
+//         aParkCallback callback;
+//         callback.registerMap(&avaliability);
+
+//         ultrasonicSensorClass parkSpot(pins[i].first, pins[i].second, i);
+//         sensors.push_back(&parkSpot);
+//         parkSpot.registerCallback(&callback);
+//         parkSpot.start();
+//     }
+
+//     try {
+//         running = true;
+//         while(running);
+//     } catch (const std::exception &e) {
+//         std::cerr << e.what() << '\n';
+//     }
+    
     spots[0] = true;
     spots[1] = true;
+
+    gpioInitialise();
     BuzzerClass buzzer1(26);
     BuzzerClass buzzer2(27);
 
@@ -121,6 +167,7 @@ void parkingLot::park() {
     callback3.registerClass((parkingLot*)this);
     callback1.registerBuzzer(&buzzer1);
     callback2.registerBuzzer(&buzzer2);
+    callback3.registerWindow(window);
 
     ultrasonicSensorClass parkSpot1(22, 23, 0);
     ultrasonicSensorClass parkSpot2(6, 12, 1);
@@ -128,14 +175,19 @@ void parkingLot::park() {
     parkSpot1.registerCallback(&callback1);
     parkSpot2.registerCallback(&callback2);
     rfid1.registerCallback(&callback3);
-    parkSpot1.start();
-    parkSpot2.start();
-    rfid1.start();
-    sleep(30);
-    //getchar();
-    parkSpot1.stop();
-    parkSpot2.stop();
-    rfid1.stop();
+
+     //Running Thread
+     parkSpot1.start();
+     parkSpot2.start();
+     rfid1.start();
+    
+     sleep(1);
+     //getchar();
+    
+     parkSpot1.stop();
+     parkSpot2.stop();
+     rfid1.stop();
+     gpioTerminate();
 }
 
 int parkingLot::get_spotavaliability()
@@ -151,3 +203,24 @@ int parkingLot::get_spotavaliability()
     //or value not found
     return -1;
 }
+
+//void parkingLot::start()
+//{
+    //gpioInitialise();
+    //this->parkSpot1.start();
+    //this->parkSpot2.start();
+    //this->rfid1.start();
+//}
+
+//void parkingLot::stop()
+//{
+    ////this->parkSpot1.stop();
+    ////this->parkSpot2.stop();
+    ////this->rfid1.stop();
+    ////gpioTerminate();
+//}
+
+// void parkingLot::registerCallback()
+// {
+
+// }

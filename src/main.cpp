@@ -1,16 +1,27 @@
-#include "os/ultrasonicSensorClass.h"
+#include <QApplication>
 #include <iostream>
 #include <pigpio.h>
 #include "parkingLot.h"
-#include "os/RFIDclass.h"
+#include "Window.h"
 
 using namespace std;
 
-int main() {
-	gpioInitialise();    
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+    Window window;
+    window.show();
+    // parkingLot parkinglot(2, &window);
+    //RFID_main rfid(1);
+    
+    window.startTimer(40);
+    app.processEvents();
+    window.startParkingLot();
+    
+    //parkinglot.start();
 
-    parkingLot parkinglot(2);
-    parkinglot.park();
+    //sleep(20);
+    //getchar();
 
-    gpioTerminate();
+    //parkinglot.stop();
+    return app.exec();
 }

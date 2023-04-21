@@ -64,4 +64,3 @@ Doxygen documentation of project
 + go to html/
 + run index.html in your browser
 + [doxygen documentation html](html/)
-

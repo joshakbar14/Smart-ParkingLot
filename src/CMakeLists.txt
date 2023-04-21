@@ -1,13 +1,30 @@
-add_library (Ultrasonic os/ultrasonicSensorClass.cpp os/ultrasonicSensorClass.h parkingLot.cpp parkingLot.h
-             os/RFIDclass.cpp os/RFIDclass.h os/MFRC522.cpp os/MFRC522.h os/BuzzerClass.cpp os/BuzzerClass.h
+cmake_minimum_required(VERSION 3.7.0)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+add_executable (running 
+                main.cpp
+                parkingLot.cpp
+                Window.cpp
 )
-add_executable (demo main.cpp)
 set_target_properties(
-    demo
+    running
     PROPERTIES 
         SUFFIX ".o"
 )
-target_link_libraries (demo Ultrasonic pigpio pthread bcm2835)
-#target_link_libraries (demo pigpio pthread) #for setting linker to PIGPIO library in /usr/lib/
 
-include_directories(/usr/local/include)
+target_link_libraries (running Dev pigpio pthread bcm2835 Qt5::Widgets)
+
+add_library (Dev os/ultrasonicSensorClass.cpp os/ultrasonicSensorClass.h
+             os/RFIDclass.cpp os/RFIDclass.h os/MFRC522.cpp os/MFRC522.h os/BuzzerClass.cpp os/BuzzerClass.h
+)
+
+# parkingLot.cpp parkingLot.h
+# src/window.h src/window.cpp
+
+install(TARGETS running)
