@@ -32,6 +32,8 @@ A smart parking solution that automatically check available parking space and re
 
     apt-get install cmake
     apt-get install libpigpio-dev
+    apt-get install qtdeclarative5-dev-tools
+    apt-get install libqwt-qt5-dev
 
 
 ## Building:
