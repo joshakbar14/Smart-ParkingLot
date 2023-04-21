@@ -47,7 +47,7 @@ public:
         }
         else {
             pl->check_in_list[sample.sensor_no] = "";
-            bz->buzzer_off();                           //Check if this is the best way
+            bz->buzzer_off();
             *avaliable = sample.avaliability;
             cout << "Parking spot:" << sample.sensor_no << "  is now avaliable. Avaliability =" << sample.avaliability << endl;
         }

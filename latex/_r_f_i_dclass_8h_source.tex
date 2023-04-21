@@ -1,0 +1,77 @@
+\hypertarget{_r_f_i_dclass_8h_source}{}\doxysection{RFIDclass.\+h}
+\label{_r_f_i_dclass_8h_source}\index{src/os/RFIDclass.h@{src/os/RFIDclass.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ RFIDCLASS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ RFIDCLASS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}unistd.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <pigpio.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_r_f_i_d_sample}{RFIDSample}}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_r_f_i_d_sample_a91d82185372162096ee6e64f491efc46}{cardpresent}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_r_f_i_d_sample_a82625f47930691dc1e767eb156186cb2}{card\_no}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_r_f_i_d_sample_a3d53e57c019a498bf9703974ca82f9c8}{rfid\_no}}\ =\ 0;}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_r_f_i_d_callback}{RFIDCallback}}\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_r_f_i_d_callback_a3eb1f86616590d3afa02aa27a4f2706e}{card\_changed}}(\mbox{\hyperlink{struct_r_f_i_d_sample}{RFIDSample}}\ sample)\ =\ 0;}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_r_f_i_dclass}{RFIDclass}}}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_r_f_i_dclass}{RFIDclass}}(\textcolor{keywordtype}{int}\ rfid\_no);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_r_f_i_dclass_afe72017b49a97a87364a7990a93187f8}{registerCallback}}(\mbox{\hyperlink{class_r_f_i_d_callback}{RFIDCallback}}*\ cb);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_r_f_i_dclass_a233dde423fc0077b461cfea59f27f440}{start}}();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_r_f_i_dclass_aedd32f30cfc48d1a551173672d85a4b4}{stop}}();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Worker\ function\ for\ threads.\ The\ MFRC522\ object\ reads\ the\ RFID\ reader.}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Interrupt\ sent\ if\ a\ card\ is\ present.}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sense\_card();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Static\ pigpio\ interrupt\ function.\ @param\ userdata\ contains\ pointer\ to\ this\ class\ instance.}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ displayInterrupt(\textcolor{keywordtype}{int}\ gpio,\ \textcolor{keywordtype}{int}\ level,\ uint32\_t\ tick,\ \textcolor{keywordtype}{void}*\ userdata);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Callback\ function\ which\ is\ called\ by\ interrupt\ function\ displayInterrupt.\ }}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ dataReady();}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Id\ number\ of\ this\ instance\ of\ the\ class.}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rfid\_no;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Card\ number\ from\ the\ card\ that\ is\ read.}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ std::string\ card\_no\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bool\ used\ to\ control\ while\ loop\ in\ worker\ function\ sense\_card.}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ running;}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thread\ which\ runs\ sense\_card\ function.}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ std::thread\ t;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Callback\ interface\ which\ is\ registered\ with\ parkingLot\ class.}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_r_f_i_d_callback}{RFIDCallback}}*\ callback\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ State\ of\ card.}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ cardpresent;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pin\ used\ to\ trigger\ interrupt.}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ led\_pin;}
+\DoxyCodeLine{00109\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//RFIDCLASS\_H}}
+
+\end{DoxyCode}

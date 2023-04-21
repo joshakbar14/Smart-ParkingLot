@@ -111,5 +111,4 @@ void ultrasonicSensorClass::start(){
 void ultrasonicSensorClass::stop(){
     running = false;
     t.join();
-	//gpioSetISRFuncEx(led_pin, EITHER_EDGE, -1, NULL, (void*)this);
 }

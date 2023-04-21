@@ -1,0 +1,512 @@
+\hypertarget{bcm2835_8h_source}{}\doxysection{bcm2835.\+h}
+\label{bcm2835_8h_source}\index{src/os/bcm2835.h@{src/os/bcm2835.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ bcm2835.h}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ C\ and\ C++\ support\ for\ Broadcom\ BCM\ 2835\ as\ used\ in\ Raspberry\ Pi}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Author:\ Mike\ McCauley}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Copyright\ (C)\ 2011-\/2013\ Mike\ McCauley}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \$Id:\ bcm2835.h,v\ 1.8\ 2013/02/15\ 22:06:09\ mikem\ Exp\ mikem\ \$}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//}}
+\DoxyCodeLine{00233\ \textcolor{comment}{}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{comment}{//\ Defines\ for\ BCM2835}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#ifndef\ BCM2835\_H}}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#define\ BCM2835\_H}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\#define\ HIGH\ 0x1}}
+\DoxyCodeLine{00250\ \textcolor{preprocessor}{\#define\ LOW\ \ 0x0}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#define\ BCM2835\_CORE\_CLK\_HZ\ \ \ \ \ \ \ \ \ \ \ \ \ 250000000\ \ \ }}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \textcolor{comment}{//\ Physical\ addresses\ for\ various\ peripheral\ register\ sets}}
+\DoxyCodeLine{00257\ \textcolor{comment}{}\textcolor{preprocessor}{\#define\ BCM2835\_PERI\_BASE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x20000000}}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#define\ BCM2835\_ST\_BASE\ \ \ \ \ \ \ \ \ (BCM2835\_PERI\_BASE\ +\ 0x3000)}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#define\ BCM2835\_GPIO\_PADS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (BCM2835\_PERI\_BASE\ +\ 0x100000)}}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#define\ BCM2835\_CLOCK\_BASE\ \ \ \ \ \ \ \ \ \ \ \ \ \ (BCM2835\_PERI\_BASE\ +\ 0x101000)}}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#define\ BCM2835\_GPIO\_BASE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (BCM2835\_PERI\_BASE\ +\ 0x200000)}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_BASE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (BCM2835\_PERI\_BASE\ +\ 0x204000)}}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC0\_BASE\ \ \ \ \ \ \ (BCM2835\_PERI\_BASE\ +\ 0x205000)}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#define\ BCM2835\_GPIO\_PWM\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (BCM2835\_PERI\_BASE\ +\ 0x20C000)}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC1\_BASE\ \ \ \ \ \ \ (BCM2835\_PERI\_BASE\ +\ 0x804000)}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00278\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint32\_t\ *\mbox{\hyperlink{group__constants_ga08a13c736d6103869fcf97958f826709}{bcm2835\_st}};}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00282\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint32\_t\ *\mbox{\hyperlink{group__constants_ga915e8e3ec4ec566dfbd3680f278ceb30}{bcm2835\_gpio}};}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00286\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint32\_t\ *\mbox{\hyperlink{group__constants_gae073fa51f0266e5ce56a0c508489dd30}{bcm2835\_pwm}};}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00290\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint32\_t\ *\mbox{\hyperlink{group__constants_gabcf4415e29ad3157e288f6e27c449638}{bcm2835\_clk}};}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00294\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint32\_t\ *\mbox{\hyperlink{group__constants_ga438398529e51f1b513ca5d877881b0cd}{bcm2835\_pads}};}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00298\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint32\_t\ *\mbox{\hyperlink{group__constants_ga4e4dc09d2f844ac51bbc259c457cc2bc}{bcm2835\_spi0}};}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00302\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint32\_t\ *\mbox{\hyperlink{group__constants_ga5efb4b72c6c5e977e16c21f3eb1f8ce7}{bcm2835\_bsc0}};}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00306\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint32\_t\ *\mbox{\hyperlink{group__constants_ga5411d16c0f90675f8c36269c643bf724}{bcm2835\_bsc1}};}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\#define\ BCM2835\_PAGE\_SIZE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (4*1024)}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#define\ BCM2835\_BLOCK\_SIZE\ \ \ \ \ \ \ \ \ \ \ \ \ \ (4*1024)}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \textcolor{comment}{//\ Defines\ for\ GPIO}}
+\DoxyCodeLine{00315\ \textcolor{comment}{//\ The\ BCM2835\ has\ 54\ GPIO\ pins.}}
+\DoxyCodeLine{00316\ \textcolor{comment}{//\ \ \ \ \ \ BCM2835\ data\ sheet,\ Page\ 90\ onwards.}}
+\DoxyCodeLine{00318\ \textcolor{comment}{}\textcolor{preprocessor}{\#define\ BCM2835\_GPFSEL0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000\ }}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#define\ BCM2835\_GPFSEL1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0004\ }}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#define\ BCM2835\_GPFSEL2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0008\ }}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#define\ BCM2835\_GPFSEL3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x000c\ }}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#define\ BCM2835\_GPFSEL4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0010\ }}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#define\ BCM2835\_GPFSEL5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0014\ }}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#define\ BCM2835\_GPSET0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x001c\ }}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#define\ BCM2835\_GPSET1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0020\ }}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#define\ BCM2835\_GPCLR0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0028\ }}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#define\ BCM2835\_GPCLR1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x002c\ }}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\#define\ BCM2835\_GPLEV0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0034\ }}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#define\ BCM2835\_GPLEV1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0038\ }}
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\#define\ BCM2835\_GPEDS0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0040\ }}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\#define\ BCM2835\_GPEDS1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0044\ }}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#define\ BCM2835\_GPREN0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x004c\ }}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\#define\ BCM2835\_GPREN1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0050\ }}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#define\ BCM2835\_GPFEN0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0058\ }}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#define\ BCM2835\_GPFEN1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x005c\ }}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\#define\ BCM2835\_GPHEN0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0064\ }}
+\DoxyCodeLine{00337\ \textcolor{preprocessor}{\#define\ BCM2835\_GPHEN1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0068\ }}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#define\ BCM2835\_GPLEN0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0070\ }}
+\DoxyCodeLine{00339\ \textcolor{preprocessor}{\#define\ BCM2835\_GPLEN1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0074\ }}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#define\ BCM2835\_GPAREN0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x007c\ }}
+\DoxyCodeLine{00341\ \textcolor{preprocessor}{\#define\ BCM2835\_GPAREN1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0080\ }}
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\#define\ BCM2835\_GPAFEN0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0088\ }}
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\#define\ BCM2835\_GPAFEN1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x008c\ }}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\#define\ BCM2835\_GPPUD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0094\ }}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\#define\ BCM2835\_GPPUDCLK0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0098\ }}
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\#define\ BCM2835\_GPPUDCLK1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x009c\ }}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00350\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00351\ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \mbox{\hyperlink{group__constants_gga485a5a69e864565b0cd18b33ae1f59f2ab14bfe5240f66659c5dabef39641e0cf}{BCM2835\_GPIO\_FSEL\_INPT}}\ \ =\ 0b000,\ \ \ }
+\DoxyCodeLine{00353\ \ \ \ \ \mbox{\hyperlink{group__constants_gga485a5a69e864565b0cd18b33ae1f59f2a8107db411db5ac03cf3da12ad91956e4}{BCM2835\_GPIO\_FSEL\_OUTP}}\ \ =\ 0b001,\ \ \ }
+\DoxyCodeLine{00354\ \ \ \ \ \mbox{\hyperlink{group__constants_gga485a5a69e864565b0cd18b33ae1f59f2abc84f3ee611fbe48876358ed590987d6}{BCM2835\_GPIO\_FSEL\_ALT0}}\ \ =\ 0b100,\ \ \ }
+\DoxyCodeLine{00355\ \ \ \ \ \mbox{\hyperlink{group__constants_gga485a5a69e864565b0cd18b33ae1f59f2a81058cc284cc50b64e662122fffacb55}{BCM2835\_GPIO\_FSEL\_ALT1}}\ \ =\ 0b101,\ \ \ }
+\DoxyCodeLine{00356\ \ \ \ \ \mbox{\hyperlink{group__constants_gga485a5a69e864565b0cd18b33ae1f59f2aa549fbfb0f09bd07d16065924723951a}{BCM2835\_GPIO\_FSEL\_ALT2}}\ \ =\ 0b110,\ \ \ }
+\DoxyCodeLine{00357\ \ \ \ \ \mbox{\hyperlink{group__constants_gga485a5a69e864565b0cd18b33ae1f59f2a51045fb18f8b8dca33c5693f8fe8fd1c}{BCM2835\_GPIO\_FSEL\_ALT3}}\ \ =\ 0b111,\ \ \ }
+\DoxyCodeLine{00358\ \ \ \ \ \mbox{\hyperlink{group__constants_gga485a5a69e864565b0cd18b33ae1f59f2ad19164ae828b01143b05ce504a76dcd3}{BCM2835\_GPIO\_FSEL\_ALT4}}\ \ =\ 0b011,\ \ \ }
+\DoxyCodeLine{00359\ \ \ \ \ \mbox{\hyperlink{group__constants_gga485a5a69e864565b0cd18b33ae1f59f2a95960d8916729b49b174613b04b57416}{BCM2835\_GPIO\_FSEL\_ALT5}}\ \ =\ 0b010,\ \ \ }
+\DoxyCodeLine{00360\ \ \ \ \ \mbox{\hyperlink{group__constants_gga485a5a69e864565b0cd18b33ae1f59f2a7e1332f8ad6bb7ff98b621ba70a7edee}{BCM2835\_GPIO\_FSEL\_MASK}}\ \ =\ 0b111\ \ \ \ }
+\DoxyCodeLine{00361\ \}\ \mbox{\hyperlink{group__constants_ga485a5a69e864565b0cd18b33ae1f59f2}{bcm2835FunctionSelect}};}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00365\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00366\ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \mbox{\hyperlink{group__constants_gga12cc68fcae50fba711398861e97175bfaf0317ce1232d1a5c4b050e6574fa8e05}{BCM2835\_GPIO\_PUD\_OFF}}\ \ \ \ \ =\ 0b00,\ \ \ }
+\DoxyCodeLine{00368\ \ \ \ \ \mbox{\hyperlink{group__constants_gga12cc68fcae50fba711398861e97175bfa9ead1946bbd26d4162ab566437415e88}{BCM2835\_GPIO\_PUD\_DOWN}}\ \ \ \ =\ 0b01,\ \ \ }
+\DoxyCodeLine{00369\ \ \ \ \ \mbox{\hyperlink{group__constants_gga12cc68fcae50fba711398861e97175bfacb01d52867eff9173574109b7249e8b2}{BCM2835\_GPIO\_PUD\_UP}}\ \ \ \ \ \ =\ 0b10\ \ \ \ }
+\DoxyCodeLine{00370\ \}\ \mbox{\hyperlink{group__constants_ga12cc68fcae50fba711398861e97175bf}{bcm2835PUDControl}};}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#define\ BCM2835\_PADS\_GPIO\_0\_27\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x002c\ }}
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\#define\ BCM2835\_PADS\_GPIO\_28\_45\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0030\ }}
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#define\ BCM2835\_PADS\_GPIO\_46\_53\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0034\ }}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00378\ \textcolor{preprocessor}{\#define\ BCM2835\_PAD\_PASSWRD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x5A\ <<\ 24)\ \ }}
+\DoxyCodeLine{00379\ \textcolor{preprocessor}{\#define\ BCM2835\_PAD\_SLEW\_RATE\_UNLIMITED\ \ \ \ \ \ 0x10\ }}
+\DoxyCodeLine{00380\ \textcolor{preprocessor}{\#define\ BCM2835\_PAD\_HYSTERESIS\_ENABLED\ \ \ \ \ \ \ 0x08\ }}
+\DoxyCodeLine{00381\ \textcolor{preprocessor}{\#define\ BCM2835\_PAD\_DRIVE\_2mA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00\ }}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#define\ BCM2835\_PAD\_DRIVE\_4mA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ }}
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#define\ BCM2835\_PAD\_DRIVE\_6mA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x02\ }}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#define\ BCM2835\_PAD\_DRIVE\_8mA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x03\ }}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#define\ BCM2835\_PAD\_DRIVE\_10mA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x04\ }}
+\DoxyCodeLine{00386\ \textcolor{preprocessor}{\#define\ BCM2835\_PAD\_DRIVE\_12mA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x05\ }}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#define\ BCM2835\_PAD\_DRIVE\_14mA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x06\ }}
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\#define\ BCM2835\_PAD\_DRIVE\_16mA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x07\ }}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00392\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00393\ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaad545896af4bfd6aa8fe3c252cccb60fab09304d698f6f2c24023cc9757d44980}{BCM2835\_PAD\_GROUP\_GPIO\_0\_27}}\ \ \ \ \ \ \ \ \ =\ 0,\ }
+\DoxyCodeLine{00395\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaad545896af4bfd6aa8fe3c252cccb60fa5ae4b9e4ac1542c87c505938c4bd4513}{BCM2835\_PAD\_GROUP\_GPIO\_28\_45}}\ \ \ \ \ \ \ \ =\ 1,\ }
+\DoxyCodeLine{00396\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaad545896af4bfd6aa8fe3c252cccb60fa8ff426a613becbf4c87cbbca8e5634f8}{BCM2835\_PAD\_GROUP\_GPIO\_46\_53}}\ \ \ \ \ \ \ \ =\ 2\ \ }
+\DoxyCodeLine{00397\ \}\ \mbox{\hyperlink{group__constants_gaad545896af4bfd6aa8fe3c252cccb60f}{bcm2835PadGroup}};}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00409\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00410\ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a1517b7c4655c6717f16b83effd033a9e}{RPI\_GPIO\_P1\_03}}\ \ \ \ \ \ \ \ =\ \ 0,\ \ }
+\DoxyCodeLine{00412\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a8afeaa60595130f2b2a59428fac39bb9}{RPI\_GPIO\_P1\_05}}\ \ \ \ \ \ \ \ =\ \ 1,\ \ }
+\DoxyCodeLine{00413\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a41799c767a7a63811b6ef58b0f9da904}{RPI\_GPIO\_P1\_07}}\ \ \ \ \ \ \ \ =\ \ 4,\ \ }
+\DoxyCodeLine{00414\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a47a439611ae9cd893aac347d15bbf218}{RPI\_GPIO\_P1\_08}}\ \ \ \ \ \ \ \ =\ 14,\ \ }
+\DoxyCodeLine{00415\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939ac66b00ec0af3672ba730c934c9b0d8cd}{RPI\_GPIO\_P1\_10}}\ \ \ \ \ \ \ \ =\ 15,\ \ }
+\DoxyCodeLine{00416\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939add159b08381523060c2c747ea697389e}{RPI\_GPIO\_P1\_11}}\ \ \ \ \ \ \ \ =\ 17,\ \ }
+\DoxyCodeLine{00417\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a6e12829cb731101636dfa379e6c81a98}{RPI\_GPIO\_P1\_12}}\ \ \ \ \ \ \ \ =\ 18,\ \ }
+\DoxyCodeLine{00418\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939ae59a6a5c8aec8a2426fee3d4dbcdea9f}{RPI\_GPIO\_P1\_13}}\ \ \ \ \ \ \ \ =\ 21,\ \ }
+\DoxyCodeLine{00419\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939aa955f342de17923e50658dadaec4f094}{RPI\_GPIO\_P1\_15}}\ \ \ \ \ \ \ \ =\ 22,\ \ }
+\DoxyCodeLine{00420\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a4fcda42047fb1dd3b35f7fbec563c838}{RPI\_GPIO\_P1\_16}}\ \ \ \ \ \ \ \ =\ 23,\ \ }
+\DoxyCodeLine{00421\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a47d4996416a8fde17cef2c56eea31a58}{RPI\_GPIO\_P1\_18}}\ \ \ \ \ \ \ \ =\ 24,\ \ }
+\DoxyCodeLine{00422\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939aa55f690a41c9fe86afdffabcf2949e24}{RPI\_GPIO\_P1\_19}}\ \ \ \ \ \ \ \ =\ 10,\ \ }
+\DoxyCodeLine{00423\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939adf0419ccc92c6631ce8cdaeec622a98a}{RPI\_GPIO\_P1\_21}}\ \ \ \ \ \ \ \ =\ \ 9,\ \ }
+\DoxyCodeLine{00424\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a7a40d329190705fdbe6b7902ea54985c}{RPI\_GPIO\_P1\_22}}\ \ \ \ \ \ \ \ =\ 25,\ \ }
+\DoxyCodeLine{00425\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939aafe48c0c9b4b7a595c9e2d4f3ee08728}{RPI\_GPIO\_P1\_23}}\ \ \ \ \ \ \ \ =\ 11,\ \ }
+\DoxyCodeLine{00426\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939ad98192fb89861a5cc541a151b1eeb793}{RPI\_GPIO\_P1\_24}}\ \ \ \ \ \ \ \ =\ \ 8,\ \ }
+\DoxyCodeLine{00427\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a0054a0a275142bbe81ceae66f4243faa}{RPI\_GPIO\_P1\_26}}\ \ \ \ \ \ \ \ =\ \ 7,\ \ }
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{comment}{//\ RPi\ Version\ 2}}
+\DoxyCodeLine{00430\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a4396c173786d740e6ec3fc4ee38b20e2}{RPI\_V2\_GPIO\_P1\_03}}\ \ \ \ \ =\ \ 2,\ \ }
+\DoxyCodeLine{00431\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939aa257d06d419c0b7167145dd3a9f2df4f}{RPI\_V2\_GPIO\_P1\_05}}\ \ \ \ \ =\ \ 3,\ \ }
+\DoxyCodeLine{00432\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a4f1410a529a371034271a506544fd620}{RPI\_V2\_GPIO\_P1\_07}}\ \ \ \ \ =\ \ 4,\ \ }
+\DoxyCodeLine{00433\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a98a776210f8a6bb42b6a83369b5352fe}{RPI\_V2\_GPIO\_P1\_08}}\ \ \ \ \ =\ 14,\ \ }
+\DoxyCodeLine{00434\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939adecfb653b5e4b8e9a4043dd12f4c59eb}{RPI\_V2\_GPIO\_P1\_10}}\ \ \ \ \ =\ 15,\ \ }
+\DoxyCodeLine{00435\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a57b3ee2245cab8817dc73fb0c7e3cf04}{RPI\_V2\_GPIO\_P1\_11}}\ \ \ \ \ =\ 17,\ \ }
+\DoxyCodeLine{00436\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939aaba074b5876584dc023f2186bfe7720b}{RPI\_V2\_GPIO\_P1\_12}}\ \ \ \ \ =\ 18,\ \ }
+\DoxyCodeLine{00437\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a24d4aafefae87366098e12d2850815cf}{RPI\_V2\_GPIO\_P1\_13}}\ \ \ \ \ =\ 27,\ \ }
+\DoxyCodeLine{00438\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a51aa575400b5f68eb15f9c97925a1e67}{RPI\_V2\_GPIO\_P1\_15}}\ \ \ \ \ =\ 22,\ \ }
+\DoxyCodeLine{00439\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939ac537bc59d130b2cdeceeb8f3f55a3c3b}{RPI\_V2\_GPIO\_P1\_16}}\ \ \ \ \ =\ 23,\ \ }
+\DoxyCodeLine{00440\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a9fd49c5c50ac8a3cb9e0da9f4d97c4df}{RPI\_V2\_GPIO\_P1\_18}}\ \ \ \ \ =\ 24,\ \ }
+\DoxyCodeLine{00441\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a8b1c3cc7e651e29539568c15e467e99a}{RPI\_V2\_GPIO\_P1\_19}}\ \ \ \ \ =\ 10,\ \ }
+\DoxyCodeLine{00442\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939ad44ec286ad6a19cb199b5bec2acd6cfc}{RPI\_V2\_GPIO\_P1\_21}}\ \ \ \ \ =\ \ 9,\ \ }
+\DoxyCodeLine{00443\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939ad53accb7a04e393c1473281d8ed2418e}{RPI\_V2\_GPIO\_P1\_22}}\ \ \ \ \ =\ 25,\ \ }
+\DoxyCodeLine{00444\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939abdb86dad7ca4e46d8336994247d212d1}{RPI\_V2\_GPIO\_P1\_23}}\ \ \ \ \ =\ 11,\ \ }
+\DoxyCodeLine{00445\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a2e6cc0b44614e4cff3c7509b5df5594f}{RPI\_V2\_GPIO\_P1\_24}}\ \ \ \ \ =\ \ 8,\ \ }
+\DoxyCodeLine{00446\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a8e25a146c2d28560e141713ff4e25754}{RPI\_V2\_GPIO\_P1\_26}}\ \ \ \ \ =\ \ 7,\ \ }
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{comment}{//\ RPi\ Version\ 2,\ new\ plug\ P5}}
+\DoxyCodeLine{00449\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a31701f7a09520db4a397c183d7e9fdbc}{RPI\_V2\_GPIO\_P5\_03}}\ \ \ \ \ =\ 28,\ \ }
+\DoxyCodeLine{00450\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a11f1ab7cc772c2cb008f7d2dc0d35e80}{RPI\_V2\_GPIO\_P5\_04}}\ \ \ \ \ =\ 29,\ \ }
+\DoxyCodeLine{00451\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939acc0adc7d38cba649bb0de2db462eb16b}{RPI\_V2\_GPIO\_P5\_05}}\ \ \ \ \ =\ 30,\ \ }
+\DoxyCodeLine{00452\ \ \ \ \ \mbox{\hyperlink{group__constants_gga63c029bd6500167152db4e57736d0939a84fd04807747df3f724ce3bf93f76321}{RPI\_V2\_GPIO\_P5\_06}}\ \ \ \ \ =\ 31,\ \ }
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \}\ \mbox{\hyperlink{group__constants_ga63c029bd6500167152db4e57736d0939}{RPiGPIOPin}};}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \textcolor{comment}{//\ Defines\ for\ SPI}}
+\DoxyCodeLine{00457\ \textcolor{comment}{//\ GPIO\ register\ offsets\ from\ BCM2835\_SPI0\_BASE.\ }}
+\DoxyCodeLine{00458\ \textcolor{comment}{//\ Offsets\ into\ the\ SPI\ Peripheral\ block\ in\ bytes\ per\ 10.5\ SPI\ Register\ Map}}
+\DoxyCodeLine{00459\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000\ }}
+\DoxyCodeLine{00460\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_FIFO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0004\ }}
+\DoxyCodeLine{00461\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CLK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0008\ }}
+\DoxyCodeLine{00462\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_DLEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x000c\ }}
+\DoxyCodeLine{00463\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_LTOH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0010\ }}
+\DoxyCodeLine{00464\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_DC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0014\ }}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \textcolor{comment}{//\ Register\ masks\ for\ SPI0\_CS}}
+\DoxyCodeLine{00467\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_LEN\_LONG\ \ \ \ \ \ \ \ \ \ \ \ \ 0x02000000\ }}
+\DoxyCodeLine{00468\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_DMA\_LEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01000000\ }}
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_CSPOL2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00800000\ }}
+\DoxyCodeLine{00470\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_CSPOL1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00400000\ }}
+\DoxyCodeLine{00471\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_CSPOL0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00200000\ }}
+\DoxyCodeLine{00472\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_RXF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00100000\ }}
+\DoxyCodeLine{00473\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_RXR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00080000\ }}
+\DoxyCodeLine{00474\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_TXD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00040000\ }}
+\DoxyCodeLine{00475\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_RXD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00020000\ }}
+\DoxyCodeLine{00476\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_DONE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00010000\ }}
+\DoxyCodeLine{00477\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_TE\_EN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00008000\ }}
+\DoxyCodeLine{00478\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_LMONO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00004000\ }}
+\DoxyCodeLine{00479\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_LEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00002000\ }}
+\DoxyCodeLine{00480\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_REN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00001000\ }}
+\DoxyCodeLine{00481\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_ADCS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000800\ }}
+\DoxyCodeLine{00482\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_INTR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000400\ }}
+\DoxyCodeLine{00483\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_INTD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000200\ }}
+\DoxyCodeLine{00484\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_DMAEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000100\ }}
+\DoxyCodeLine{00485\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_TA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000080\ }}
+\DoxyCodeLine{00486\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_CSPOL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000040\ }}
+\DoxyCodeLine{00487\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_CLEAR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000030\ }}
+\DoxyCodeLine{00488\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_CLEAR\_RX\ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000020\ }}
+\DoxyCodeLine{00489\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_CLEAR\_TX\ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000010\ }}
+\DoxyCodeLine{00490\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_CPOL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000008\ }}
+\DoxyCodeLine{00491\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_CPHA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000004\ }}
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\#define\ BCM2835\_SPI0\_CS\_CS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000003\ }}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00496\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00497\ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \mbox{\hyperlink{group__constants_gga1dd00efbd834646f75240c39a41c9856a5c5e781f69afd9ed746eda7a91064a74}{BCM2835\_SPI\_BIT\_ORDER\_LSBFIRST}}\ =\ 0,\ \ }
+\DoxyCodeLine{00499\ \ \ \ \ \mbox{\hyperlink{group__constants_gga1dd00efbd834646f75240c39a41c9856a6db9e3863017d79cdb3eff34c14c700e}{BCM2835\_SPI\_BIT\_ORDER\_MSBFIRST}}\ =\ 1\ \ \ }
+\DoxyCodeLine{00500\ \}\mbox{\hyperlink{group__constants_ga1dd00efbd834646f75240c39a41c9856}{bcm2835SPIBitOrder}};}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00504\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00505\ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \mbox{\hyperlink{group__constants_gga8dd7bb496565324800130100e6bf6d86a217d44d5652b67ab179a20e93bbd2b87}{BCM2835\_SPI\_MODE0}}\ =\ 0,\ \ }
+\DoxyCodeLine{00507\ \ \ \ \ \mbox{\hyperlink{group__constants_gga8dd7bb496565324800130100e6bf6d86a7a51dc3b999f3098d9298bead11a8960}{BCM2835\_SPI\_MODE1}}\ =\ 1,\ \ }
+\DoxyCodeLine{00508\ \ \ \ \ \mbox{\hyperlink{group__constants_gga8dd7bb496565324800130100e6bf6d86a2250db4cc283f1b47aec450638a5e730}{BCM2835\_SPI\_MODE2}}\ =\ 2,\ \ }
+\DoxyCodeLine{00509\ \ \ \ \ \mbox{\hyperlink{group__constants_gga8dd7bb496565324800130100e6bf6d86a024fb7bd25395dec6b03fff0a7e80619}{BCM2835\_SPI\_MODE3}}\ =\ 3,\ \ }
+\DoxyCodeLine{00510\ \}\mbox{\hyperlink{group__constants_ga8dd7bb496565324800130100e6bf6d86}{bcm2835SPIMode}};}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00514\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00515\ \{}
+\DoxyCodeLine{00516\ \ \ \ \ \mbox{\hyperlink{group__constants_gga29bba154633d37d07fa130a86e4a1f2aaeeb6a51216c5ac0c567827cbe6ed3cba}{BCM2835\_SPI\_CS0}}\ =\ 0,\ \ \ \ \ }
+\DoxyCodeLine{00517\ \ \ \ \ \mbox{\hyperlink{group__constants_gga29bba154633d37d07fa130a86e4a1f2aad959fea764ecd5f88758c254b21ad4b1}{BCM2835\_SPI\_CS1}}\ =\ 1,\ \ \ \ \ }
+\DoxyCodeLine{00518\ \ \ \ \ \mbox{\hyperlink{group__constants_gga29bba154633d37d07fa130a86e4a1f2aaadbb1953f89fd99126ab2862f56e0f60}{BCM2835\_SPI\_CS2}}\ =\ 2,\ \ \ \ \ }
+\DoxyCodeLine{00519\ \ \ \ \ \mbox{\hyperlink{group__constants_gga29bba154633d37d07fa130a86e4a1f2aa011213028810d80438c86259e6497486}{BCM2835\_SPI\_CS\_NONE}}\ =\ 3,\ }
+\DoxyCodeLine{00520\ \}\ \mbox{\hyperlink{group__constants_ga29bba154633d37d07fa130a86e4a1f2a}{bcm2835SPIChipSelect}};}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00528\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00529\ \{}
+\DoxyCodeLine{00530\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884eaa381b689cf30ac842a243a23bdf3309c}{BCM2835\_SPI\_CLOCK\_DIVIDER\_65536}}\ =\ 0,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00531\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884eaee2d41b864505f54680bf9c39ff9effa}{BCM2835\_SPI\_CLOCK\_DIVIDER\_32768}}\ =\ 32768,\ \ \ }
+\DoxyCodeLine{00532\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884ea6de39279629b70dd251224654fd0d740}{BCM2835\_SPI\_CLOCK\_DIVIDER\_16384}}\ =\ 16384,\ \ \ }
+\DoxyCodeLine{00533\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884ea0a77ba2730542fe0ddc670d1c2e84369}{BCM2835\_SPI\_CLOCK\_DIVIDER\_8192}}\ \ =\ 8192,\ \ \ \ }
+\DoxyCodeLine{00534\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884ead6ddf8fe2bcde3cdd1ce70318baa95f1}{BCM2835\_SPI\_CLOCK\_DIVIDER\_4096}}\ \ =\ 4096,\ \ \ \ }
+\DoxyCodeLine{00535\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884eaef8bf46632f27ceeb09cfdf1343f6372}{BCM2835\_SPI\_CLOCK\_DIVIDER\_2048}}\ \ =\ 2048,\ \ \ \ }
+\DoxyCodeLine{00536\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884ea35ad8dd00de04e4937484d7bc88c39bf}{BCM2835\_SPI\_CLOCK\_DIVIDER\_1024}}\ \ =\ 1024,\ \ \ \ }
+\DoxyCodeLine{00537\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884eaf16cc5e10c27b15905e2a0ad96e75474}{BCM2835\_SPI\_CLOCK\_DIVIDER\_512}}\ \ \ =\ 512,\ \ \ \ \ }
+\DoxyCodeLine{00538\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884ea89e57ec01d99fd0dd0a76ae3f47360fd}{BCM2835\_SPI\_CLOCK\_DIVIDER\_256}}\ \ \ =\ 256,\ \ \ \ \ }
+\DoxyCodeLine{00539\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884ea7794f568a5d4e7b47324581a54056e56}{BCM2835\_SPI\_CLOCK\_DIVIDER\_128}}\ \ \ =\ 128,\ \ \ \ \ }
+\DoxyCodeLine{00540\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884ead4df233d940ac171848f52cdbf674b96}{BCM2835\_SPI\_CLOCK\_DIVIDER\_64}}\ \ \ \ =\ 64,\ \ \ \ \ \ }
+\DoxyCodeLine{00541\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884eacd3770db41537912fe4df6a6f422c715}{BCM2835\_SPI\_CLOCK\_DIVIDER\_32}}\ \ \ \ =\ 32,\ \ \ \ \ \ }
+\DoxyCodeLine{00542\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884eaffcc5bace28292640a1e2440a62add79}{BCM2835\_SPI\_CLOCK\_DIVIDER\_16}}\ \ \ \ =\ 16,\ \ \ \ \ \ }
+\DoxyCodeLine{00543\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884ea165b0b0132f663ff147911de8a319bdb}{BCM2835\_SPI\_CLOCK\_DIVIDER\_8}}\ \ \ \ \ =\ 8,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00544\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884ea719364dedf064df7665b51ef8050b7bd}{BCM2835\_SPI\_CLOCK\_DIVIDER\_4}}\ \ \ \ \ =\ 4,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00545\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884ea856f674b6f6ae675e8c8d55ad88790ee}{BCM2835\_SPI\_CLOCK\_DIVIDER\_2}}\ \ \ \ \ =\ 2,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00546\ \ \ \ \ \mbox{\hyperlink{group__constants_ggaf2e0ca069b8caef24602a02e8a00884ea609ee949d81b0a35951c83f14871207b}{BCM2835\_SPI\_CLOCK\_DIVIDER\_1}}\ \ \ \ \ =\ 1,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00547\ \}\ \mbox{\hyperlink{group__constants_gaf2e0ca069b8caef24602a02e8a00884e}{bcm2835SPIClockDivider}};}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \textcolor{comment}{//\ Defines\ for\ I2C}}
+\DoxyCodeLine{00550\ \textcolor{comment}{//\ GPIO\ register\ offsets\ from\ BCM2835\_BSC*\_BASE.}}
+\DoxyCodeLine{00551\ \textcolor{comment}{//\ Offsets\ into\ the\ BSC\ Peripheral\ block\ in\ bytes\ per\ 3.1\ BSC\ Register\ Map}}
+\DoxyCodeLine{00552\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_C\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000\ }}
+\DoxyCodeLine{00553\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_S\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0004\ }}
+\DoxyCodeLine{00554\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_DLEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0008\ }}
+\DoxyCodeLine{00555\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_A\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x000c\ }}
+\DoxyCodeLine{00556\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_FIFO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0010\ }}
+\DoxyCodeLine{00557\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_DIV\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0014\ }}
+\DoxyCodeLine{00558\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_DEL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0018\ }}
+\DoxyCodeLine{00559\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_CLKT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x001c\ }}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ \textcolor{comment}{//\ Register\ masks\ for\ BSC\_C}}
+\DoxyCodeLine{00562\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_C\_I2CEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00008000\ }}
+\DoxyCodeLine{00563\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_C\_INTR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000400\ }}
+\DoxyCodeLine{00564\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_C\_INTT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000200\ }}
+\DoxyCodeLine{00565\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_C\_INTD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000100\ }}
+\DoxyCodeLine{00566\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_C\_ST\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000080\ }}
+\DoxyCodeLine{00567\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_C\_CLEAR\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000020\ }}
+\DoxyCodeLine{00568\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_C\_CLEAR\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000010\ }}
+\DoxyCodeLine{00569\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_C\_READ\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000001\ }}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \textcolor{comment}{//\ Register\ masks\ for\ BSC\_S}}
+\DoxyCodeLine{00572\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_S\_CLKT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000200\ }}
+\DoxyCodeLine{00573\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_S\_ERR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000100\ }}
+\DoxyCodeLine{00574\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_S\_RXF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000080\ }}
+\DoxyCodeLine{00575\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_S\_TXE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000040\ }}
+\DoxyCodeLine{00576\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_S\_RXD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000020\ }}
+\DoxyCodeLine{00577\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_S\_TXD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000010\ }}
+\DoxyCodeLine{00578\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_S\_RXR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000008\ }}
+\DoxyCodeLine{00579\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_S\_TXW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000004\ }}
+\DoxyCodeLine{00580\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_S\_DONE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000002\ }}
+\DoxyCodeLine{00581\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_S\_TA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000001\ }}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \textcolor{preprocessor}{\#define\ BCM2835\_BSC\_FIFO\_SIZE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 16\ }}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00588\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00589\ \{}
+\DoxyCodeLine{00590\ \ \ \ \ \mbox{\hyperlink{group__constants_gga98a5303c1b527513fb659472601687bbaa294a9a800dc512b9cb1b5b104929653}{BCM2835\_I2C\_CLOCK\_DIVIDER\_2500}}\ \ \ =\ 2500,\ \ \ \ \ \ }
+\DoxyCodeLine{00591\ \ \ \ \ \mbox{\hyperlink{group__constants_gga98a5303c1b527513fb659472601687bba4c4db3bbc49cd477c6c4e1e342febb84}{BCM2835\_I2C\_CLOCK\_DIVIDER\_626}}\ \ \ \ =\ 626,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00592\ \ \ \ \ \mbox{\hyperlink{group__constants_gga98a5303c1b527513fb659472601687bba018e09453a380279a0bf4cce67a7b5c8}{BCM2835\_I2C\_CLOCK\_DIVIDER\_150}}\ \ \ \ =\ 150,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00593\ \ \ \ \ \mbox{\hyperlink{group__constants_gga98a5303c1b527513fb659472601687bbac7f74bf858f71efb5f9b4ec5cb9cef7b}{BCM2835\_I2C\_CLOCK\_DIVIDER\_148}}\ \ \ \ =\ 148,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00594\ \}\ \mbox{\hyperlink{group__constants_ga98a5303c1b527513fb659472601687bb}{bcm2835I2CClockDivider}};}
+\DoxyCodeLine{00595\ }
+\DoxyCodeLine{00598\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00599\ \{}
+\DoxyCodeLine{00600\ \ \ \ \ \mbox{\hyperlink{group__constants_ggab59cd406976a819cff4505e978b27fcdac7c108d7283e850821f09bb9d42140b5}{BCM2835\_I2C\_REASON\_OK}}\ \ \ \ \ \ \ \ \ \ \ =\ 0x00,\ \ \ \ \ \ }
+\DoxyCodeLine{00601\ \ \ \ \ \mbox{\hyperlink{group__constants_ggab59cd406976a819cff4505e978b27fcda700025961bce61bdbb50cb212af8a3ff}{BCM2835\_I2C\_REASON\_ERROR\_NACK}}\ \ \ \ =\ 0x01,\ \ \ \ \ \ }
+\DoxyCodeLine{00602\ \ \ \ \ \mbox{\hyperlink{group__constants_ggab59cd406976a819cff4505e978b27fcdaaffbfe9c81b7cf41eba12603e8271f80}{BCM2835\_I2C\_REASON\_ERROR\_CLKT}}\ \ \ \ =\ 0x02,\ \ \ \ \ \ }
+\DoxyCodeLine{00603\ \ \ \ \ \mbox{\hyperlink{group__constants_ggab59cd406976a819cff4505e978b27fcda9941bd8c8b79c99d2da1fb93bfdb9524}{BCM2835\_I2C\_REASON\_ERROR\_DATA}}\ \ \ \ =\ 0x04,\ \ \ \ \ \ }
+\DoxyCodeLine{00604\ \}\ \mbox{\hyperlink{group__constants_gab59cd406976a819cff4505e978b27fcd}{bcm2835I2CReasonCodes}};}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ \textcolor{comment}{//\ Defines\ for\ ST}}
+\DoxyCodeLine{00607\ \textcolor{comment}{//\ GPIO\ register\ offsets\ from\ BCM2835\_ST\_BASE.}}
+\DoxyCodeLine{00608\ \textcolor{comment}{//\ Offsets\ into\ the\ ST\ Peripheral\ block\ in\ bytes\ per\ 12.1\ System\ Timer\ Registers}}
+\DoxyCodeLine{00609\ \textcolor{comment}{//\ The\ System\ Timer\ peripheral\ provides\ four\ 32-\/bit\ timer\ channels\ and\ a\ single\ 64-\/bit\ free\ running\ counter.}}
+\DoxyCodeLine{00610\ \textcolor{comment}{//\ BCM2835\_ST\_CLO\ is\ the\ System\ Timer\ Counter\ Lower\ bits\ register.}}
+\DoxyCodeLine{00611\ \textcolor{comment}{//\ The\ system\ timer\ free-\/running\ counter\ lower\ register\ is\ a\ read-\/only\ register\ that\ returns\ the\ current\ value}}
+\DoxyCodeLine{00612\ \textcolor{comment}{//\ of\ the\ lower\ 32-\/bits\ of\ the\ free\ running\ counter.}}
+\DoxyCodeLine{00613\ \textcolor{comment}{//\ BCM2835\_ST\_CHI\ is\ the\ System\ Timer\ Counter\ Upper\ bits\ register.}}
+\DoxyCodeLine{00614\ \textcolor{comment}{//\ The\ system\ timer\ free-\/running\ counter\ upper\ register\ is\ a\ read-\/only\ register\ that\ returns\ the\ current\ value}}
+\DoxyCodeLine{00615\ \textcolor{comment}{//\ of\ the\ upper\ 32-\/bits\ of\ the\ free\ running\ counter.}}
+\DoxyCodeLine{00616\ \textcolor{preprocessor}{\#define\ BCM2835\_ST\_CS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000\ }}
+\DoxyCodeLine{00617\ \textcolor{preprocessor}{\#define\ BCM2835\_ST\_CLO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0004\ }}
+\DoxyCodeLine{00618\ \textcolor{preprocessor}{\#define\ BCM2835\_ST\_CHI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0008\ }}
+\DoxyCodeLine{00619\ }
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ }
+\DoxyCodeLine{00623\ \textcolor{comment}{//\ Defines\ for\ PWM}}
+\DoxyCodeLine{00624\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM\_CONTROL\ 0}}
+\DoxyCodeLine{00625\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM\_STATUS\ \ 1}}
+\DoxyCodeLine{00626\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM0\_RANGE\ \ 4}}
+\DoxyCodeLine{00627\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM0\_DATA\ \ \ 5}}
+\DoxyCodeLine{00628\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM1\_RANGE\ \ 8}}
+\DoxyCodeLine{00629\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM1\_DATA\ \ \ 9}}
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00631\ \textcolor{preprocessor}{\#define\ BCM2835\_PWMCLK\_CNTL\ \ \ \ \ 40}}
+\DoxyCodeLine{00632\ \textcolor{preprocessor}{\#define\ BCM2835\_PWMCLK\_DIV\ \ \ \ \ \ 41}}
+\DoxyCodeLine{00633\ }
+\DoxyCodeLine{00634\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM1\_MS\_MODE\ \ \ \ 0x8000\ \ }}
+\DoxyCodeLine{00635\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM1\_USEFIFO\ \ \ \ 0x2000\ \ }}
+\DoxyCodeLine{00636\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM1\_REVPOLAR\ \ \ 0x1000\ \ }}
+\DoxyCodeLine{00637\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM1\_OFFSTATE\ \ \ 0x0800\ \ }}
+\DoxyCodeLine{00638\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM1\_REPEATFF\ \ \ 0x0400\ \ }}
+\DoxyCodeLine{00639\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM1\_SERIAL\ \ \ \ \ 0x0200\ \ }}
+\DoxyCodeLine{00640\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM1\_ENABLE\ \ \ \ \ 0x0100\ \ }}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00642\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM0\_MS\_MODE\ \ \ \ 0x0080\ \ }}
+\DoxyCodeLine{00643\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM0\_USEFIFO\ \ \ \ 0x0020\ \ }}
+\DoxyCodeLine{00644\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM0\_REVPOLAR\ \ \ 0x0010\ \ }}
+\DoxyCodeLine{00645\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM0\_OFFSTATE\ \ \ 0x0008\ \ }}
+\DoxyCodeLine{00646\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM0\_REPEATFF\ \ \ 0x0004\ \ }}
+\DoxyCodeLine{00647\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM0\_SERIAL\ \ \ \ \ 0x0002\ \ }}
+\DoxyCodeLine{00648\ \textcolor{preprocessor}{\#define\ BCM2835\_PWM0\_ENABLE\ \ \ \ \ 0x0001\ \ }}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00650\ \textcolor{comment}{//\ Historical\ name\ compatibility}}
+\DoxyCodeLine{00651\ \textcolor{preprocessor}{\#ifndef\ BCM2835\_NO\_DELAY\_COMPATIBILITY}}
+\DoxyCodeLine{00652\ \textcolor{preprocessor}{\#define\ delay(x)\ bcm2835\_delay(x)}}
+\DoxyCodeLine{00653\ \textcolor{preprocessor}{\#define\ delayMicroseconds(x)\ bcm2835\_delayMicroseconds(x)}}
+\DoxyCodeLine{00654\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00655\ }
+\DoxyCodeLine{00656\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00657\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00658\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00663\ }
+\DoxyCodeLine{00672\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__init_ga9351fa3ec8eeff4e9d998d3d5d912a4f}{bcm2835\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00673\ }
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__init_ga3a42892f61764132d106a4ae32271002}{bcm2835\_close}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00684\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \ \mbox{\hyperlink{group__init_gaf1a6cc6b217b8ff0270ef99300c29e3c}{bcm2835\_set\_debug}}(uint8\_t\ debug);}
+\DoxyCodeLine{00685\ }
+\DoxyCodeLine{00687\ }
+\DoxyCodeLine{00693\ }
+\DoxyCodeLine{00700\ \ \ \ \ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{group__lowlevel_ga5f242135f5088f8c319492426a1ed5e3}{bcm2835\_peri\_read}}(\textcolor{keyword}{volatile}\ uint32\_t*\ paddr);}
+\DoxyCodeLine{00701\ }
+\DoxyCodeLine{00702\ }
+\DoxyCodeLine{00709\ \ \ \ \ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{group__lowlevel_ga0f541d0997978dd30f60231b64f10230}{bcm2835\_peri\_read\_nb}}(\textcolor{keyword}{volatile}\ uint32\_t*\ paddr);}
+\DoxyCodeLine{00710\ }
+\DoxyCodeLine{00711\ }
+\DoxyCodeLine{00718\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__lowlevel_ga639da6963ab76e3109b9909f3a9e6171}{bcm2835\_peri\_write}}(\textcolor{keyword}{volatile}\ uint32\_t*\ paddr,\ uint32\_t\ value);}
+\DoxyCodeLine{00719\ }
+\DoxyCodeLine{00726\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__lowlevel_ga1c158b76d194b94d0b2fb1488f9ff30e}{bcm2835\_peri\_write\_nb}}(\textcolor{keyword}{volatile}\ uint32\_t*\ paddr,\ uint32\_t\ value);}
+\DoxyCodeLine{00727\ }
+\DoxyCodeLine{00739\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__lowlevel_ga01949a6285305f38ce0a47154e55c1b6}{bcm2835\_peri\_set\_bits}}(\textcolor{keyword}{volatile}\ uint32\_t*\ paddr,\ uint32\_t\ value,\ uint32\_t\ mask);}
+\DoxyCodeLine{00741\ }
+\DoxyCodeLine{00746\ }
+\DoxyCodeLine{00751\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gaf866b136c0a9fd4cca4065ce51eb4495}{bcm2835\_gpio\_fsel}}(uint8\_t\ pin,\ uint8\_t\ mode);}
+\DoxyCodeLine{00752\ }
+\DoxyCodeLine{00757\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga2edcdd8eecf3a004ea771669c4e66959}{bcm2835\_gpio\_set}}(uint8\_t\ pin);}
+\DoxyCodeLine{00758\ }
+\DoxyCodeLine{00763\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gafea3acccb00e21160b510f440a33e5e0}{bcm2835\_gpio\_clr}}(uint8\_t\ pin);}
+\DoxyCodeLine{00764\ }
+\DoxyCodeLine{00769\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga7dbc51341776f9dfbd8c0415fc2d419f}{bcm2835\_gpio\_set\_multi}}(uint32\_t\ mask);}
+\DoxyCodeLine{00770\ }
+\DoxyCodeLine{00775\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga1dc062120d278fe4e964f2b28832b6f6}{bcm2835\_gpio\_clr\_multi}}(uint32\_t\ mask);}
+\DoxyCodeLine{00776\ }
+\DoxyCodeLine{00782\ \ \ \ \ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{group__gpio_ga693becf47034d3b2d8ed0ac4e74de173}{bcm2835\_gpio\_lev}}(uint8\_t\ pin);}
+\DoxyCodeLine{00783\ }
+\DoxyCodeLine{00791\ \ \ \ \ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{group__gpio_ga41128b1ec95d00329f7f399b56b59c19}{bcm2835\_gpio\_eds}}(uint8\_t\ pin);}
+\DoxyCodeLine{00792\ }
+\DoxyCodeLine{00797\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gabc7458bd0de6fb2de781c8337c1cffb1}{bcm2835\_gpio\_set\_eds}}(uint8\_t\ pin);}
+\DoxyCodeLine{00798\ }
+\DoxyCodeLine{00806\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga5b70fa96491b9b1d9b3fb21bfefe2fd7}{bcm2835\_gpio\_ren}}(uint8\_t\ pin);}
+\DoxyCodeLine{00807\ }
+\DoxyCodeLine{00810\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gaa5826edb1b17dd9095fa3bcae5ded485}{bcm2835\_gpio\_clr\_ren}}(uint8\_t\ pin);}
+\DoxyCodeLine{00811\ }
+\DoxyCodeLine{00819\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gac9ea2f8c63f0330f12e1b24444d92e50}{bcm2835\_gpio\_fen}}(uint8\_t\ pin);}
+\DoxyCodeLine{00820\ }
+\DoxyCodeLine{00823\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga196b61d8bf334be6acec590de6dc8f88}{bcm2835\_gpio\_clr\_fen}}(uint8\_t\ pin);}
+\DoxyCodeLine{00824\ }
+\DoxyCodeLine{00828\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga2cb94aef80b49335057e338d71e46608}{bcm2835\_gpio\_hen}}(uint8\_t\ pin);}
+\DoxyCodeLine{00829\ }
+\DoxyCodeLine{00832\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga3c3b5297f5c2aeb5d2046a5b6de15d96}{bcm2835\_gpio\_clr\_hen}}(uint8\_t\ pin);}
+\DoxyCodeLine{00833\ }
+\DoxyCodeLine{00837\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga8e990d48db929445ac3e899ca0f5ed07}{bcm2835\_gpio\_len}}(uint8\_t\ pin);}
+\DoxyCodeLine{00838\ }
+\DoxyCodeLine{00841\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gac3b51f656f5495dad715ff3c01417aea}{bcm2835\_gpio\_clr\_len}}(uint8\_t\ pin);}
+\DoxyCodeLine{00842\ }
+\DoxyCodeLine{00848\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gaa77a0e0d39a6b4423419a16055ce71cc}{bcm2835\_gpio\_aren}}(uint8\_t\ pin);}
+\DoxyCodeLine{00849\ }
+\DoxyCodeLine{00852\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga6f3e122871853b34d97b65284cf7cc47}{bcm2835\_gpio\_clr\_aren}}(uint8\_t\ pin);}
+\DoxyCodeLine{00853\ }
+\DoxyCodeLine{00859\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga7e1f1686b60043c00327255e523d98f6}{bcm2835\_gpio\_afen}}(uint8\_t\ pin);}
+\DoxyCodeLine{00860\ }
+\DoxyCodeLine{00863\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga8ec8bf224e25ed395d4eecf3ad308ca3}{bcm2835\_gpio\_clr\_afen}}(uint8\_t\ pin);}
+\DoxyCodeLine{00864\ }
+\DoxyCodeLine{00870\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga03b93e27d85686cc295f46d34776c57f}{bcm2835\_gpio\_pud}}(uint8\_t\ pud);}
+\DoxyCodeLine{00871\ }
+\DoxyCodeLine{00877\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga260327891497441ac1498f3280c055ed}{bcm2835\_gpio\_pudclk}}(uint8\_t\ pin,\ uint8\_t\ on);}
+\DoxyCodeLine{00878\ }
+\DoxyCodeLine{00882\ \ \ \ \ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{group__gpio_gaba51cd52ba75cbc9b03f3d629ad931a1}{bcm2835\_gpio\_pad}}(uint8\_t\ group);}
+\DoxyCodeLine{00883\ }
+\DoxyCodeLine{00887\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gac69a029acceb17691826650d8f188cd8}{bcm2835\_gpio\_set\_pad}}(uint8\_t\ group,\ uint32\_t\ control);}
+\DoxyCodeLine{00888\ }
+\DoxyCodeLine{00898\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga3ffbe079732a995cfacd691f677d9789}{bcm2835\_delay}}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ millis);}
+\DoxyCodeLine{00899\ }
+\DoxyCodeLine{00912\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gade50bd6947463a242783accf91e5b5e4}{bcm2835\_delayMicroseconds}}\ (uint64\_t\ micros);}
+\DoxyCodeLine{00913\ }
+\DoxyCodeLine{00917\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_ga22f9b05d8edda3ef57cd58728e9c3baa}{bcm2835\_gpio\_write}}(uint8\_t\ pin,\ uint8\_t\ on);}
+\DoxyCodeLine{00918\ }
+\DoxyCodeLine{00922\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gac4f39453969e1d15e921c2d7f7bf7c44}{bcm2835\_gpio\_write\_multi}}(uint32\_t\ mask,\ uint8\_t\ on);}
+\DoxyCodeLine{00923\ }
+\DoxyCodeLine{00927\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gab1eb9bef539c87c291140825e08d7960}{bcm2835\_gpio\_write\_mask}}(uint32\_t\ value,\ uint32\_t\ mask);}
+\DoxyCodeLine{00928\ }
+\DoxyCodeLine{00933\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__gpio_gaa69ba311c1cde834d8a2beb8ab5f745a}{bcm2835\_gpio\_set\_pud}}(uint8\_t\ pin,\ uint8\_t\ pud);}
+\DoxyCodeLine{00934\ }
+\DoxyCodeLine{00936\ }
+\DoxyCodeLine{00941\ }
+\DoxyCodeLine{00948\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__spi_gac888dc9b78b695f6c13eeeaa813c0d82}{bcm2835\_spi\_begin}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00949\ }
+\DoxyCodeLine{00953\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__spi_gad25421b3a4a6ca280dfdd39c94c3279a}{bcm2835\_spi\_end}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00954\ }
+\DoxyCodeLine{00960\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__spi_ga0127eab1b6c3f8bf127bdac474fdc0f9}{bcm2835\_spi\_setBitOrder}}(uint8\_t\ order);}
+\DoxyCodeLine{00961\ }
+\DoxyCodeLine{00966\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__spi_gad623657d9513faa89d22ae1dc87eec38}{bcm2835\_spi\_setClockDivider}}(uint16\_t\ divider);}
+\DoxyCodeLine{00967\ }
+\DoxyCodeLine{00972\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__spi_gabfbf797499756d38e3667f05ee8fd11d}{bcm2835\_spi\_setDataMode}}(uint8\_t\ mode);}
+\DoxyCodeLine{00973\ }
+\DoxyCodeLine{00979\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__spi_ga2fa186568605c21e9166a19b1d82ea95}{bcm2835\_spi\_chipSelect}}(uint8\_t\ cs);}
+\DoxyCodeLine{00980\ }
+\DoxyCodeLine{00988\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__spi_gaee4edaf16fe21455441965bc57e78724}{bcm2835\_spi\_setChipSelectPolarity}}(uint8\_t\ cs,\ uint8\_t\ active);}
+\DoxyCodeLine{00989\ }
+\DoxyCodeLine{00999\ \ \ \ \ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{group__spi_ga600dc972f1064908b41b349c92d7647d}{bcm2835\_spi\_transfer}}(uint8\_t\ value);}
+\DoxyCodeLine{01000\ \ \ \ \ }
+\DoxyCodeLine{01011\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__spi_gac24692f270bb3411990ea706ddd4fee9}{bcm2835\_spi\_transfernb}}(\textcolor{keywordtype}{char}*\ tbuf,\ \textcolor{keywordtype}{char}*\ rbuf,\ uint32\_t\ len);}
+\DoxyCodeLine{01012\ }
+\DoxyCodeLine{01019\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__spi_ga06884e9cd71dfe380f846b09f47b7248}{bcm2835\_spi\_transfern}}(\textcolor{keywordtype}{char}*\ buf,\ uint32\_t\ len);}
+\DoxyCodeLine{01020\ }
+\DoxyCodeLine{01026\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__spi_ga1b668c248fb9c09239bb59b7a2fad902}{bcm2835\_spi\_writenb}}(\textcolor{keywordtype}{char}*\ buf,\ uint32\_t\ len);}
+\DoxyCodeLine{01027\ }
+\DoxyCodeLine{01029\ }
+\DoxyCodeLine{01034\ }
+\DoxyCodeLine{01041\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__i2c_ga1309569f7363853333f3040b1553ea64}{bcm2835\_i2c\_begin}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{01042\ }
+\DoxyCodeLine{01046\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__i2c_ga0a91c4c5cdfe6d7d8fc127b4f3122db4}{bcm2835\_i2c\_end}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{01047\ }
+\DoxyCodeLine{01050\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__i2c_ga6b0495cb138bd5eb26965f5a00b08dc0}{bcm2835\_i2c\_setSlaveAddress}}(uint8\_t\ addr);}
+\DoxyCodeLine{01051\ }
+\DoxyCodeLine{01055\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__i2c_ga6a00e88236977643f0727557cfa16838}{bcm2835\_i2c\_setClockDivider}}(uint16\_t\ divider);}
+\DoxyCodeLine{01056\ }
+\DoxyCodeLine{01062\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__i2c_gaba831b5b437e32c4272ec89bab7ebfdf}{bcm2835\_i2c\_set\_baudrate}}(uint32\_t\ baudrate);}
+\DoxyCodeLine{01063\ }
+\DoxyCodeLine{01069\ \ \ \ \ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{group__i2c_ga8e9d3835ace8697fd9e7bf1278b3ba76}{bcm2835\_i2c\_write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ buf,\ uint32\_t\ len);}
+\DoxyCodeLine{01070\ }
+\DoxyCodeLine{01076\ \ \ \ \ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{group__i2c_ga5d01c1483ae12ff682068d0a56b6529a}{bcm2835\_i2c\_read}}(\textcolor{keywordtype}{char}*\ buf,\ uint32\_t\ len);}
+\DoxyCodeLine{01077\ }
+\DoxyCodeLine{01091\ \ \ \ \ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{group__i2c_gacb378490c2f6c295072f2da6eae2275a}{bcm2835\_i2c\_read\_register\_rs}}(\textcolor{keywordtype}{char}*\ regaddr,\ \textcolor{keywordtype}{char}*\ buf,\ uint32\_t\ len);}
+\DoxyCodeLine{01092\ }
+\DoxyCodeLine{01094\ }
+\DoxyCodeLine{01098\ }
+\DoxyCodeLine{01101\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{group__st_ga2bafb65648b5481d95f528b1639b18d2}{bcm2835\_st\_read}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{01102\ }
+\DoxyCodeLine{01106\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__st_ga7596cf7e06a7437703b96f11585be622}{bcm2835\_st\_delay}}(uint64\_t\ offset\_micros,\ uint64\_t\ micros);}
+\DoxyCodeLine{01107\ }
+\DoxyCodeLine{01109\ }
+\DoxyCodeLine{01110\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{01111\ \}}
+\DoxyCodeLine{01112\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01113\ }
+\DoxyCodeLine{01114\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ BCM2835\_H}}
+\DoxyCodeLine{01115\ }
+\DoxyCodeLine{01118\ }
+\DoxyCodeLine{01121\ }
+\DoxyCodeLine{01124\ }
+\DoxyCodeLine{01127\ }
+
+\end{DoxyCode}

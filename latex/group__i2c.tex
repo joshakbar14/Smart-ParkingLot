@@ -1,0 +1,136 @@
+\hypertarget{group__i2c}{}\doxysection{I2C access}
+\label{group__i2c}\index{I2C access@{I2C access}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__i2c_ga1309569f7363853333f3040b1553ea64}{bcm2835\+\_\+i2c\+\_\+begin}} (void)
+\item 
+void \mbox{\hyperlink{group__i2c_ga0a91c4c5cdfe6d7d8fc127b4f3122db4}{bcm2835\+\_\+i2c\+\_\+end}} (void)
+\item 
+void \mbox{\hyperlink{group__i2c_ga6b0495cb138bd5eb26965f5a00b08dc0}{bcm2835\+\_\+i2c\+\_\+set\+Slave\+Address}} (uint8\+\_\+t addr)
+\item 
+void \mbox{\hyperlink{group__i2c_ga6a00e88236977643f0727557cfa16838}{bcm2835\+\_\+i2c\+\_\+set\+Clock\+Divider}} (uint16\+\_\+t divider)
+\item 
+void \mbox{\hyperlink{group__i2c_gaba831b5b437e32c4272ec89bab7ebfdf}{bcm2835\+\_\+i2c\+\_\+set\+\_\+baudrate}} (uint32\+\_\+t baudrate)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__i2c_ga8e9d3835ace8697fd9e7bf1278b3ba76}{bcm2835\+\_\+i2c\+\_\+write}} (const char $\ast$buf, uint32\+\_\+t len)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__i2c_ga5d01c1483ae12ff682068d0a56b6529a}{bcm2835\+\_\+i2c\+\_\+read}} (char $\ast$buf, uint32\+\_\+t len)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__i2c_gacb378490c2f6c295072f2da6eae2275a}{bcm2835\+\_\+i2c\+\_\+read\+\_\+register\+\_\+rs}} (char $\ast$regaddr, char $\ast$buf, uint32\+\_\+t len)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+These functions let you use I2C (The Broadcom Serial Control bus with the Philips I2C bus/interface version 2.\+1 January 2000.) to interface with an external I2C device. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__i2c_ga1309569f7363853333f3040b1553ea64}\label{group__i2c_ga1309569f7363853333f3040b1553ea64}} 
+\index{I2C access@{I2C access}!bcm2835\_i2c\_begin@{bcm2835\_i2c\_begin}}
+\index{bcm2835\_i2c\_begin@{bcm2835\_i2c\_begin}!I2C access@{I2C access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_i2c\_begin()}{bcm2835\_i2c\_begin()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+i2c\+\_\+begin (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Start I2C operations. Forces RPi I2C pins P1-\/03 (SDA) and P1-\/05 (SCL) to alternate function ALT0, which enables those pins for I2C interface. You should call \mbox{\hyperlink{group__i2c_ga0a91c4c5cdfe6d7d8fc127b4f3122db4}{bcm2835\+\_\+i2c\+\_\+end()}} when all I2C functions are complete to return the pins to their default functions \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__i2c_ga0a91c4c5cdfe6d7d8fc127b4f3122db4}{bcm2835\+\_\+i2c\+\_\+end()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__i2c_ga0a91c4c5cdfe6d7d8fc127b4f3122db4}\label{group__i2c_ga0a91c4c5cdfe6d7d8fc127b4f3122db4}} 
+\index{I2C access@{I2C access}!bcm2835\_i2c\_end@{bcm2835\_i2c\_end}}
+\index{bcm2835\_i2c\_end@{bcm2835\_i2c\_end}!I2C access@{I2C access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_i2c\_end()}{bcm2835\_i2c\_end()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+i2c\+\_\+end (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+End I2C operations. I2C pins P1-\/03 (SDA) and P1-\/05 (SCL) are returned to their default INPUT behaviour. \mbox{\Hypertarget{group__i2c_ga5d01c1483ae12ff682068d0a56b6529a}\label{group__i2c_ga5d01c1483ae12ff682068d0a56b6529a}} 
+\index{I2C access@{I2C access}!bcm2835\_i2c\_read@{bcm2835\_i2c\_read}}
+\index{bcm2835\_i2c\_read@{bcm2835\_i2c\_read}!I2C access@{I2C access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_i2c\_read()}{bcm2835\_i2c\_read()}}
+{\footnotesize\ttfamily uint8\+\_\+t bcm2835\+\_\+i2c\+\_\+read (\begin{DoxyParamCaption}\item[{char $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+Transfers any number of bytes from the currently selected I2C slave. (as previously set by \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__i2c_ga6b0495cb138bd5eb26965f5a00b08dc0}{bcm2835\+\_\+i2c\+\_\+set\+Slave\+Address}}) 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em buf} & Buffer of bytes to receive. \\
+\hline
+\mbox{\texttt{ in}}  & {\em len} & Number of bytes in the buf buffer, and the number of bytes to received. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reason see \mbox{\hyperlink{group__constants_gab59cd406976a819cff4505e978b27fcd}{bcm2835\+I2\+CReason\+Codes}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__i2c_gacb378490c2f6c295072f2da6eae2275a}\label{group__i2c_gacb378490c2f6c295072f2da6eae2275a}} 
+\index{I2C access@{I2C access}!bcm2835\_i2c\_read\_register\_rs@{bcm2835\_i2c\_read\_register\_rs}}
+\index{bcm2835\_i2c\_read\_register\_rs@{bcm2835\_i2c\_read\_register\_rs}!I2C access@{I2C access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_i2c\_read\_register\_rs()}{bcm2835\_i2c\_read\_register\_rs()}}
+{\footnotesize\ttfamily uint8\+\_\+t bcm2835\+\_\+i2c\+\_\+read\+\_\+register\+\_\+rs (\begin{DoxyParamCaption}\item[{char $\ast$}]{regaddr,  }\item[{char $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+Allows reading from I2C slaves that require a repeated start (without any prior stop) to read after the required slave register has been set. For example, the popular MPL3115\+A2 pressure and temperature sensor. Note that your device must support or require this mode. If your device does not require this mode then the standard combined\+: \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__i2c_ga8e9d3835ace8697fd9e7bf1278b3ba76}{bcm2835\+\_\+i2c\+\_\+write}} 
+
+\mbox{\hyperlink{group__i2c_ga5d01c1483ae12ff682068d0a56b6529a}{bcm2835\+\_\+i2c\+\_\+read}} are a better choice. Will read from the slave previously set by 
+
+\mbox{\hyperlink{group__i2c_ga6b0495cb138bd5eb26965f5a00b08dc0}{bcm2835\+\_\+i2c\+\_\+set\+Slave\+Address}} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em regaddr} & Buffer containing the slave register you wish to read from. \\
+\hline
+\mbox{\texttt{ in}}  & {\em buf} & Buffer of bytes to receive. \\
+\hline
+\mbox{\texttt{ in}}  & {\em len} & Number of bytes in the buf buffer, and the number of bytes to received. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reason see \mbox{\hyperlink{group__constants_gab59cd406976a819cff4505e978b27fcd}{bcm2835\+I2\+CReason\+Codes}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__i2c_gaba831b5b437e32c4272ec89bab7ebfdf}\label{group__i2c_gaba831b5b437e32c4272ec89bab7ebfdf}} 
+\index{I2C access@{I2C access}!bcm2835\_i2c\_set\_baudrate@{bcm2835\_i2c\_set\_baudrate}}
+\index{bcm2835\_i2c\_set\_baudrate@{bcm2835\_i2c\_set\_baudrate}!I2C access@{I2C access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_i2c\_set\_baudrate()}{bcm2835\_i2c\_set\_baudrate()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+i2c\+\_\+set\+\_\+baudrate (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{baudrate }\end{DoxyParamCaption})}
+
+Sets the I2C clock divider by converting the baudrate parameter to the equivalent I2C clock divider. ( see \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__i2c_ga6a00e88236977643f0727557cfa16838}{bcm2835\+\_\+i2c\+\_\+set\+Clock\+Divider}}) For the I2C standard 100khz you would set baudrate to 100000 The use of baudrate corresponds to its use in the I2C kernel device driver. (Of course, bcm2835 has nothing to do with the kernel driver) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__i2c_ga6a00e88236977643f0727557cfa16838}\label{group__i2c_ga6a00e88236977643f0727557cfa16838}} 
+\index{I2C access@{I2C access}!bcm2835\_i2c\_setClockDivider@{bcm2835\_i2c\_setClockDivider}}
+\index{bcm2835\_i2c\_setClockDivider@{bcm2835\_i2c\_setClockDivider}!I2C access@{I2C access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_i2c\_setClockDivider()}{bcm2835\_i2c\_setClockDivider()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+i2c\+\_\+set\+Clock\+Divider (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{divider }\end{DoxyParamCaption})}
+
+Sets the I2C clock divider and therefore the I2C clock speed. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em divider} & The desired I2C clock divider, one of BCM2835\+\_\+\+I2\+C\+\_\+\+CLOCK\+\_\+\+DIVIDER\+\_\+$\ast$, see \mbox{\hyperlink{group__constants_ga98a5303c1b527513fb659472601687bb}{bcm2835\+I2\+CClock\+Divider}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__i2c_ga6b0495cb138bd5eb26965f5a00b08dc0}\label{group__i2c_ga6b0495cb138bd5eb26965f5a00b08dc0}} 
+\index{I2C access@{I2C access}!bcm2835\_i2c\_setSlaveAddress@{bcm2835\_i2c\_setSlaveAddress}}
+\index{bcm2835\_i2c\_setSlaveAddress@{bcm2835\_i2c\_setSlaveAddress}!I2C access@{I2C access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_i2c\_setSlaveAddress()}{bcm2835\_i2c\_setSlaveAddress()}}
+{\footnotesize\ttfamily void bcm2835\+\_\+i2c\+\_\+set\+Slave\+Address (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{addr }\end{DoxyParamCaption})}
+
+Sets the I2C slave address. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em addr} & The I2C slave address. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__i2c_ga8e9d3835ace8697fd9e7bf1278b3ba76}\label{group__i2c_ga8e9d3835ace8697fd9e7bf1278b3ba76}} 
+\index{I2C access@{I2C access}!bcm2835\_i2c\_write@{bcm2835\_i2c\_write}}
+\index{bcm2835\_i2c\_write@{bcm2835\_i2c\_write}!I2C access@{I2C access}}
+\doxysubsubsection{\texorpdfstring{bcm2835\_i2c\_write()}{bcm2835\_i2c\_write()}}
+{\footnotesize\ttfamily uint8\+\_\+t bcm2835\+\_\+i2c\+\_\+write (\begin{DoxyParamCaption}\item[{const char $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+Transfers any number of bytes to the currently selected I2C slave. (as previously set by \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__i2c_ga6b0495cb138bd5eb26965f5a00b08dc0}{bcm2835\+\_\+i2c\+\_\+set\+Slave\+Address}}) 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em buf} & Buffer of bytes to send. \\
+\hline
+\mbox{\texttt{ in}}  & {\em len} & Number of bytes in the buf buffer, and the number of bytes to send. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reason see \mbox{\hyperlink{group__constants_gab59cd406976a819cff4505e978b27fcd}{bcm2835\+I2\+CReason\+Codes}} 
+\end{DoxyReturn}
